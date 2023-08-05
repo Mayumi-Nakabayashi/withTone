@@ -1,5 +1,22 @@
 import 'package:flutter/material.dart';
 
+/// 画面遷移を確認する為の仮画面
+///
+/// 背景に figma で作成したデザイン画像を配置する.
+/// 画面遷移を nextPathList, existUserFlowOfPop で再現する.
+///
+/// 各ページ開発着手する際に class 定義して作成するまでのつなぎです.
+///
+/// ```
+/// const Kamishibai(
+///   assetPath: 'assets/page_images/question.png',
+///   nextPathList: [
+///     '/feedback_line',
+///     '/upload_videof',
+///   ],
+///   existUserFlowOfPop: true,
+/// );
+/// ```
 class Kamishibai extends StatefulWidget {
   const Kamishibai({
     super.key,
