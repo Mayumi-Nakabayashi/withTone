@@ -46,10 +46,11 @@ class _KamishibaieState extends State<Kamishibai> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage(widget.assetPath),
-          fit: BoxFit.cover,
-        )),
+          image: DecorationImage(
+            image: AssetImage(widget.assetPath),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

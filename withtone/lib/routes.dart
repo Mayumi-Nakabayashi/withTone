@@ -133,7 +133,6 @@ class Routes {
           ],
           existUserFlowOfPop: true,
         ),
-
     '/feedback_line': (context) => const Kamishibai(
           assetPath: 'assets/page_images/feedback_line.png',
           nextPathList: [
@@ -141,7 +140,6 @@ class Routes {
           ],
           existUserFlowOfPop: true,
         ),
-
     '/feedback_video': (context) => const Kamishibai(
           assetPath: 'assets/page_images/feedback_video.png',
           nextPathList: [
@@ -159,7 +157,6 @@ class Routes {
           nextPathList: ['/upload_thankyouf'],
           existUserFlowOfPop: true,
         ),
-
     '/upload_thankyouf': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_thankyouf.jpg',
           nextPathList: ['/learning_community_home'],
