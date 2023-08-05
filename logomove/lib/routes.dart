@@ -31,9 +31,9 @@ class Routes {
     '/password_reissue': (context) => const Kamishibai(
           assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
           nextPathList: [
-            '/login',
             '/password_reissue_confirm',
           ],
+          existUserFlowOfPop: true,
         ),
     '/password_reissue_confirm': (context) => const Kamishibai(
           assetPath: 'assets/page_images/パスワード再発行確認ページ.jpg',
@@ -59,20 +59,21 @@ class Routes {
     '/upload_commentq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_commentq.jpg',
           nextPathList: ['/upload_thankyouq'],
+          existUserFlowOfPop: true, // 戻ったら撮影した動画はどうなるの?
         ),
     '/upload_fb': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_fb.jpg',
           nextPathList: [
-            '/content',
             '/upload_inst',
           ],
+          existUserFlowOfPop: true,
         ),
     '/upload_inst': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_inst.jpg',
           nextPathList: [
-            '/upload_fb',
             '/upload_videoq',
           ],
+          existUserFlowOfPop: true,
         ),
     '/upload_thankyouq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_thankyouq.jpg',
@@ -80,7 +81,10 @@ class Routes {
         ),
     '/upload_videoq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_videoq.jpg',
-          nextPathList: ['/upload_commentq'],
+          nextPathList: [
+            '/upload_commentq',
+            '/content',
+          ],
         ),
     '/learning_community_home': (context) => const Kamishibai(
           assetPath: 'assets/page_images/learning community home.png',
@@ -95,7 +99,8 @@ class Routes {
         ),
     '/article': (context) => const Kamishibai(
           assetPath: 'assets/page_images/article.png',
-          nextPathList: ['/content'],
+          nextPathList: [],
+          existUserFlowOfPop: true,
         ),
     '/professional': (context) => const Kamishibai(
           assetPath: 'assets/page_images/professional.png',
@@ -108,7 +113,8 @@ class Routes {
         ),
     '/profile': (context) => const Kamishibai(
           assetPath: 'assets/page_images/profile.png',
-          nextPathList: ['/content'],
+          nextPathList: [],
+          existUserFlowOfPop: true,
         ),
     '/search': (context) => const Kamishibai(
           assetPath: 'assets/page_images/search.png',
@@ -122,36 +128,41 @@ class Routes {
     '/question': (context) => const Kamishibai(
           assetPath: 'assets/page_images/question.png',
           nextPathList: [
-            '/learning_community_home',
             '/feedback_line',
             '/upload_videof',
           ],
+          existUserFlowOfPop: true,
         ),
+
     '/feedback_line': (context) => const Kamishibai(
           assetPath: 'assets/page_images/feedback_line.png',
           nextPathList: [
-            '/learning_community_home',
             '/feedback_video',
           ],
+          existUserFlowOfPop: true,
         ),
+
     '/feedback_video': (context) => const Kamishibai(
           assetPath: 'assets/page_images/feedback_video.png',
           nextPathList: [
-            '/feedback_line',
             '/feedback',
           ],
+          existUserFlowOfPop: true,
         ),
     '/feedback': (context) => const Kamishibai(
           assetPath: 'assets/page_images/feedback.png',
-          nextPathList: ['/feedback_video'],
+          nextPathList: [],
+          existUserFlowOfPop: true,
         ),
     '/upload_videof': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_videof.jpg',
           nextPathList: ['/upload_thankyouf'],
+          existUserFlowOfPop: true,
         ),
+
     '/upload_thankyouf': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_thankyouf.jpg',
-          nextPathList: ['/content'],
+          nextPathList: ['/learning_community_home'],
         ),
   };
 }

@@ -9,10 +9,14 @@ class Kamishibai extends StatefulWidget {
 
     /// 画面タップの遷移先. 例えば `[ '/login', '/content' ]`
     required this.nextPathList,
+
+    /// pop する導線があるか
+    this.existUserFlowOfPop = false,
   });
 
   final String assetPath;
   final List<String> nextPathList;
+  final bool existUserFlowOfPop;
 
   @override
   State<Kamishibai> createState() => _KamishibaieState();
@@ -31,13 +35,24 @@ class _KamishibaieState extends State<Kamishibai> {
         )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: widget.nextPathList
-              .map(
-                (e) => ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, e),
-                    child: Text(e)),
-              )
-              .toList(),
+          children: [
+            if (widget.existUserFlowOfPop)
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.amber),
+                ),
+                onPressed: () => Navigator.pop(context),
+                child: const Text('戻る'),
+              ),
+            ...widget.nextPathList
+                .map(
+                  (e) => ElevatedButton(
+                      onPressed: () => Navigator.pushNamed(context, e),
+                      child: Text(e)),
+                )
+                .toList(),
+          ],
         ),
       ),
     );
