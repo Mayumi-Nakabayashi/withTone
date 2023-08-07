@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/kamishibai.dart';
+import 'package:withtone/view/password_reissue/password_reissue_page.dart';
+import 'package:withtone/view/password_reissue_confirm/password_reissue_confirm_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -18,7 +20,7 @@ class Routes {
           nextPathList: [
             '/content',
             '/signup',
-            '/password_reissue',
+            PasswordReissuePage.path,
           ],
         ),
     '/signup': (context) => const Kamishibai(
@@ -28,17 +30,21 @@ class Routes {
             '/learning_community_search',
           ],
         ),
-    '/password_reissue': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
-          nextPathList: [
-            '/password_reissue_confirm',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    '/password_reissue_confirm': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/パスワード再発行確認ページ.jpg',
-          nextPathList: ['/login'],
-        ),
+    PasswordReissuePage.path: (context) =>
+        // const Kamishibai(
+        //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
+        //       nextPathList: [
+        //         PasswordReissueConfirmPage.path,
+        //       ],
+        //       existUserFlowOfPop: true,
+        //     ),
+        const PasswordReissuePage(),
+    PasswordReissueConfirmPage.path: (context) =>
+        // const Kamishibai(
+        //       assetPath: 'assets/page_images/パスワード再発行確認ページ.jpg',
+        //       nextPathList: ['/login'],
+        //     ),
+        const PasswordReissueConfirmPage(),
     '/learning_community_search': (context) => const Kamishibai(
           assetPath: 'assets/page_images/learning community search.png',
           nextPathList: ['/content'],
