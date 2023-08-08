@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/kamishibai.dart';
+import 'package:withtone/view/login/login_page.dart';
 import 'package:withtone/view/password_reissue/password_reissue_page.dart';
 import 'package:withtone/view/password_reissue_confirm/password_reissue_confirm_page.dart';
 
@@ -13,20 +14,21 @@ class Routes {
   static final Map<String, Widget Function(BuildContext)> routes = {
     '/': (context) => const Kamishibai(
           assetPath: 'assets/page_images/Intro.png',
-          nextPathList: ['/login'],
+          nextPathList: [LoginPage.path],
         ),
-    '/login': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/login.png',
-          nextPathList: [
-            '/content',
-            '/signup',
-            PasswordReissuePage.path,
-          ],
-        ),
+    LoginPage.path: (context) => LoginPage(),
+    // const Kamishibai(
+    //       assetPath: 'assets/page_images/login.png',
+    //       nextPathList: [
+    //         '/content',
+    //         '/signup',
+    //         PasswordReissuePage.path,
+    //       ],
+    //     ),
     '/signup': (context) => const Kamishibai(
           assetPath: 'assets/page_images/signup.png',
           nextPathList: [
-            '/login',
+            LoginPage.path,
             '/learning_community_search',
           ],
         ),
