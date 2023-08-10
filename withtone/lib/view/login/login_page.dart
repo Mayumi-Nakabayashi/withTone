@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/components/text_button_zero_padding.dart';
 import 'package:withtone/view/password_reissue/password_reissue_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,120 +9,163 @@ class LoginPage extends StatelessWidget {
 
   final _tab = <Widget>[
     const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(12),
       child: Tab(text: 'ログイン'),
     ),
     const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(12),
       child: Tab(text: '新規登録'),
     ),
   ];
 
-  /// スタートボタンをタップした時の挙動
-  void _onPressedStart(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        barrierColor: Colors.transparent,
-        builder: (context) {
-          return DefaultTabController(
-            length: _tab.length,
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.75,
-              child: Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  Container(
-                    color: Theme.of(context).primaryColor,
-                    height: MediaQuery.of(context).size.height * 0.75,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        TabBar(
-                          tabs: _tab,
-                          labelColor: Colors.white,
-                          unselectedLabelColor:
-                              const Color.fromARGB(64, 255, 255, 255),
-                          dividerColor: Colors.transparent,
-                        ),
-                      ],
+  /// スタートボタンタップで表示されるログインモーダル
+  Widget _loginModal(BuildContext context) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      ),
+      child: DefaultTabController(
+        length: _tab.length,
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.75,
+          child: Stack(
+            alignment: AlignmentDirectional.bottomStart,
+            children: [
+              Container(
+                color: Theme.of(context).primaryColor,
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: Column(
+                  children: <Widget>[
+                    TabBar(
+                      tabs: _tab,
+                      labelStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      labelColor: Colors.white,
+                      unselectedLabelColor: const Color(0x40ffffff),
+                      dividerColor: Colors.transparent,
                     ),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    height: MediaQuery.of(context).size.height * 0.65,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            const Text('Welcome Back'),
-                            TextFormField(
-                              restorationId: 'life_story_field',
-                              focusNode: FocusNode(),
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: "メールアドレスを入力してください",
-                                labelText: "メールアドレス",
+                  ],
+                ),
+              ),
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: Container(
+                  color: Colors.white,
+                  height: MediaQuery.of(context).size.height * 0.67,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              'Welcome back',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
                               ),
                             ),
-                            TextFormField(
-                              restorationId: 'life_story_field',
-                              focusNode: FocusNode(),
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: "パスワードを入力してください",
-                                labelText: "パスワード",
+                          ),
+                          const SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              'メールアドレス',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 12,
                               ),
                             ),
-                            OutlinedButton(
-                              onPressed: () =>
-                                  Navigator.pushNamed(context, '/content'),
-                              child: const Text('ログイン'),
+                          ),
+                          TextFormField(
+                            cursorColor: Colors.black,
+                            decoration: const InputDecoration(
+                              hintText: "メールアドレスを入力してください",
                             ),
-                            TextButton(
-                              onPressed: () => Navigator.pushNamed(
-                                context,
-                                PasswordReissuePage.path,
+                            focusNode: FocusNode(),
+                            maxLength: 40,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (inputText) {
+                              // TODO(ケンティー): 各種バリデーションはちゃんと考えて定義する. 共通化して他の箇所でも利用したい.
+                              if (inputText == null || inputText == '') {
+                                return '入力してください';
+                              } else if (inputText.contains(' ')) {
+                                return 'スペースが含まれています';
+                              }
+                              return null;
+                            },
+                          ),
+                          TextFormField(
+                            restorationId: 'life_story_field',
+                            focusNode: FocusNode(),
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "パスワードを入力してください",
+                              labelText: "パスワード",
+                            ),
+                          ),
+                          OutlinedButton(
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/content'),
+                            child: const Text('ログイン'),
+                          ),
+                          Column(
+                            children: [
+                              const Text('パスワードをお忘れですか?'),
+                              TextButtonZeroPadding(
+                                onPressed: () => Navigator.pushNamed(
+                                  context,
+                                  PasswordReissuePage.path,
+                                ),
+                                child: const Text('Reset here'),
                               ),
-                              child: const Text('Reset here'),
-                            ),
-                            OutlinedButton(
-                              onPressed: () => Navigator.pushNamed(
-                                  context, '/learning_community_search'),
-                              child: const Text('新規登録'),
-                            ),
-                            const Text('OR SIGN IN WITH'),
-                            ButtonBar(
-                              alignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Text('G'),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Text('F'),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Text('X'),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                            ],
+                          ),
+                          OutlinedButton(
+                            onPressed: () => Navigator.pushNamed(
+                                context, '/learning_community_search'),
+                            child: const Text('新規登録'),
+                          ),
+                          const Text('OR SIGN IN WITH'),
+                          ButtonBar(
+                            alignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Text('G'),
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Text('F'),
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Text('X'),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          );
-        });
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -173,7 +217,11 @@ class LoginPage extends StatelessWidget {
                         elevation: 20,
                       ),
                       onPressed: () {
-                        _onPressedStart(context);
+                        showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            barrierColor: Colors.transparent,
+                            builder: _loginModal);
                       },
                       child: const Text(
                         'スタート',
