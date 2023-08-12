@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/view/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 
 /// パスワード再発行依頼を送信するページ
 class PasswordReissuePage extends StatefulWidget {
