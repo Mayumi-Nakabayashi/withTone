@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/pages/login/login_page.dart';
+import 'package:withtone/views/pages/intro/intro_page.dart';
 
 /// パスワード再発送信後に表示するページ
 class PasswordReissueConfirmPage extends StatefulWidget {
@@ -34,7 +34,8 @@ class _PasswordReissueConfirmPageState
                 child: ElevatedButton(
                     onPressed: () => Navigator.pushNamed(
                           context,
-                          LoginPage.path,
+                          IntroPage.path,
+                          arguments: IntroPageArguments(showModal: true),
                         ),
                     child: const Text('ログインページへ')),
               ),
