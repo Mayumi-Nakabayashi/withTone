@@ -1,16 +1,17 @@
 # withtone
 
-A new Flutter project.
+音楽ソーシャル学習プラットフォーム
 
-## Getting Started
+## 開発環境
 
-This project is a starting point for a Flutter application.
+TODO(ケンティー): 記載する, fvm など.
 
-A few resources to get you started if this is your first Flutter project:
+## これから join する / したい あなたへ
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+withTone は随時メンバーを募集してます！
+興味のある方は メンバーに 「参加したい！」と声を掛けてください。
+Slack に招待いたします。
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 資料
+
+- slack, Confluence にまとまってます.
