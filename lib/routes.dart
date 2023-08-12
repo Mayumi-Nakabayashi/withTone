@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/kamishibai.dart';
-import 'package:withtone/view/login/login_page.dart';
-import 'package:withtone/view/password_reissue/password_reissue_page.dart';
-import 'package:withtone/view/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/components/kamishibai.dart';
+import 'package:withtone/views/pages/login/login_page.dart';
+import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
+import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -172,9 +172,9 @@ class Routes {
           nextPathList: ['/learning_community_home'],
         ),
     '/settings': (context) => const Kamishibai(
-      assetPath: 'assets/page_images/settings.png',
-      nextPathList: [],
-      existUserFlowOfPop: true,
-    ),
+          assetPath: 'assets/page_images/settings.png',
+          nextPathList: [],
+          existUserFlowOfPop: true,
+        ),
   };
 }

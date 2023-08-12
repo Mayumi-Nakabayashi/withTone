@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/components/text_button_zero_padding.dart';
-import 'package:withtone/view/password_reissue/password_reissue_page.dart';
+import 'package:withtone/views/components/text_button_zero_padding.dart';
+import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
