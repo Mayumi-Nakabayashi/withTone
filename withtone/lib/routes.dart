@@ -121,7 +121,9 @@ class Routes {
         ),
     '/profile': (context) => const Kamishibai(
           assetPath: 'assets/page_images/profile.png',
-          nextPathList: [],
+          nextPathList: [
+            '/settings',
+          ],
           existUserFlowOfPop: true,
         ),
     '/search': (context) => const Kamishibai(
@@ -169,5 +171,10 @@ class Routes {
           assetPath: 'assets/page_images/upload_thankyouf.jpg',
           nextPathList: ['/learning_community_home'],
         ),
+    '/settings': (context) => const Kamishibai(
+      assetPath: 'assets/page_images/settings.png',
+      nextPathList: [],
+      existUserFlowOfPop: true,
+    ),
   };
 }

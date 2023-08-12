@@ -84,6 +84,7 @@ flutter:
   - assets/page_images/upload_thankyouf.jpg
   - assets/page_images/feedback_video.png
   - assets/page_images/feedback.png
+  - assets/page_images/settings.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
