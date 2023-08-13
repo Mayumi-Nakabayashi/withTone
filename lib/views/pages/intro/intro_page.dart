@@ -46,6 +46,10 @@ class _IntroPageState extends State<IntroPage> {
     final args =
         ModalRoute.of(context)?.settings.arguments as IntroPageArguments?;
 
+    // 自動でモーダル表示するか
+    // build で1度のみ処理が通るように untilInitProcess でガードする.
+    final autoShowModal = untilInitProcess && (args?.showModal ?? false);
+
     /// スタートボタンタップで表示されるモーダル
     Widget startModalBuilder(BuildContext context) {
       // 一旦, 各モーダルの画面高さのパーセントで計算する
@@ -68,9 +72,7 @@ class _IntroPageState extends State<IntroPage> {
           child: Builder(builder: (context) {
             // statelessWidget で tabController を使う
             // 参考: https://qiita.com/Ayuu_N/items/7f077fd65beccb599d9a
-            final TabController tabController = DefaultTabController.of(
-              context,
-            );
+            final tabController = DefaultTabController.of(context);
             return SizedBox(
               height: blueModalHeight,
               child: Stack(
@@ -127,21 +129,21 @@ class _IntroPageState extends State<IntroPage> {
 
     // 引数でモーダル表示の指定があるなら, スタートボタン押す前から表示しておく.
     // 1度のみ処理が通るように untilInitProcess も利用する.
-    if (untilInitProcess) {
-      if (args?.showModal ?? false) {
-        // ビルド後に呼び出さないとエラーになるので, ビルド後のコールバックで呼ぶ
-        WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (autoShowModal) {
+      // ビルド後に呼び出さないとエラーになるので, ビルド後のコールバックで呼ぶ
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // 即座に表示するとiOSの遷移時アニメーションが崩れているように見えるので,
+        // 0.3s まつ
+        Future.delayed(const Duration(milliseconds: 300), () {
           showModalBottomSheet(
             context: context,
             isScrollControlled: true,
             barrierColor: Colors.transparent,
             builder: startModalBuilder,
           );
-          setState(() {
-            untilInitProcess = false;
-          });
+          setState(() => untilInitProcess = false);
         });
-      }
+      });
     }
     return Scaffold(
       body: Container(
@@ -189,14 +191,14 @@ class _IntroPageState extends State<IntroPage> {
                           surfaceTintColor: const Color(0xffffffff),
                           elevation: 20,
                         ),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            barrierColor: Colors.transparent,
-                            builder: startModalBuilder,
-                          );
-                        },
+                        onPressed: autoShowModal
+                            ? null
+                            : () => showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  barrierColor: Colors.transparent,
+                                  builder: startModalBuilder,
+                                ),
                         child: const Text(
                           'スタート',
                           style: TextStyle(
