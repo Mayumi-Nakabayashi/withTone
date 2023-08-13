@@ -21,7 +21,6 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-              const SizedBox(height: 20), // 適当な余白
               const SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -30,7 +29,7 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
-              const SizedBox(height: 20), // 適当な余白
+              const SizedBox(height: 40), // 適当な余白
               const SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -39,17 +38,6 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
                 ),
               ),
               const SizedBox(height: 40), // 適当な余白
-              const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'メールアドレス',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
               TextFormField(
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
@@ -69,7 +57,7 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20), // 適当な余白
+              const SizedBox(height: 40), // 適当な余白
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

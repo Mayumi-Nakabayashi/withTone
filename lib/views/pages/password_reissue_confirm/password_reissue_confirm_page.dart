@@ -22,7 +22,6 @@ class _PasswordReissueConfirmPageState
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           children: [
-            const SizedBox(height: 20), // 適当な余白
             const SizedBox(
               width: double.infinity,
               child: Text(
@@ -31,7 +30,7 @@ class _PasswordReissueConfirmPageState
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
             ),
-            const SizedBox(height: 20), // 適当な余白
+            const SizedBox(height: 40), // 適当な余白
             const SizedBox(
               width: double.infinity,
               child: Text(
