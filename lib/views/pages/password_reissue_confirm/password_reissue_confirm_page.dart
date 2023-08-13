@@ -23,15 +23,36 @@ class _PasswordReissueConfirmPageState
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text('メールを送信しました'),
-              const Text('パスワードを再発行しました。'),
-              const Text('メールを送信しましたのでご確認ください。'),
-              const Text('10秒後にログインページに戻ります。'),
+              const SizedBox(height: 20), // 適当な余白
+              const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'メールを送信しました',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                ),
+              ),
+              const SizedBox(height: 20), // 適当な余白
+              const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'パスワードを再発行しました。メールを送信しましたのでご確認ください。',
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              const SizedBox(height: 40), // 適当な余白
+
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size.fromWidth(double.maxFinite),
+                      backgroundColor: const Color(0xFFF73F96),
+                      foregroundColor: const Color(0xffffffff),
+                      surfaceTintColor: const Color(0xFFF73F96),
+                      elevation: 0,
+                    ),
                     onPressed: () => Navigator.pushNamed(
                           context,
                           IntroPage.path,
