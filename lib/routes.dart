@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/kamishibai.dart';
-import 'package:withtone/views/pages/login/login_page.dart';
+import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 
@@ -8,15 +8,15 @@ import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_c
 /// 基本的にインスタンス化せずに利用します
 class Routes {
   /// 初期ページのルート名
-  static const String initialRoute = '/';
+  static const String initialRoute = IntroPage.path;
 
   /// ルーティング一覧
   static final Map<String, Widget Function(BuildContext)> routes = {
-    '/': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/Intro.png',
-          nextPathList: [LoginPage.path],
-        ),
-    LoginPage.path: (context) => LoginPage(),
+    // '/': (context) => const Kamishibai(
+    //       assetPath: 'assets/page_images/Intro.png',
+    //       nextPathList: [IntroPage.path],
+    //     ),
+    IntroPage.path: (context) => const IntroPage(),
     // const Kamishibai(
     //       assetPath: 'assets/page_images/login.png',
     //       nextPathList: [
@@ -25,13 +25,13 @@ class Routes {
     //         PasswordReissuePage.path,
     //       ],
     //     ),
-    '/signup': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/signup.png',
-          nextPathList: [
-            LoginPage.path,
-            '/learning_community_search',
-          ],
-        ),
+    // '/signup': (context) => const Kamishibai(
+    //       assetPath: 'assets/page_images/signup.png',
+    //       nextPathList: [
+    //         IntroPage.path,
+    //         '/learning_community_search',
+    //       ],
+    //     ),
     PasswordReissuePage.path: (context) =>
         // const Kamishibai(
         //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
@@ -44,7 +44,7 @@ class Routes {
     PasswordReissueConfirmPage.path: (context) =>
         // const Kamishibai(
         //       assetPath: 'assets/page_images/パスワード再発行確認ページ.jpg',
-        //       nextPathList: ['/login'],
+        //       nextPathList: ['/intro'],
         //     ),
         const PasswordReissueConfirmPage(),
     '/learning_community_search': (context) => const Kamishibai(
