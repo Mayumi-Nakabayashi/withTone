@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '124992763448',
     projectId: 'withtone-5d917',
     storageBucket: 'withtone-5d917.appspot.com',
-    iosClientId: '124992763448-2b2hb5pc377c08475r8kk61orb30ql3u.apps.googleusercontent.com',
-    iosBundleId: 'com.example.withtone',
+    iosClientId:
+        '124992763448-2b2hb5pc377c08475r8kk61orb30ql3u.apps.googleusercontent.com',
+    iosBundleId: 'com.withtone.withtone',
   );
 }

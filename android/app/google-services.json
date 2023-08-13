@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:124992763448:android:dc7030a5507e57a82998cd",
         "android_client_info": {
-          "package_name": "com.example.withtone"
+          "package_name": "com.withtone.withtone"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "124992763448-2b2hb5pc377c08475r8kk61orb30ql3u.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.withtone"
+                "bundle_id": "com.withtone.withtone"
               }
             }
           ]
