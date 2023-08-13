@@ -30,11 +30,17 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
-  /// タブに表示する widget
+  /// タブに表示するラベル
   final _tab = <Widget>[
-    const Padding(padding: EdgeInsets.all(12), child: Tab(text: 'ログイン')),
-    const Padding(padding: EdgeInsets.all(12), child: Tab(text: '新規登録')),
+    const Tab(text: 'ログイン', height: 60),
+    const Tab(text: '新規登録', height: 60),
   ];
+  // ラベルのtextStyle tabBar で指定する
+  final _labelStyle = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  final _tabHeight = 60;
 
   /// 初期化処理をしたかどうか
   /// context を利用する初期処理は initState に書けないので, flag を見る
@@ -53,8 +59,8 @@ class _IntroPageState extends State<IntroPage> {
     /// スタートボタンタップで表示されるモーダル
     Widget startModalBuilder(BuildContext context) {
       // 一旦, 各モーダルの画面高さのパーセントで計算する
-      final double blueModalHeight = MediaQuery.of(context).size.height * 0.85;
       final double whiteModalHeight = MediaQuery.of(context).size.height * 0.75;
+      final double blueModalHeight = whiteModalHeight + _tabHeight;
       // モーダルの角丸
       Widget modalRounder(Widget child) {
         return ClipRRect(
@@ -86,10 +92,7 @@ class _IntroPageState extends State<IntroPage> {
                       children: <Widget>[
                         TabBar(
                           tabs: _tab,
-                          labelStyle: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          labelStyle: _labelStyle,
                           labelColor: Colors.white,
                           unselectedLabelColor: const Color(0x40ffffff),
                           dividerColor: Colors.transparent,
