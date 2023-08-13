@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 
 /// パスワード再発送信後に表示するページ
@@ -39,23 +40,13 @@ class _PasswordReissueConfirmPageState
               ),
             ),
             const SizedBox(height: 40), // 適当な余白
-
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size.fromWidth(double.maxFinite),
-                    backgroundColor: const Color(0xFFF73F96),
-                    foregroundColor: const Color(0xffffffff),
-                    surfaceTintColor: const Color(0xFFF73F96),
-                    elevation: 0,
-                  ),
-                  onPressed: () => Navigator.pushNamed(
-                        context,
-                        IntroPage.path,
-                        arguments: IntroPageArguments(showModal: true),
-                      ),
-                  child: const Text('ログインページへ')),
+            PrimaryButton(
+              label: 'ログインページへ',
+              onPressed: () => Navigator.pushNamed(
+                context,
+                IntroPage.path,
+                arguments: IntroPageArguments(showModal: true),
+              ),
             ),
           ],
         ),

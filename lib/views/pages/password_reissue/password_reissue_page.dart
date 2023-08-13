@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 
 /// パスワード再発行依頼を送信するページ
@@ -58,21 +59,12 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
                 },
               ),
               const SizedBox(height: 40), // 適当な余白
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size.fromWidth(double.maxFinite),
-                      backgroundColor: const Color(0xFFF73F96),
-                      foregroundColor: const Color(0xffffffff),
-                      surfaceTintColor: const Color(0xFFF73F96),
-                      elevation: 0,
-                    ),
-                    onPressed: () => Navigator.pushNamed(
-                          context,
-                          PasswordReissueConfirmPage.path,
-                        ),
-                    child: const Text('送信する')),
+              PrimaryButton(
+                label: '送信する',
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  PasswordReissueConfirmPage.path,
+                ),
               ),
             ],
           ),
