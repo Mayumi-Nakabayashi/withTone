@@ -23,6 +23,7 @@ class _PlaygroundState extends State<Playground> {
             PrimaryButton(
               onPressed: () {
                 /* 処理 */
+                throw Exception();
               },
               label: 'エラーログ送信',
             ),
