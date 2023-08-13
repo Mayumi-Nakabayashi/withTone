@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/kamishibai.dart';
 import 'package:withtone/views/pages/home_page.dart';
+import 'package:withtone/views/components/playground.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
@@ -19,7 +20,7 @@ class Routes {
     //       assetPath: 'assets/page_images/Intro.png',
     //       nextPathList: [IntroPage.path],
     //     ),
-    IntroPage.path: (context) => const IntroPage(),
+    IntroPage.path: (context) => const Playground() /* Playground() */,
     // const Kamishibai(
     //       assetPath: 'assets/page_images/login.png',
     //       nextPathList: [
