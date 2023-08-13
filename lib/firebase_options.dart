@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA16Hjte83A8hpH72Tg3tNtihaVF-IpGws',
-    appId: '1:124992763448:android:dc7030a5507e57a82998cd',
+    appId: '1:124992763448:android:1968994f4bab8dc72998cd',
     messagingSenderId: '124992763448',
     projectId: 'withtone-5d917',
     storageBucket: 'withtone-5d917.appspot.com',
@@ -59,12 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCgkNNXRrsz6rUuIt9krrWAQVOTTddUVnU',
-    appId: '1:124992763448:ios:dd8b1d403228d7762998cd',
+    appId: '1:124992763448:ios:c35e6ce01e4162fd2998cd',
     messagingSenderId: '124992763448',
     projectId: 'withtone-5d917',
     storageBucket: 'withtone-5d917.appspot.com',
-    iosClientId:
-        '124992763448-2b2hb5pc377c08475r8kk61orb30ql3u.apps.googleusercontent.com',
+    iosClientId: '124992763448-nl37mb2957osesg3vvtf8s1ggobivudr.apps.googleusercontent.com',
     iosBundleId: 'com.withtone.withtone',
   );
 }
