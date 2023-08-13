@@ -18,50 +18,47 @@ class _PasswordReissueConfirmPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 20), // 適当な余白
-              const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'メールを送信しました',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 20), // 適当な余白
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'メールを送信しました',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
-              const SizedBox(height: 20), // 適当な余白
-              const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'パスワード再設定用のメールを送信しました。メール内のリンクから新しいパスワードを設定してください。',
-                  textAlign: TextAlign.start,
-                ),
+            ),
+            const SizedBox(height: 20), // 適当な余白
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'パスワード再設定用のメールを送信しました。メール内のリンクから新しいパスワードを設定してください。',
+                textAlign: TextAlign.start,
               ),
-              const SizedBox(height: 40), // 適当な余白
+            ),
+            const SizedBox(height: 40), // 適当な余白
 
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size.fromWidth(double.maxFinite),
-                      backgroundColor: const Color(0xFFF73F96),
-                      foregroundColor: const Color(0xffffffff),
-                      surfaceTintColor: const Color(0xFFF73F96),
-                      elevation: 0,
-                    ),
-                    onPressed: () => Navigator.pushNamed(
-                          context,
-                          IntroPage.path,
-                          arguments: IntroPageArguments(showModal: true),
-                        ),
-                    child: const Text('ログインページへ')),
-              ),
-            ],
-          ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size.fromWidth(double.maxFinite),
+                    backgroundColor: const Color(0xFFF73F96),
+                    foregroundColor: const Color(0xffffffff),
+                    surfaceTintColor: const Color(0xFFF73F96),
+                    elevation: 0,
+                  ),
+                  onPressed: () => Navigator.pushNamed(
+                        context,
+                        IntroPage.path,
+                        arguments: IntroPageArguments(showModal: true),
+                      ),
+                  child: const Text('ログインページへ')),
+            ),
+          ],
         ),
       ),
     );
