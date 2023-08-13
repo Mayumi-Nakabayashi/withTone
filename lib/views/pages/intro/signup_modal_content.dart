@@ -12,7 +12,6 @@ class _SignupModalContentState extends State<SignupModalContent> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         const SizedBox(
           width: double.infinity,
@@ -52,6 +51,7 @@ class _SignupModalContentState extends State<SignupModalContent> {
             return null;
           },
         ),
+        const SizedBox(height: 20), // 適当な余白
         ButtonBar(
           alignment: MainAxisAlignment.center,
           children: [
@@ -61,7 +61,7 @@ class _SignupModalContentState extends State<SignupModalContent> {
                 backgroundColor: const Color(0xff005792),
                 foregroundColor: const Color(0xffffffff),
                 surfaceTintColor: const Color(0xff005792),
-                elevation: 20,
+                elevation: 0,
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/learning_community_search');
@@ -77,9 +77,15 @@ class _SignupModalContentState extends State<SignupModalContent> {
             ),
           ],
         ),
+        const SizedBox(height: 20), // 適当な余白
         Column(
           children: [
-            const Text('OR SIGN IN WITH'),
+            Text(
+              'OR SIGN IN WITH',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
             ButtonBar(
               buttonPadding: EdgeInsets.zero,
               alignment: MainAxisAlignment.center,

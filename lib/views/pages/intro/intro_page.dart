@@ -49,8 +49,8 @@ class _IntroPageState extends State<IntroPage> {
     /// スタートボタンタップで表示されるモーダル
     Widget startModalBuilder(BuildContext context) {
       // 一旦, 各モーダルの画面高さのパーセントで計算する
-      final double blueModalHeight = MediaQuery.of(context).size.height * 0.78;
-      final double whiteModalHeight = MediaQuery.of(context).size.height * 0.68;
+      final double blueModalHeight = MediaQuery.of(context).size.height * 0.85;
+      final double whiteModalHeight = MediaQuery.of(context).size.height * 0.75;
       // モーダルの角丸
       Widget modalRounder(Widget child) {
         return ClipRRect(
