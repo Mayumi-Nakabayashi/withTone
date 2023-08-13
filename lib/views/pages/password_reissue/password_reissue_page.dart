@@ -35,12 +35,11 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
               const SizedBox(
                 width: double.infinity,
                 child: Text(
-                  '登録時のメールアドレスを入力してください。',
+                  '登録時のメールアドレスを入力してください。再設定用のメールを送信します。',
                   textAlign: TextAlign.start,
                 ),
               ),
               const SizedBox(height: 40), // 適当な余白
-
               const SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -72,7 +71,6 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
                 },
               ),
               const SizedBox(height: 20), // 適当な余白
-
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

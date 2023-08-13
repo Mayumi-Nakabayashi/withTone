@@ -37,7 +37,7 @@ class _PasswordReissueConfirmPageState
               const SizedBox(
                 width: double.infinity,
                 child: Text(
-                  'パスワードを再発行しました。メールを送信しましたのでご確認ください。',
+                  'パスワード再設定用のメールを送信しました。メール内のリンクから新しいパスワードを設定してください。',
                   textAlign: TextAlign.start,
                 ),
               ),
