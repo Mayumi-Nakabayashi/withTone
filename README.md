@@ -15,3 +15,9 @@ Slack に招待いたします。
 ## 資料
 
 - slack, Confluence にまとまってます.
+
+## 便利なコマンド集
+
+### Runner を Xcode で起動する
+
+`open ios/Runner.xcworkspace/`
