@@ -72,7 +72,7 @@ flutter:
   - assets/page_images/upload_inst.jpg
   - assets/page_images/upload_thankyouq.jpg
   - assets/page_images/upload_videoq.jpg
-  
+
   - assets/page_images/article.png
   - assets/page_images/professional.png
   - assets/page_images/profile.png
@@ -85,6 +85,8 @@ flutter:
   - assets/page_images/feedback_video.png
   - assets/page_images/feedback.png
   - assets/page_images/settings.png
+  - assets/page_images/notifications.png
+
   - assets/logo/app_nobackground.png
   - assets/logo/apple.png
   - assets/logo/appmain_color.png

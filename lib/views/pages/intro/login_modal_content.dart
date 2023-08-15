@@ -110,7 +110,7 @@ class _LoginModalContentState extends State<LoginModalContent> {
                 elevation: 0,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/content');
+                Navigator.pushNamed(context, '/home');
               },
               child: const Text(
                 'ログイン',
