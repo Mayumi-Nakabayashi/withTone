@@ -149,6 +149,7 @@ class _IntroPageState extends State<IntroPage> {
       });
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         height: double.infinity,
         width: double.infinity,
