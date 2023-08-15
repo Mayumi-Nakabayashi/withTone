@@ -85,6 +85,14 @@ flutter:
   - assets/page_images/feedback_video.png
   - assets/page_images/feedback.png
   - assets/page_images/settings.png
+  - assets/logo/app_nobackground.png
+  - assets/logo/apple.png
+  - assets/logo/appmain_color.png
+  - assets/logo/facebook.png
+  - assets/logo/google.png
+  - assets/logo/mail.png
+  - assets/logo/twitter.png
+  - assets/logo/mainlogo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
