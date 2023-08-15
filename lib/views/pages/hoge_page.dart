@@ -3,7 +3,7 @@ import 'package:withtone/views/components/kamishibai.dart';
 
 enum TabItems {
   community(
-    title: 'コミュニティ',
+    title: 'コミュニティ\n',
     icon: Icons.home,
     page: Kamishibai(
       assetPath: 'assets/page_images/learning community home.png',
@@ -12,7 +12,7 @@ enum TabItems {
   ),
 
   notifications(
-    title: '通知',
+    title: '通知\n',
     icon: Icons.notifications,
     page: Kamishibai(
       assetPath: 'assets/page_images/notifications.png',
@@ -21,7 +21,7 @@ enum TabItems {
   ),
 
   upload(
-    title: '',
+    title: '\n',
     icon: Icons.add_box_rounded,
     page: Kamishibai(
       assetPath: 'assets/page_images/upload_fb.jpg',
@@ -30,7 +30,7 @@ enum TabItems {
   ),
 
   content(
-    title: '学ぶ',
+    title: '学ぶ\n',
     icon: Icons.menu_book,
     page: Kamishibai(
       assetPath: 'assets/page_images/content.png',
@@ -82,24 +82,27 @@ class HomePageState extends State<HomePage> {
       body: Center(
         child: _currentTab.page,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentTab.index,
-        selectedItemColor: const Color(0xff161722),
-        unselectedItemColor: const Color(0xff8A8B8F),
-        selectedFontSize: 9,
-        unselectedFontSize: 9,
-        items: TabItems.values
-            .map(
-              (tabItem) => BottomNavigationBarItem(
-                icon: Icon(tabItem.icon),
-                label: tabItem.title,
-              ),
-            )
-            .toList(),
-        onTap: (index) {
-          onSelect(TabItems.values[index]);
-        },
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(top: 4.5),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentTab.index,
+          selectedItemColor: const Color(0xff161722),
+          unselectedItemColor: const Color(0xff8A8B8F),
+          selectedFontSize: 9,
+          unselectedFontSize: 9,
+          items: TabItems.values
+              .map(
+                (tabItem) => BottomNavigationBarItem(
+                  icon: Icon(tabItem.icon),
+                  label: tabItem.title,
+                ),
+              )
+              .toList(),
+          onTap: (index) {
+            onSelect(TabItems.values[index]);
+          },
+        ),
       ),
     );
   }
