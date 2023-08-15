@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/kamishibai.dart';
+import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/login/login_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
@@ -17,21 +18,14 @@ class Routes {
           nextPathList: [LoginPage.path],
         ),
     LoginPage.path: (context) => LoginPage(),
-    // const Kamishibai(
-    //       assetPath: 'assets/page_images/login.png',
-    //       nextPathList: [
-    //         '/content',
-    //         '/signup',
-    //         PasswordReissuePage.path,
-    //       ],
-    //     ),
     '/signup': (context) => const Kamishibai(
           assetPath: 'assets/page_images/signup.png',
           nextPathList: [
             LoginPage.path,
-            '/learning_community_search',
+            LeaningCommunitySearch.path,
           ],
         ),
+    LeaningCommunitySearch.path: (context) => LeaningCommunitySearch(),
     PasswordReissuePage.path: (context) =>
         // const Kamishibai(
         //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
@@ -47,10 +41,12 @@ class Routes {
         //       nextPathList: ['/login'],
         //     ),
         const PasswordReissueConfirmPage(),
-    '/learning_community_search': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community search.png',
-          nextPathList: ['/content'],
-        ),
+
+    LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
+    //const Kamishibai(
+    //       assetPath: 'assets/page_images/learning community search.png',
+    //       nextPathList: ['/content'],
+    //     ),
     '/content': (context) => const Kamishibai(
           assetPath: 'assets/page_images/content.png',
           nextPathList: [

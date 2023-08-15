@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text_button_zero_padding.dart';
+import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -134,7 +135,9 @@ class LoginPage extends StatelessWidget {
                           ),
                           OutlinedButton(
                             onPressed: () => Navigator.pushNamed(
-                                context, '/learning_community_search'),
+                              context,
+                              LeaningCommunitySearch.path,
+                            ),
                             child: const Text('新規登録'),
                           ),
                           const Text('OR SIGN IN WITH'),
