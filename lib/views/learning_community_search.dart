@@ -9,10 +9,28 @@ class LeaningCommunitySearch extends StatefulWidget {
   State<LeaningCommunitySearch> createState() => _LeaningCommunitySearchState();
 }
 
+class SearchItem {
+  final String label;
+  SearchItem({required this.label});
+
+  bool isSelected = false;
+}
+
 class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
-  bool isPressed = false;
-  Color _buttonColor = Colors.white;
-  Color _textColor = Colors.grey;
+  List<SearchItem> searchItems = [
+    SearchItem(label: '作曲'),
+    SearchItem(label: '路上パフォーマンス'),
+    SearchItem(label: 'ピアノ'),
+    SearchItem(label: 'DTM'),
+    SearchItem(label: '弾いてみた動画'),
+    SearchItem(label: 'ギター'),
+    SearchItem(label: 'バイオリン'),
+    SearchItem(label: 'クラシック'),
+    SearchItem(label: '機材'),
+    SearchItem(label: 'アニソン'),
+    SearchItem(label: 'レコーディング'),
+    SearchItem(label: '音大受験'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,120 +100,36 @@ class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
                 const SizedBox(
                   height: 28,
                 ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        isPressed = !isPressed;
-                        setState(() {
-                          _buttonColor = isPressed
-                              ? const Color.fromRGBO(0, 87, 146, 78)
-                              : Colors.white;
-                          _textColor = isPressed ? Colors.white : Colors.grey;
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: _buttonColor, // ボタンの色を設定
-                      ),
-                      child: Text(
-                        '作曲',
-                        style: TextStyle(
-                          color: _textColor,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 120,
+                  width: double.infinity,
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceAround,
+                    children: searchItems.map((item) {
+                      return ElevatedButton(
+                        onPressed: () => setState(() {
+                          item.isSelected = !item.isSelected;
+                        }),
+                        style: ElevatedButton.styleFrom(
+                          // ボタンの背景色を設定
+                          backgroundColor: item.isSelected
+                              ? Theme.of(context).primaryColor
+                              : Colors.white,
+                          // ボタンの文字色を設定
+                          foregroundColor: item.isSelected
+                              ? Colors.white
+                              : Theme.of(context).primaryColor,
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('路上パフォーマンス'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('ピアノ'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('DTM'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('弾いてみた動画'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('ギター'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('バイオリン'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('クラシック'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('機材'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('アニソン'),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('レコーディング'),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('音大受験'),
-                    ),
-                  ],
+                        child: Text(
+                          item.label,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 const SizedBox(
                   height: 100,
