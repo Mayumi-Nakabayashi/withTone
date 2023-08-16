@@ -63,12 +63,6 @@ class HomePage extends StatefulWidget {
 
   static const String path = '/home';
 
-  static Route<void> route() {
-    return MaterialPageRoute(
-      builder: (context) => const HomePage(),
-    );
-  }
-
   @override
   HomePageState createState() => HomePageState();
 }
