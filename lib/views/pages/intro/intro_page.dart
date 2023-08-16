@@ -149,6 +149,7 @@ class _IntroPageState extends State<IntroPage> {
       });
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -171,9 +172,9 @@ class _IntroPageState extends State<IntroPage> {
                 const SizedBox(),
                 Column(
                   children: [
-                    const FlutterLogo(
-                      style: FlutterLogoStyle.horizontal,
-                      size: 200,
+                    SizedBox(
+                      width: 300,
+                      child: Image.asset('assets/logo/mainlogo.png'),
                     ),
                     Text(
                       '音楽ソーシャル学習プラットフォーム',
@@ -181,37 +182,47 @@ class _IntroPageState extends State<IntroPage> {
                     ),
                   ],
                 ),
-                ButtonBar(
-                  alignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 80),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size.fromWidth(double.maxFinite),
-                          backgroundColor: const Color(0xffffffff),
-                          foregroundColor: const Color(0xff596E79),
-                          surfaceTintColor: const Color(0xffffffff),
-                          elevation: 20,
-                        ),
-                        onPressed: autoShowModal
-                            ? null
-                            : () => showModalBottomSheet(
-                                  context: context,
-                                  isScrollControlled: true,
-                                  barrierColor: Colors.transparent,
-                                  builder: startModalBuilder,
-                                ),
-                        child: const Text(
-                          'スタート',
-                          style: TextStyle(
-                            height: 60 / 18,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 18,
+                    ButtonBar(
+                      alignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 80),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: const Size.fromWidth(double.maxFinite),
+                              backgroundColor: const Color(0xffffffff),
+                              foregroundColor: const Color(0xff596E79),
+                              surfaceTintColor: const Color(0xffffffff),
+                              elevation: 20,
+                            ),
+                            onPressed: autoShowModal
+                                ? null
+                                : () => showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      barrierColor: Colors.transparent,
+                                      builder: startModalBuilder,
+                                    ),
+                            child: const Text(
+                              'スタート',
+                              style: TextStyle(
+                                height: 60 / 18,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 18,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
+                    const Text(
+                      'dev版 v0.0.1(99)',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
                   ],
                 ),
               ],
