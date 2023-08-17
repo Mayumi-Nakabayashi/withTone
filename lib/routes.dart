@@ -5,6 +5,7 @@ import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -35,6 +36,7 @@ class Routes {
     //       ],
     //     ),
     LoginMailPage.path: (context) => const LoginMailPage(),
+    SignupMailPage.path: (context) => const SignupMailPage(),
     PasswordReissuePage.path: (context) =>
         // const Kamishibai(
         //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',

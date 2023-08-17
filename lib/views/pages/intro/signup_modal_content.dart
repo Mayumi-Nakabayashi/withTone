@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/pages/intro/intro_modal_list_tile.dart';
-import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
+import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 
 /// ログインページのモーダルで、新規登録を選択中に表示されるモーダル内のコンテンツ
 class SignupModalContent extends StatefulWidget {
@@ -51,7 +51,7 @@ class _SignupModalContentState extends State<SignupModalContent> {
         IntroModalListTile(
           leadingAssetPath: 'assets/logo/mail.png',
           label: 'メールアドレス で登録する',
-          onTap: () => Navigator.pushNamed(context, LoginMailPage.path),
+          onTap: () => Navigator.pushNamed(context, SignupMailPage.path),
         ),
       ],
     );

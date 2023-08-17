@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/components/text_button_zero_padding.dart';
 import 'package:withtone/views/pages/hoge_page.dart';
-import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 
-/// メールでログインするページ
-class LoginMailPage extends StatefulWidget {
-  const LoginMailPage({super.key});
+/// メールで登録するページ
+class SignupMailPage extends StatefulWidget {
+  const SignupMailPage({super.key});
 
-  static const String path = '/login_mail';
+  static const String path = '/signup_mail';
 
   @override
-  State<LoginMailPage> createState() => _LoginMailPageState();
+  State<SignupMailPage> createState() => _SignupMailPageState();
 }
 
-class _LoginMailPageState extends State<LoginMailPage> {
+class _SignupMailPageState extends State<SignupMailPage> {
   /// パスワードを表示するかどうか
   bool _showPassword = false;
 
@@ -94,20 +92,9 @@ class _LoginMailPageState extends State<LoginMailPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20), // 適当な余白
-              Container(
-                alignment: Alignment.centerRight,
-                child: TextButtonZeroPadding(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    PasswordReissuePage.path,
-                  ),
-                  child: const Text('パスワードをお忘れですか?'),
-                ),
-              ),
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
-                label: 'ログイン',
+                label: '登録',
                 onPressed: () => Navigator.pushNamed(context, HomePage.path),
               ),
             ],
