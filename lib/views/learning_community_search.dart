@@ -100,35 +100,33 @@ class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
                 const SizedBox(
                   height: 28,
                 ),
-                SizedBox(
-                  height: 120,
-                  width: double.infinity,
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceAround,
-                    children: searchItems.map((item) {
-                      return ElevatedButton(
-                        onPressed: () => setState(() {
-                          item.isSelected = !item.isSelected;
-                        }),
-                        style: ElevatedButton.styleFrom(
-                          // ボタンの背景色を設定
-                          backgroundColor: item.isSelected
-                              ? Theme.of(context).primaryColor
-                              : Colors.white,
-                          // ボタンの文字色を設定
-                          foregroundColor:
-                              item.isSelected ? Colors.white : Colors.grey,
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  spacing: 16,
+                  runSpacing: 20,
+                  children: searchItems.map((item) {
+                    return ElevatedButton(
+                      onPressed: () => setState(() {
+                        item.isSelected = !item.isSelected;
+                      }),
+                      style: ElevatedButton.styleFrom(
+                        // ボタンの背景色を設定
+                        backgroundColor: item.isSelected
+                            ? Theme.of(context).primaryColor
+                            : Colors.white,
+                        // ボタンの文字色を設定
+                        foregroundColor:
+                            item.isSelected ? Colors.white : Colors.grey,
+                      ),
+                      child: Text(
+                        item.label,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
                         ),
-                        child: Text(
-                          item.label,
-                          style: const TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                      ),
+                    );
+                  }).toList(),
                 ),
                 const SizedBox(
                   height: 100,
