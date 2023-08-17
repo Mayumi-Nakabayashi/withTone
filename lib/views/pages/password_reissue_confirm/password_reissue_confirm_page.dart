@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/pages/login/login_page.dart';
+import 'package:withtone/views/components/primary_button.dart';
+import 'package:withtone/views/pages/intro/intro_page.dart';
 
 /// パスワード再発送信後に表示するページ
 class PasswordReissueConfirmPage extends StatefulWidget {
@@ -18,28 +19,36 @@ class _PasswordReissueConfirmPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('メールを送信しました'),
-              const Text('パスワードを再発行しました。'),
-              const Text('メールを送信しましたのでご確認ください。'),
-              const Text('10秒後にログインページに戻ります。'),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(
-                          context,
-                          LoginPage.path,
-                        ),
-                    child: const Text('ログインページへ')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          children: [
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'メールを送信しました',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 40), // 適当な余白
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'パスワード再設定用のメールを送信しました。メール内のリンクから新しいパスワードを設定してください。',
+                textAlign: TextAlign.start,
+              ),
+            ),
+            const SizedBox(height: 40), // 適当な余白
+            PrimaryButton(
+              label: 'ログインページへ',
+              onPressed: () => Navigator.pushNamed(
+                context,
+                IntroPage.path,
+                arguments: IntroPageArguments(showModal: true),
+              ),
+            ),
+          ],
         ),
       ),
     );

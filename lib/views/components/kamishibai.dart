@@ -24,7 +24,7 @@ class Kamishibai extends StatefulWidget {
     /// 背景画像ファイルパス 例えば `assets/page_images/xxx.png`
     required this.assetPath,
 
-    /// 画面タップの遷移先. 例えば `[ '/', LoginPage.path ]`
+    /// 画面タップの遷移先. 例えば `[ '/intro', PasswordReissuePage.path ]`
     required this.nextPathList,
 
     /// pop する導線があるか
