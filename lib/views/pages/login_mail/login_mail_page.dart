@@ -32,7 +32,7 @@ class _LoginMailPageState extends State<LoginMailPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 100),
               const SizedBox(
                 width: double.infinity,
                 child: Text(
