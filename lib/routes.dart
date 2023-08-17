@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:withtone/views/components/kamishibai.dart';
 import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/login/login_page.dart';
+import 'package:withtone/views/pages/hoge_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
@@ -62,12 +63,16 @@ class Routes {
         //       nextPathList: ['/intro'],
         //     ),
         const PasswordReissueConfirmPage(),
-
     LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
     //const Kamishibai(
     //       assetPath: 'assets/page_images/learning community search.png',
     //       nextPathList: ['/content'],
     //     ),
+    HomePage.path: (context) => const HomePage(),
+    '/learning_community_search': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/learning community search.png',
+          nextPathList: ['/content'],
+        ),
     '/content': (context) => const Kamishibai(
           assetPath: 'assets/page_images/content.png',
           nextPathList: [
@@ -190,6 +195,11 @@ class Routes {
         ),
     '/settings': (context) => const Kamishibai(
           assetPath: 'assets/page_images/settings.png',
+          nextPathList: [],
+          existUserFlowOfPop: true,
+        ),
+    '/notifications': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/notifications.png',
           nextPathList: [],
           existUserFlowOfPop: true,
         ),
