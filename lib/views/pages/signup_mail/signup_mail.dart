@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/pages/hoge_page.dart';
+import 'package:withtone/views/pages/home_page.dart';
 
 /// メールで登録するページ
 class SignupMailPage extends StatefulWidget {
