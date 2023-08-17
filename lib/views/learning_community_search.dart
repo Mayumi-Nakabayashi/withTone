@@ -116,9 +116,8 @@ class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
                               ? Theme.of(context).primaryColor
                               : Colors.white,
                           // ボタンの文字色を設定
-                          foregroundColor: item.isSelected
-                              ? Colors.white
-                              : Theme.of(context).primaryColor,
+                          foregroundColor:
+                              item.isSelected ? Colors.white : Colors.grey,
                         ),
                         child: Text(
                           item.label,
