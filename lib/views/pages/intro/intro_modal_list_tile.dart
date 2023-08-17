@@ -17,26 +17,33 @@ class IntroModalListTile extends StatelessWidget {
   Widget build(context) {
     const iconSize = 24.0;
 
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(14)),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(color: Color(0xffeeeeee), spreadRadius: 1, blurRadius: 20),
-        ],
-      ),
-      child: ListTile(
-        leading: SizedBox(
-          width: iconSize,
-          child: Image.asset(leadingAssetPath),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(14)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Color(0xffeeeeee), spreadRadius: 1, blurRadius: 20),
+          ],
         ),
-        trailing: const SizedBox(width: iconSize),
-        title: Container(
-          width: double.infinity,
-          alignment: Alignment.center,
-          child: Text(label),
+        height: 60,
+        width: double.infinity,
+        // ListTile だと 文字が中央にならないので Column と Stack を使う
+        child: Stack(
+          children: [
+            Row(children: [
+              const SizedBox(height: double.infinity, width: iconSize),
+              SizedBox(
+                height: double.infinity,
+                width: iconSize,
+                child: Image.asset(leadingAssetPath),
+              ),
+            ]),
+            Center(child: Text(label)),
+          ],
         ),
-        onTap: onTap,
       ),
     );
   }
