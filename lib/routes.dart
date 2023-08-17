@@ -53,20 +53,7 @@ class Routes {
     HomePage.path: (context) => const HomePage(),
     '/learning_community_search': (context) => const Kamishibai(
           assetPath: 'assets/page_images/learning community search.png',
-          nextPathList: ['/content'],
-        ),
-    '/content': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/content.png',
-          nextPathList: [
-            '/search',
-            '/profile',
-            '/article',
-            '/learning_community_home',
-            '/search',
-            '/upload_fb',
-            '/professional',
-            '/content',
-          ],
+          nextPathList: [HomePage.path],
         ),
     '/upload_commentq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_commentq.jpg',
@@ -89,13 +76,13 @@ class Routes {
         ),
     '/upload_thankyouq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_thankyouq.jpg',
-          nextPathList: ['/content'],
+          nextPathList: [HomePage.path],
         ),
     '/upload_videoq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_videoq.jpg',
           nextPathList: [
             '/upload_commentq',
-            '/content',
+            HomePage.path,
           ],
         ),
     '/learning_community_home': (context) => const Kamishibai(
@@ -106,7 +93,7 @@ class Routes {
             '/search',
             '/upload_fb',
             '/professional',
-            '/content',
+            HomePage.path,
           ],
         ),
     '/article': (context) => const Kamishibai(
@@ -120,7 +107,7 @@ class Routes {
             '/search',
             '/upload_fb',
             '/professional',
-            '/content',
+            HomePage.path,
           ],
         ),
     '/profile': (context) => const Kamishibai(
@@ -136,7 +123,7 @@ class Routes {
             '/search',
             '/upload_fb',
             '/professional',
-            '/content',
+            HomePage.path,
           ],
         ),
     '/question': (context) => const Kamishibai(

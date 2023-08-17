@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/components/text_button_zero_padding.dart';
+import 'package:withtone/views/pages/hoge_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 
 /// パスワード再発行依頼を送信するページ
@@ -107,7 +108,7 @@ class _LoginMailPageState extends State<LoginMailPage> {
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
                 label: 'ログイン',
-                onPressed: () => Navigator.pushNamed(context, '/content'),
+                onPressed: () => Navigator.pushNamed(context, HomePage.path),
               ),
             ],
           ),
