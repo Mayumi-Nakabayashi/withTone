@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/kamishibai.dart';
-import 'package:withtone/views/pages/hoge_page.dart';
+import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/upload_fb_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -71,13 +72,15 @@ class Routes {
           nextPathList: ['/upload_thankyouq'],
           existUserFlowOfPop: true, // 戻ったら撮影した動画はどうなるの?
         ),
-    '/upload_fb': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_fb.jpg',
-          nextPathList: [
-            '/upload_inst',
-          ],
-          existUserFlowOfPop: true,
-        ),
+    UploadFbPage.path: (context) => const UploadFbPage(),
+
+    //  Kamishibai(
+    //       assetPath: 'assets/page_images/upload_fb.jpg',
+    //       nextPathList: [
+    //         '/upload_inst',
+    //       ],
+    //       existUserFlowOfPop: true,
+    //     ),
     '/upload_inst': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_inst.jpg',
           nextPathList: [
