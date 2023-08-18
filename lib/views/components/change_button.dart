@@ -16,8 +16,6 @@ class ChangeButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         fixedSize: const Size.fromWidth(double.maxFinite),
-
-        ///すげー不自然
         backgroundColor: Colors.transparent,
         side: const BorderSide(
           color: Colors.white,
