@@ -20,8 +20,8 @@ class ButtonItem {
 class _UploadFbPageState extends State<UploadFbPage> {
   List<ButtonItem> buttonItems = [
     ButtonItem(label: '演奏に対してのフィードバックが欲しい'),
-    ButtonItem(label: '技術的な観点でのアドバイスが欲しい'),
-    ButtonItem(label: 'おすすめの練習を教えて欲しい'),
+    ButtonItem(label: 'おすすめの練習方法を教えてほしい'),
+    ButtonItem(label: 'ティップスを紹介する！'),
   ];
 
   @override
@@ -31,7 +31,7 @@ class _UploadFbPageState extends State<UploadFbPage> {
         children: [
           SizedBox(
             child: Image.asset(
-              'assets/page_images/content.png',
+              'assets/page_images/upload_fb.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -55,7 +55,7 @@ class _UploadFbPageState extends State<UploadFbPage> {
                 const SizedBox(
                   height: 190,
                 ),
-                const OrangeText(label: 'どんなフィードバックが欲しいですか？'),
+                const OrangeText(label: 'あなたの希望を教えてください'),
                 const SizedBox(
                   height: 60,
                 ),
