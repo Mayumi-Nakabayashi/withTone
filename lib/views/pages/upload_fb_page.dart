@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/components/change_button.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
 
 class UploadFbPage extends StatefulWidget {
@@ -11,11 +10,23 @@ class UploadFbPage extends StatefulWidget {
   State<UploadFbPage> createState() => _UploadFbPageState();
 }
 
+class ButtonItem {
+  final String label;
+  ButtonItem({required this.label});
+
+  bool isSelected = false;
+}
+
 class _UploadFbPageState extends State<UploadFbPage> {
+  List<ButtonItem> buttonItems = [
+    ButtonItem(label: '演奏に対してのフィードバックが欲しい'),
+    ButtonItem(label: '技術的な観点でのアドバイスが欲しい'),
+    ButtonItem(label: 'おすすめの練習を教えて欲しい'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Stack(
         children: [
           SizedBox(
@@ -33,29 +44,50 @@ class _UploadFbPageState extends State<UploadFbPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
+                  height: 50,
+                ),
+
+                ///TODOバックボタンのアイコンを変更or相談する。
+                ///TODOバックボタンのロジックを書く
+                const BackButton(
+                  color: Colors.white,
+                ),
+                const SizedBox(
                   height: 190,
                 ),
                 const OrangeText(label: 'どんなフィードバックが欲しいですか？'),
                 const SizedBox(
                   height: 60,
                 ),
-                ChangeButton(
-                  label: '演奏に対してのフィードバックが欲しい',
-                  onPressed: () {
-                    setState(() {});
-                  },
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                const ChangeButton(
-                  label: '技術的な観点でのアドバイスが欲しい',
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                const ChangeButton(
-                  label: 'おすすめの練習を教えて欲しい',
+                Wrap(
+                  runSpacing: 20,
+                  children: buttonItems.map((item) {
+                    return ElevatedButton(
+                      onPressed: () => setState(() {
+                        item.isSelected = !item.isSelected;
+                      }),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size.fromWidth(double.maxFinite),
+                        // ボタンの背景色を設定
+                        backgroundColor: Colors.transparent,
+                        // ボタンの文字色を設定
+                        side: BorderSide(
+                          color: item.isSelected
+                              ? const Color.fromRGBO(0, 87, 146, 1)
+                              : Colors.white,
+                          width: 1,
+                        ),
+                      ),
+                      child: Text(
+                        item.label,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
                 const SizedBox(
                   height: 184,
