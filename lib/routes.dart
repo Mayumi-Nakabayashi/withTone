@@ -27,7 +27,6 @@ class Routes {
             LeaningCommunitySearch.path,
           ],
         ),
-    LeaningCommunitySearch.path: (context) => LeaningCommunitySearch(),
     // '/': (context) => const Kamishibai(
     //       assetPath: 'assets/page_images/Intro.png',
     //       nextPathList: [IntroPage.path],
@@ -69,10 +68,6 @@ class Routes {
     //       nextPathList: ['/content'],
     //     ),
     HomePage.path: (context) => const HomePage(),
-    '/learning_community_search': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community search.png',
-          nextPathList: ['/content'],
-        ),
     '/content': (context) => const Kamishibai(
           assetPath: 'assets/page_images/content.png',
           nextPathList: [
