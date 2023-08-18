@@ -85,10 +85,10 @@ class Routes {
             '/content',
           ],
         ),
-    '/learning_community_search': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community search.png',
-          nextPathList: [HomePage.path],
-        ),
+    // '/learning_community_search': (context) => const Kamishibai(
+    //       assetPath: 'assets/page_images/learning community search.png',
+    //       nextPathList: [HomePage.path],
+    //     ),
     '/upload_commentq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_commentq.jpg',
           nextPathList: ['/upload_thankyouq'],
