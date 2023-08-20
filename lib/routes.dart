@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/upload_inst_page.dart';
+import 'package:withtone/app.dart';
 import 'package:withtone/views/components/kamishibai.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
@@ -65,7 +66,6 @@ class Routes {
         //       nextPathList: ['/intro'],
         //     ),
         const PasswordReissueConfirmPage(),
-    HomePage.path: (context) => const HomePage(),
 
     LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
     //const Kamishibai(
@@ -84,6 +84,11 @@ class Routes {
             '/professional',
             '/content',
           ],
+        ),
+    HomePage.path: (context) => HomePage(App.analytics, App.observer),
+    '/learning_community_search': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/learning community search.png',
+          nextPathList: [HomePage.path],
         ),
     '/upload_commentq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_commentq.jpg',
