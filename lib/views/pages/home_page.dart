@@ -54,7 +54,7 @@ enum TabItems {
   });
 
   final String title;
-  final icon;
+  final IconData icon;
   final Widget page;
 }
 
