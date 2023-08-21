@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/pages/home_page.dart';
 
 class LeaningCommunitySearch extends StatefulWidget {
   const LeaningCommunitySearch({super.key});
@@ -214,8 +215,12 @@ class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
                       ),
                     ),
                     child: ElevatedButton(
-                      ///TODO画面を繋げる。
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          HomePage.path,
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.transparent,
                         // グラデーション色を定義

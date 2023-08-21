@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
+import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/home_page.dart';
 
 /// メールで登録するページ
@@ -95,7 +96,10 @@ class _SignupMailPageState extends State<SignupMailPage> {
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
                 label: '登録',
-                onPressed: () => Navigator.pushNamed(context, HomePage.path),
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  LeaningCommunitySearch.path,
+                ),
               ),
             ],
           ),
