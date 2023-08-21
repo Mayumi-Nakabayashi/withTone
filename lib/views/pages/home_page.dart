@@ -137,7 +137,7 @@ class HomePageState extends State<HomePage>
   /// 現在の tab の screenName を analytics に設定する
   void _sendCurrentTabToAnalytics() {
     analytics.setCurrentScreen(
-      screenName: '${HomePage.path}/tab${_currentTab.title}',
+      screenName: '${HomePage.path}/${_currentTab.name}',
     );
   }
 }
