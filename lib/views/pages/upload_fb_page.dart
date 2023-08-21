@@ -12,9 +12,8 @@ class UploadFbPage extends StatefulWidget {
 
 class ButtonItem {
   final String label;
-  ButtonItem({required this.label});
-
   bool isSelected = false;
+  ButtonItem({required this.label, this.isSelected = false});
 }
 
 class _UploadFbPageState extends State<UploadFbPage> {
@@ -23,7 +22,7 @@ class _UploadFbPageState extends State<UploadFbPage> {
     ButtonItem(label: 'おすすめの練習方法を教えてほしい'),
     ButtonItem(label: 'ティップスを紹介する！'),
   ];
-
+  List<ButtonItem> buttonItem = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,39 +55,45 @@ class _UploadFbPageState extends State<UploadFbPage> {
                   height: 190,
                 ),
                 const OrangeText(label: 'あなたの希望を教えてください'),
-                const SizedBox(
-                  height: 60,
-                ),
-                Wrap(
-                  runSpacing: 20,
-                  children: buttonItems.map((item) {
-                    return ElevatedButton(
-                      onPressed: () => setState(() {
-                        item.isSelected = !item.isSelected;
+
+                Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: buttonItems.length,
+                      itemBuilder: (context, index) {
+                        return ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              for (var buttonItem in buttonItems) {
+                                buttonItem.isSelected = false;
+                              }
+                              buttonItems[index].isSelected = true;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: const Size.fromWidth(double.maxFinite),
+                            // ボタンの背景色を設定
+                            backgroundColor: Colors.transparent,
+                            // ボタンの文字色を設定
+                            side: BorderSide(
+                              color: buttonItems[index].isSelected
+                                  ? Color.fromRGBO(0, 87, 146, 1)
+                                  : Colors.white,
+                              width: 1,
+                            ),
+                          ),
+                          child: Text(
+                            buttonItems[index].label,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
                       }),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size.fromWidth(double.maxFinite),
-                        // ボタンの背景色を設定
-                        backgroundColor: Colors.transparent,
-                        // ボタンの文字色を設定
-                        side: BorderSide(
-                          color: item.isSelected
-                              ? const Color.fromRGBO(0, 87, 146, 1)
-                              : Colors.white,
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        item.label,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    );
-                  }).toList(),
                 ),
+
                 const SizedBox(
                   height: 184,
                 ),
