@@ -12,7 +12,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('プロフィールを編集'),
+            title: const Text('プロフィールを編集'),
             bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(1),
                 child: Container(height: 1, color: Colors.black38))),
@@ -85,6 +85,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.grey,
+                                  //何かしたらの動画のサムネが入る？
                                   // image: DecorationImage(
                                   //   image: AssetImage(
                                   //       'assets/page_images/profile_icon.png'),
