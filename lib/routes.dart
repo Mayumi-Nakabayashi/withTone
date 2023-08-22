@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/views/components/kamishibai.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
@@ -96,13 +97,14 @@ class Routes {
           ],
           existUserFlowOfPop: true,
         ),
-    '/upload_inst': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_inst.jpg',
-          nextPathList: [
-            '/upload_videoq',
-          ],
-          existUserFlowOfPop: true,
-        ),
+    UploadInstPage.path: (context) => const UploadInstPage(),
+    // '/upload_inst': (context) => const Kamishibai(
+    //       assetPath: 'assets/page_images/upload_inst.jpg',
+    //       nextPathList: [
+    //         '/upload_videoq',
+    //       ],
+    //       existUserFlowOfPop: true,
+    //     ),
     '/upload_thankyouq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_thankyouq.jpg',
           nextPathList: [HomePage.path],
