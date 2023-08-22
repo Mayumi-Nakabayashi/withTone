@@ -18,9 +18,9 @@ class ButtonItem {
 
 class _UploadInstPageState extends State<UploadInstPage> {
   List<ButtonItem> buttonItems = [
-    ButtonItem(label: '演奏に対してのフィードバックが欲しい'),
-    ButtonItem(label: 'おすすめの練習方法を教えてほしい'),
-    ButtonItem(label: 'ティップスを紹介する！'),
+    ButtonItem(label: 'ギター'),
+    ButtonItem(label: 'ピアノ'),
+    ButtonItem(label: 'その他'),
   ];
   List<ButtonItem> buttonItem = [];
   @override
@@ -30,7 +30,7 @@ class _UploadInstPageState extends State<UploadInstPage> {
         children: [
           SizedBox(
             child: Image.asset(
-              'assets/page_images/upload_fb.jpg',
+              'assets/page_images/upload_inst.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -54,7 +54,7 @@ class _UploadInstPageState extends State<UploadInstPage> {
                 const SizedBox(
                   height: 190,
                 ),
-                const OrangeText(label: 'あなたの希望を教えてください'),
+                const OrangeText(label: 'あなたの楽器を教えてください'),
 
                 Expanded(
                   child: ListView.builder(
@@ -93,9 +93,8 @@ class _UploadInstPageState extends State<UploadInstPage> {
                         );
                       }),
                 ),
-
                 const SizedBox(
-                  height: 184,
+                  height: 150,
                 ),
                 Center(
                   child: SizedBox(
