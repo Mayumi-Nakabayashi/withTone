@@ -3,6 +3,7 @@ import 'package:withtone/views/components/kamishibai.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
+import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
@@ -37,6 +38,17 @@ class Routes {
     //     ),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
+    '/': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/Intro.png',
+          nextPathList: [IntroPage.path],
+        ),
+
+    '/signup': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/signup.png',
+          nextPathList: [
+            LeaningCommunitySearch.path,
+          ],
+        ),
     PasswordReissuePage.path: (context) =>
         // const Kamishibai(
         //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
@@ -53,9 +65,24 @@ class Routes {
         //     ),
         const PasswordReissueConfirmPage(),
     HomePage.path: (context) => const HomePage(),
-    '/learning_community_search': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community search.png',
-          nextPathList: [HomePage.path],
+
+    LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
+    //const Kamishibai(
+    //       assetPath: 'assets/page_images/learning community search.png',
+    //       nextPathList: ['/content'],
+    //     ),
+    '/content': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/content.png',
+          nextPathList: [
+            '/search',
+            '/profile',
+            '/article',
+            '/learning_community_home',
+            '/search',
+            '/upload_fb',
+            '/professional',
+            '/content',
+          ],
         ),
     '/upload_commentq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_commentq.jpg',
