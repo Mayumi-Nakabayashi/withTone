@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/kamishibai.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -135,9 +137,9 @@ class HomePageState extends State<HomePage>
   }
 
   /// 現在の tab の screenName を analytics に設定する
-  void _sendCurrentTabToAnalytics() {
-    analytics.setCurrentScreen(
-      screenName: '${HomePage.path}/${_currentTab.name}',
-    );
+  Future<void> _sendCurrentTabToAnalytics() async {
+    final screenName = '${HomePage.path}/${_currentTab.name}';
+    await analytics.setCurrentScreen(screenName: screenName);
+    log(name: 'transition', screenName);
   }
 }

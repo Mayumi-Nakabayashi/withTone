@@ -7,6 +7,7 @@ class App extends StatelessWidget {
 
   // Firebase analytics 設定
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  // 画面遷移を監視して screen_view を送信する
   static FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(
     analytics: analytics,
   );
