@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
 
-class UploadFbPage extends StatefulWidget {
-  const UploadFbPage({super.key});
+class UploadInstPage extends StatefulWidget {
+  const UploadInstPage({super.key});
 
   static const String path = '/uploadInst';
 
   @override
-  State<UploadFbPage> createState() => _UploadFbPageState();
+  State<UploadInstPage> createState() => _UploadInstPageState();
 }
 
 class ButtonItem {
@@ -16,7 +16,7 @@ class ButtonItem {
   ButtonItem({required this.label, this.isSelected = false});
 }
 
-class _UploadFbPageState extends State<UploadFbPage> {
+class _UploadInstPageState extends State<UploadInstPage> {
   List<ButtonItem> buttonItems = [
     ButtonItem(label: '演奏に対してのフィードバックが欲しい'),
     ButtonItem(label: 'おすすめの練習方法を教えてほしい'),
