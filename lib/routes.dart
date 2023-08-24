@@ -28,57 +28,8 @@ class Routes {
 
     // ホーム画面
     // routes にないが, HomePage 内部で 5 画面管理している
+    // routes で表現した方がわかりやすい? 引数で明示的に渡すことも検討する
     HomePage.path: (context) => const HomePage(),
-    // ホームで管理するのでここから消す
-    '/learning_community_home': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community home.png',
-          nextPathList: [
-            '/question',
-            '/feedback_line',
-            '/search',
-            '/upload_fb',
-            '/professional',
-            HomePage.path,
-          ],
-        ),
-    // ホームで管理するのでここから消す
-    '/notifications': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/notifications.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
-    // ホームで管理するのでここから消す
-    '/upload_fb': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_fb.jpg',
-          nextPathList: [
-            '/upload_inst',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    // ホームで管理するのでここから消す
-    '/content': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/content.png',
-          nextPathList: [
-            '/search',
-            '/profile',
-            '/article',
-            '/learning_community_home',
-            '/search',
-            '/upload_fb',
-            '/professional',
-            '/content',
-          ],
-        ),
-    // ホームで管理するのでここから消す
-    '/professional': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/professional.png',
-          nextPathList: [
-            '/search',
-            '/upload_fb',
-            '/professional',
-            HomePage.path,
-          ],
-        ),
     // 8 月中に作る
     '/upload_videoq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_videoq.jpg',
