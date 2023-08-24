@@ -4,7 +4,7 @@ import 'package:withtone/views/components/text/orange_text.dart';
 class UploadQuestionPage extends StatefulWidget {
   const UploadQuestionPage({super.key});
 
-  static const String path = '/uploadQuestion';
+  static const String path = '/upload_question';
 
   @override
   State<UploadQuestionPage> createState() => _UploadQuestionPageState();

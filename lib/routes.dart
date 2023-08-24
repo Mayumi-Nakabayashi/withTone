@@ -11,6 +11,8 @@ import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_c
 import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/setting_and_privacy/setting_and_privacy_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
+import 'package:withtone/views/pages/upload_fb.dart';
+import 'package:withtone/views/pages/upload_question_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -38,6 +40,8 @@ class Routes {
     ProfilePage.path: (context) => const ProfilePage(),
     SettingAndPrivacyPage.path: (context) => const SettingAndPrivacyPage(),
     EditProfilePage.path: (context) => const EditProfilePage(),
+    UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
+    UploadQuestionPage.path: (context) => const UploadQuestionPage(),
   };
 }

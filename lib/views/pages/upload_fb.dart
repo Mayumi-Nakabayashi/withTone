@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
 
 class UploadFbPage extends StatefulWidget {
   const UploadFbPage({super.key});
 
-  static const String path = '/uploadFb';
+  static const String path = '/upload_fb';
 
   @override
   State<UploadFbPage> createState() => _UploadFbPageState();
@@ -104,8 +105,10 @@ class _UploadFbPageState extends State<UploadFbPage> {
                     height: 42,
                     width: 260,
                     child: ElevatedButton(
-                      ///TODO画面を繋げる。
-                      onPressed: () {},
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        UploadInstPage.path,
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(0, 87, 146, 1),
                         // グラデーション色を定義
