@@ -4,6 +4,8 @@ import 'package:withtone/views/pages/edit_profile/edit_profire_page.dart';
 class SettingAndPrivacyPage extends StatefulWidget {
   const SettingAndPrivacyPage({super.key});
 
+  static const String path = '/setting';
+
   @override
   State<SettingAndPrivacyPage> createState() => _SettingAndPrivacyPageState();
 }
@@ -37,9 +39,12 @@ class _SettingAndPrivacyPageState extends State<SettingAndPrivacyPage> {
                   leading: const Icon(Icons.person_outline),
                   trailing: const Icon(Icons.chevron_right_sharp),
                   onTap: () {
+                    // TODO: pushNamed のようなメソッドでモーダル遷移したい.
+                    // routes で管理しているルーティングテーブルと重複していて,
+                    // SSOT の原則に沿っていない.
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return EditProfilePage();
+                      return const EditProfilePage();
                     }));
                   },
                 ),

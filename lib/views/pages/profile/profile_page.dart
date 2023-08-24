@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/pages/edit_profile/edit_profire_page.dart';
+import 'package:withtone/views/pages/setting_and_privacy/setting_and_privacy_page.dart';
 
 /// プロフィール
 class ProfilePage extends StatefulWidget {
@@ -17,7 +19,10 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, '/settings'),
+            onPressed: () => Navigator.pushNamed(
+              context,
+              SettingAndPrivacyPage.path,
+            ),
             icon: const Icon(Icons.more_horiz),
           )
         ],
@@ -31,8 +36,11 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/settings'),
-                child: const Text('setting ページに遷移'),
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  EditProfilePage.path,
+                ),
+                child: const Text('プロフィールを編集'),
               ),
             ],
           ),
