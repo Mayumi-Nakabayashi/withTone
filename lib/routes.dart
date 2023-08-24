@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/views/components/kamishibai.dart';
-import 'package:withtone/views/pages/edit_profile/edit_profire_page.dart';
+import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';

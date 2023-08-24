@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/pages/edit_profile/edit_profire_page.dart';
+import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 
 class SettingAndPrivacyPage extends StatefulWidget {
   const SettingAndPrivacyPage({super.key});
