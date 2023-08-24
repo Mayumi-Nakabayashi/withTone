@@ -130,21 +130,21 @@ class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
                   children: [
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text('DTM'),
+                      child: const Text('DTM'),
                     ),
                     const SizedBox(
                       width: 18,
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text('弾いてみた動画'),
+                      child: const Text('弾いてみた動画'),
                     ),
                     const SizedBox(
                       width: 18,
                     ),
                     ElevatedButton(
                       onPressed: () {},
-                      child: Text('ギター'),
+                      child: const Text('ギター'),
                     ),
                   ],
                 ),

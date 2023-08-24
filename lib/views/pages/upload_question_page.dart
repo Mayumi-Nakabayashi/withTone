@@ -76,7 +76,7 @@ class _UploadQuestionPageState extends State<UploadQuestionPage> {
                             // ボタンの文字色を設定
                             side: BorderSide(
                               color: buttonItems[index].isSelected
-                                  ? Color.fromRGBO(0, 87, 146, 1)
+                                  ? const Color.fromRGBO(0, 87, 146, 1)
                                   : Colors.white,
                               width: 1,
                             ),

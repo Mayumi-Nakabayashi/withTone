@@ -80,7 +80,7 @@ class _UploadFbPageState extends State<UploadFbPage> {
                             // ボタンの文字色を設定
                             side: BorderSide(
                               color: buttonItems[index].isSelected
-                                  ? Color.fromRGBO(0, 87, 146, 1)
+                                  ? const Color.fromRGBO(0, 87, 146, 1)
                                   : Colors.white,
                               width: 1,
                             ),
@@ -107,7 +107,7 @@ class _UploadFbPageState extends State<UploadFbPage> {
                       ///TODO画面を繋げる。
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(0, 87, 146, 1),
+                        backgroundColor: const Color.fromRGBO(0, 87, 146, 1),
                         // グラデーション色を定義
                       ),
                       child: const Text(
