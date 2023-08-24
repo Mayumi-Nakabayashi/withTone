@@ -17,61 +17,24 @@ class Routes {
 
   /// ルーティング一覧
   static final Map<String, Widget Function(BuildContext)> routes = {
-    // '/': (context) => const Kamishibai(
-    //       assetPath: 'assets/page_images/Intro.png',
-    //       nextPathList: [IntroPage.path],
-    //     ),
     IntroPage.path: (context) => const IntroPage(),
-    // const Kamishibai(
-    //       assetPath: 'assets/page_images/login.png',
-    //       nextPathList: [
-    //         '/content',
-    //         '/signup',
-    //         PasswordReissuePage.path,
-    //       ],
-    //     ),
-    // '/signup': (context) => const Kamishibai(
-    //       assetPath: 'assets/page_images/signup.png',
-    //       nextPathList: [
-    //         IntroPage.path,
-    //         '/learning_community_search',
-    //       ],
-    //     ),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
     '/': (context) => const Kamishibai(
           assetPath: 'assets/page_images/Intro.png',
           nextPathList: [IntroPage.path],
         ),
-
     '/signup': (context) => const Kamishibai(
           assetPath: 'assets/page_images/signup.png',
           nextPathList: [
             LeaningCommunitySearch.path,
           ],
         ),
-    PasswordReissuePage.path: (context) =>
-        // const Kamishibai(
-        //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
-        //       nextPathList: [
-        //         PasswordReissueConfirmPage.path,
-        //       ],
-        //       existUserFlowOfPop: true,
-        //     ),
-        const PasswordReissuePage(),
+    PasswordReissuePage.path: (context) => const PasswordReissuePage(),
     PasswordReissueConfirmPage.path: (context) =>
-        // const Kamishibai(
-        //       assetPath: 'assets/page_images/パスワード再発行確認ページ.jpg',
-        //       nextPathList: ['/intro'],
-        //     ),
         const PasswordReissueConfirmPage(),
     HomePage.path: (context) => const HomePage(),
-
     LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
-    //const Kamishibai(
-    //       assetPath: 'assets/page_images/learning community search.png',
-    //       nextPathList: ['/content'],
-    //     ),
     '/content': (context) => const Kamishibai(
           assetPath: 'assets/page_images/content.png',
           nextPathList: [
@@ -98,13 +61,6 @@ class Routes {
           existUserFlowOfPop: true,
         ),
     UploadInstPage.path: (context) => const UploadInstPage(),
-    // '/upload_inst': (context) => const Kamishibai(
-    //       assetPath: 'assets/page_images/upload_inst.jpg',
-    //       nextPathList: [
-    //         '/upload_videoq',
-    //       ],
-    //       existUserFlowOfPop: true,
-    //     ),
     '/upload_thankyouq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_thankyouq.jpg',
           nextPathList: [HomePage.path],
