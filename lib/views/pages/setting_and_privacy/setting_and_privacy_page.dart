@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 
@@ -53,7 +55,7 @@ class _SettingAndPrivacyPageState extends State<SettingAndPrivacyPage> {
                   leading: const Icon(Icons.lock_outline),
                   trailing: const Icon(Icons.chevron_right_sharp),
                   onTap: () {
-                    print('pon');
+                    log('pon');
                   },
                 ),
                 PreferredSize(
@@ -78,7 +80,7 @@ class _SettingAndPrivacyPageState extends State<SettingAndPrivacyPage> {
                   leading: const Icon(Icons.notifications_none_outlined),
                   trailing: const Icon(Icons.chevron_right_sharp),
                   onTap: () {
-                    print('pon');
+                    log('pon');
                   },
                 ),
               ],
