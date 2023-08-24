@@ -21,18 +21,6 @@ class Routes {
     IntroPage.path: (context) => const IntroPage(),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
-    // Intro 作ったので削除する
-    '/': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/Intro.png',
-          nextPathList: [IntroPage.path],
-        ),
-    // Intro 作ったので削除する
-    '/signup': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/signup.png',
-          nextPathList: [
-            LeaningCommunitySearch.path,
-          ],
-        ),
     PasswordReissuePage.path: (context) => const PasswordReissuePage(),
     PasswordReissueConfirmPage.path: (context) =>
         const PasswordReissueConfirmPage(),
