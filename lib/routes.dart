@@ -7,6 +7,7 @@ import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 
 /// ルーティング管理
@@ -38,14 +39,7 @@ class Routes {
             HomePage.path,
           ],
         ),
-    // 8 月中に作る
-    '/profile': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/profile.png',
-          nextPathList: [
-            '/settings',
-          ],
-          existUserFlowOfPop: true,
-        ),
+    ProfilePage.path: (context) => const ProfilePage(),
     // その他
     '/upload_commentq': (context) => const Kamishibai(
           assetPath: 'assets/page_images/upload_commentq.jpg',

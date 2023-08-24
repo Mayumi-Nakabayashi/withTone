@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/pages/profile/profile_page.dart';
 
 /// 学ぶ
 class ContentPage extends StatefulWidget {
@@ -24,8 +25,8 @@ class _ContentPageState extends State<ContentPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: null,
-                child: Text(runtimeType.toString()),
+                onPressed: () => Navigator.pushNamed(context, ProfilePage.path),
+                child: const Text('profile ページに遷移'),
               ),
             ],
           ),
