@@ -17,13 +17,16 @@ class Routes {
 
   /// ルーティング一覧
   static final Map<String, Widget Function(BuildContext)> routes = {
+    // 画面起動からホームに遷移するまで
     IntroPage.path: (context) => const IntroPage(),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
+    // Intro 作ったので削除する
     '/': (context) => const Kamishibai(
           assetPath: 'assets/page_images/Intro.png',
           nextPathList: [IntroPage.path],
         ),
+    // Intro 作ったので削除する
     '/signup': (context) => const Kamishibai(
           assetPath: 'assets/page_images/signup.png',
           nextPathList: [
@@ -33,8 +36,38 @@ class Routes {
     PasswordReissuePage.path: (context) => const PasswordReissuePage(),
     PasswordReissueConfirmPage.path: (context) =>
         const PasswordReissueConfirmPage(),
-    HomePage.path: (context) => const HomePage(),
     LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
+
+    // ホーム画面
+    // routes にないが, HomePage 内部で 5 画面管理している
+    HomePage.path: (context) => const HomePage(),
+    // ホームで管理するのでここから消す
+    '/learning_community_home': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/learning community home.png',
+          nextPathList: [
+            '/question',
+            '/feedback_line',
+            '/search',
+            '/upload_fb',
+            '/professional',
+            HomePage.path,
+          ],
+        ),
+    // ホームで管理するのでここから消す
+    '/notifications': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/notifications.png',
+          nextPathList: [],
+          existUserFlowOfPop: true,
+        ),
+    // ホームで管理するのでここから消す
+    '/upload_fb': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/upload_fb.jpg',
+          nextPathList: [
+            '/upload_inst',
+          ],
+          existUserFlowOfPop: true,
+        ),
+    // ホームで管理するのでここから消す
     '/content': (context) => const Kamishibai(
           assetPath: 'assets/page_images/content.png',
           nextPathList: [
@@ -48,46 +81,7 @@ class Routes {
             '/content',
           ],
         ),
-    '/upload_commentq': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_commentq.jpg',
-          nextPathList: ['/upload_thankyouq'],
-          existUserFlowOfPop: true, // 戻ったら撮影した動画はどうなるの?
-        ),
-    '/upload_fb': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_fb.jpg',
-          nextPathList: [
-            '/upload_inst',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    UploadInstPage.path: (context) => const UploadInstPage(),
-    '/upload_thankyouq': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_thankyouq.jpg',
-          nextPathList: [HomePage.path],
-        ),
-    '/upload_videoq': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_videoq.jpg',
-          nextPathList: [
-            '/upload_commentq',
-            HomePage.path,
-          ],
-        ),
-    '/learning_community_home': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community home.png',
-          nextPathList: [
-            '/question',
-            '/feedback_line',
-            '/search',
-            '/upload_fb',
-            '/professional',
-            HomePage.path,
-          ],
-        ),
-    '/article': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/article.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
+    // ホームで管理するのでここから消す
     '/professional': (context) => const Kamishibai(
           assetPath: 'assets/page_images/professional.png',
           nextPathList: [
@@ -97,6 +91,15 @@ class Routes {
             HomePage.path,
           ],
         ),
+    // 8 月中に作る
+    '/upload_videoq': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/upload_videoq.jpg',
+          nextPathList: [
+            '/upload_commentq',
+            HomePage.path,
+          ],
+        ),
+    // 8 月中に作る
     '/profile': (context) => const Kamishibai(
           assetPath: 'assets/page_images/profile.png',
           nextPathList: [
@@ -104,6 +107,24 @@ class Routes {
           ],
           existUserFlowOfPop: true,
         ),
+    // その他
+    '/upload_commentq': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/upload_commentq.jpg',
+          nextPathList: ['/upload_thankyouq'],
+          existUserFlowOfPop: true, // 戻ったら撮影した動画はどうなるの?
+        ),
+
+    UploadInstPage.path: (context) => const UploadInstPage(),
+    '/upload_thankyouq': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/upload_thankyouq.jpg',
+          nextPathList: [HomePage.path],
+        ),
+    '/article': (context) => const Kamishibai(
+          assetPath: 'assets/page_images/article.png',
+          nextPathList: [],
+          existUserFlowOfPop: true,
+        ),
+
     '/search': (context) => const Kamishibai(
           assetPath: 'assets/page_images/search.png',
           nextPathList: [
@@ -151,11 +172,6 @@ class Routes {
         ),
     '/settings': (context) => const Kamishibai(
           assetPath: 'assets/page_images/settings.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
-    '/notifications': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/notifications.png',
           nextPathList: [],
           existUserFlowOfPop: true,
         ),
