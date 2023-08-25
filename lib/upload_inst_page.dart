@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
+import 'package:withtone/views/pages/upload_question_page.dart';
 
 class UploadInstPage extends StatefulWidget {
   const UploadInstPage({super.key});
 
-  static const String path = '/uploadInst';
+  static const String path = '/upload_inst';
 
   @override
   State<UploadInstPage> createState() => _UploadInstPageState();
@@ -77,7 +78,7 @@ class _UploadInstPageState extends State<UploadInstPage> {
                             // ボタンの文字色を設定
                             side: BorderSide(
                               color: buttonItems[index].isSelected
-                                  ? Color.fromRGBO(0, 87, 146, 1)
+                                  ? const Color.fromRGBO(0, 87, 146, 1)
                                   : Colors.white,
                               width: 1,
                             ),
@@ -101,10 +102,12 @@ class _UploadInstPageState extends State<UploadInstPage> {
                     height: 42,
                     width: 260,
                     child: ElevatedButton(
-                      ///TODO画面を繋げる。
-                      onPressed: () {},
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        UploadQuestionPage.path,
+                      ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(0, 87, 146, 1),
+                        backgroundColor: const Color.fromRGBO(0, 87, 146, 1),
                         // グラデーション色を定義
                       ),
                       child: const Text(

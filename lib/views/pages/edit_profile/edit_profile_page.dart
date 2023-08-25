@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
 
+  static const String path = '/edit_profile';
+
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
@@ -119,33 +121,32 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ],
                 ),
                 const SizedBox(height: 30),
-                ListTile(
+                const ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('名前'),
-                      Text('木村 なつみ', style: const TextStyle(color: Colors.grey))
+                      Text('名前'),
+                      Text('木村 なつみ', style: TextStyle(color: Colors.grey))
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right),
+                  trailing: Icon(Icons.chevron_right),
                 ),
-                ListTile(
+                const ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('ユーザー名'),
-                      Text('jacob_w',
-                          style: const TextStyle(color: Colors.grey))
+                      Text('ユーザー名'),
+                      Text('jacob_w', style: TextStyle(color: Colors.grey))
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right),
+                  trailing: Icon(Icons.chevron_right),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
+                      const Text(
                         'tiktok.com@jacob_w',
                         style: TextStyle(color: Colors.grey),
                       ),
@@ -153,30 +154,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ],
                   ),
                 ),
-                ListTile(
+                const ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('自己紹介'),
-                      Text('自己紹介を追加',
-                          style: const TextStyle(color: Colors.grey))
+                      Text('自己紹介'),
+                      Text('自己紹介を追加', style: TextStyle(color: Colors.grey))
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right),
+                  trailing: Icon(Icons.chevron_right),
                 ),
                 PreferredSize(
                     preferredSize: const Size.fromHeight(1),
                     child: Container(height: 1, color: Colors.black38)),
-                ListTile(
+                const ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('YouTube'),
-                      Text('YouTubeを追加',
-                          style: const TextStyle(color: Colors.grey))
+                      Text('YouTube'),
+                      Text('YouTubeを追加', style: TextStyle(color: Colors.grey))
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right),
+                  trailing: Icon(Icons.chevron_right),
                 ),
               ],
             ),
