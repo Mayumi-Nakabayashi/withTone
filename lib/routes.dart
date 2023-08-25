@@ -13,6 +13,7 @@ import 'package:withtone/views/pages/setting_and_privacy/setting_and_privacy_pag
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
+import 'package:withtone/views/pages/upload_video_question_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -43,5 +44,6 @@ class Routes {
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
+    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
   };
 }
