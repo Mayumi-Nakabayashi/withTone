@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
-import 'package:withtone/views/pages/upload_question_page.dart';
+import 'package:withtone/views/pages/upload_video_question_page.dart';
 
-class UploadInstPage extends StatefulWidget {
-  const UploadInstPage({super.key});
+class UploadQuestionPage extends StatefulWidget {
+  const UploadQuestionPage({super.key});
 
-  static const String path = '/upload_inst';
+  static const String path = '/upload_question';
 
   @override
-  State<UploadInstPage> createState() => _UploadInstPageState();
+  State<UploadQuestionPage> createState() => _UploadQuestionPageState();
 }
 
 class ButtonItem {
@@ -17,11 +17,10 @@ class ButtonItem {
   ButtonItem({required this.label, this.isSelected = false});
 }
 
-class _UploadInstPageState extends State<UploadInstPage> {
+class _UploadQuestionPageState extends State<UploadQuestionPage> {
   List<ButtonItem> buttonItems = [
-    ButtonItem(label: 'ギター'),
-    ButtonItem(label: 'ピアノ'),
-    ButtonItem(label: 'その他'),
+    ButtonItem(label: 'はい'),
+    ButtonItem(label: 'いいえ'),
   ];
   List<ButtonItem> buttonItem = [];
   @override
@@ -55,7 +54,7 @@ class _UploadInstPageState extends State<UploadInstPage> {
                 const SizedBox(
                   height: 190,
                 ),
-                const OrangeText(label: 'あなたの楽器を教えてください'),
+                const OrangeText(label: '動画や写真で質問しますか？'),
 
                 Expanded(
                   child: ListView.builder(
@@ -94,32 +93,12 @@ class _UploadInstPageState extends State<UploadInstPage> {
                         );
                       }),
                 ),
-                const SizedBox(
-                  height: 150,
-                ),
-                Center(
-                  child: SizedBox(
-                    height: 42,
-                    width: 260,
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        UploadQuestionPage.path,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(0, 87, 146, 1),
-                        // グラデーション色を定義
-                      ),
-                      child: const Text(
-                        '次へ',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    UploadVideoQuestionPage.path,
                   ),
+                  child: const Text('/upload_videoq への導線, 開発で仮置き'),
                 ),
               ],
             ),

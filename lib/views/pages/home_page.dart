@@ -1,53 +1,42 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:withtone/views/components/kamishibai.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:withtone/views/pages/content/content_page.dart';
+import 'package:withtone/views/pages/learning_community_home/learning_community_home_page.dart';
+import 'package:withtone/views/pages/notifications/notifications_page.dart';
+import 'package:withtone/views/pages/professional/professional_page.dart';
+import 'package:withtone/views/pages/upload_fb.dart';
 
 enum TabItems {
   community(
     title: 'コミュニティ',
     icon: Icons.home,
-    page: Kamishibai(
-      assetPath: 'assets/page_images/learning community home.png',
-      nextPathList: ['/search'],
-    ),
+    page: LearningCommunityHomePage(),
   ),
 
   notifications(
     title: '通知',
     icon: Icons.notifications,
-    page: Kamishibai(
-      assetPath: 'assets/page_images/notifications.png',
-      nextPathList: ['/search'],
-    ),
+    page: NotificationsPage(),
   ),
 
   upload(
     title: '',
     icon: Icons.add_box_rounded,
-    page: Kamishibai(
-      assetPath: 'assets/page_images/upload_fb.jpg',
-      nextPathList: ['/search'],
-    ),
+    page: UploadFbPage(),
   ),
 
   content(
     title: '学ぶ',
     icon: Icons.menu_book,
-    page: Kamishibai(
-      assetPath: 'assets/page_images/content.png',
-      nextPathList: ['/search'],
-    ),
+    page: ContentPage(),
   ),
 
   professional(
     title: 'プロ',
     icon: Icons.star,
-    page: Kamishibai(
-      assetPath: 'assets/page_images/professional.png',
-      nextPathList: ['/search'],
-    ),
+    page: ProfessionalPage(),
   );
 
   const TabItems({

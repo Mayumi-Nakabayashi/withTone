@@ -16,6 +16,26 @@ import 'package:flutter/material.dart';
 ///   ],
 ///   existUserFlowOfPop: true,
 /// );
+///
+/// ...
+/// '/upload_thankyouq': (context) => const Kamishibai(
+///   assetPath: 'assets/page_images/upload_thankyouq.jpg',
+///   nextPathList: [HomePage.path],
+/// ),
+/// '/article': (context) => const Kamishibai(
+///   assetPath: 'assets/page_images/article.png',
+///   nextPathList: [],
+///   existUserFlowOfPop: true,
+/// ),
+///
+/// '/search': (context) => const Kamishibai(
+///   assetPath: 'assets/page_images/search.png',
+///   nextPathList: [
+///     '/search',
+///     '/upload_fb',
+///     '/professional',
+///   ],
+/// ),
 /// ```
 class Kamishibai extends StatefulWidget {
   const Kamishibai({

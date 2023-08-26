@@ -74,6 +74,7 @@ flutter:
   - assets/page_images/upload_inst.jpg
   - assets/page_images/upload_thankyouq.jpg
   - assets/page_images/upload_videoq.jpg
+  - assets/page_images/profile_icon.png
 
   - assets/page_images/article.png
   - assets/page_images/professional.png

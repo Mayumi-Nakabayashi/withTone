@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
-import 'package:withtone/views/pages/upload_question_page.dart';
 
-class UploadInstPage extends StatefulWidget {
-  const UploadInstPage({super.key});
+class UploadFbPage extends StatefulWidget {
+  const UploadFbPage({super.key});
 
-  static const String path = '/upload_inst';
+  static const String path = '/upload_fb';
 
   @override
-  State<UploadInstPage> createState() => _UploadInstPageState();
+  State<UploadFbPage> createState() => _UploadFbPageState();
 }
 
 class ButtonItem {
   final String label;
   bool isSelected = false;
-  ButtonItem({required this.label, this.isSelected = false});
+  ButtonItem({
+    required this.label,
+    this.isSelected = false,
+  });
 }
 
-class _UploadInstPageState extends State<UploadInstPage> {
+class _UploadFbPageState extends State<UploadFbPage> {
   List<ButtonItem> buttonItems = [
-    ButtonItem(label: 'ギター'),
-    ButtonItem(label: 'ピアノ'),
-    ButtonItem(label: 'その他'),
+    ButtonItem(label: '演奏に対するフィードバック'),
+    ButtonItem(label: 'おすすめの練習方法を教えてください'),
+    ButtonItem(label: 'ティップスを紹介する'),
   ];
   List<ButtonItem> buttonItem = [];
   @override
@@ -55,7 +58,7 @@ class _UploadInstPageState extends State<UploadInstPage> {
                 const SizedBox(
                   height: 190,
                 ),
-                const OrangeText(label: 'あなたの楽器を教えてください'),
+                const OrangeText(label: 'あなたの希望を教えてください'),
 
                 Expanded(
                   child: ListView.builder(
@@ -104,7 +107,7 @@ class _UploadInstPageState extends State<UploadInstPage> {
                     child: ElevatedButton(
                       onPressed: () => Navigator.pushNamed(
                         context,
-                        UploadQuestionPage.path,
+                        UploadInstPage.path,
                       ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(0, 87, 146, 1),

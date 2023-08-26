@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/app.dart';
 import 'package:withtone/views/components/kamishibai.dart';
+import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/profile/profile_page.dart';
+import 'package:withtone/views/pages/setting_and_privacy/setting_and_privacy_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
+import 'package:withtone/views/pages/upload_fb.dart';
+import 'package:withtone/views/pages/upload_question_page.dart';
+import 'package:withtone/views/pages/upload_video_question_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -18,195 +24,27 @@ class Routes {
 
   /// ルーティング一覧
   static final Map<String, Widget Function(BuildContext)> routes = {
-    // '/': (context) => const Kamishibai(
-    //       assetPath: 'assets/page_images/Intro.png',
-    //       nextPathList: [IntroPage.path],
-    //     ),
+    // アプリ起動からホームに遷移するまでの画面
     IntroPage.path: (context) => const IntroPage(),
-    // const Kamishibai(
-    //       assetPath: 'assets/page_images/login.png',
-    //       nextPathList: [
-    //         '/content',
-    //         '/signup',
-    //         PasswordReissuePage.path,
-    //       ],
-    //     ),
-    // '/signup': (context) => const Kamishibai(
-    //       assetPath: 'assets/page_images/signup.png',
-    //       nextPathList: [
-    //         IntroPage.path,
-    //         '/learning_community_search',
-    //       ],
-    //     ),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
-    '/': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/Intro.png',
-          nextPathList: [IntroPage.path],
-        ),
-
-    '/signup': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/signup.png',
-          nextPathList: [
-            LeaningCommunitySearch.path,
-          ],
-        ),
-    PasswordReissuePage.path: (context) =>
-        // const Kamishibai(
-        //       assetPath: 'assets/page_images/パスワード再発行ページ.jpg',
-        //       nextPathList: [
-        //         PasswordReissueConfirmPage.path,
-        //       ],
-        //       existUserFlowOfPop: true,
-        //     ),
-        const PasswordReissuePage(),
+    PasswordReissuePage.path: (context) => const PasswordReissuePage(),
     PasswordReissueConfirmPage.path: (context) =>
-        // const Kamishibai(
-        //       assetPath: 'assets/page_images/パスワード再発行確認ページ.jpg',
-        //       nextPathList: ['/intro'],
-        //     ),
         const PasswordReissueConfirmPage(),
-
     LeaningCommunitySearch.path: (context) => const LeaningCommunitySearch(),
-    //const Kamishibai(
-    //       assetPath: 'assets/page_images/learning community search.png',
-    //       nextPathList: ['/content'],
-    //     ),
-    '/content': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/content.png',
-          nextPathList: [
-            '/search',
-            '/profile',
-            '/article',
-            '/learning_community_home',
-            '/search',
-            '/upload_fb',
-            '/professional',
-            '/content',
-          ],
-        ),
+
+    // ホーム画面
+    // routes にないが, HomePage 内部で 5 画面管理している
+    // routes で表現した方がわかりやすい? 引数で明示的に渡すことも検討する
     HomePage.path: (context) => HomePage(App.analytics, App.observer),
-    '/learning_community_search': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community search.png',
-          nextPathList: [HomePage.path],
-        ),
-    '/upload_commentq': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_commentq.jpg',
-          nextPathList: ['/upload_thankyouq'],
-          existUserFlowOfPop: true, // 戻ったら撮影した動画はどうなるの?
-        ),
-    '/upload_fb': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_fb.jpg',
-          nextPathList: [
-            '/upload_inst',
-          ],
-          existUserFlowOfPop: true,
-        ),
+
+    // その他の画面
+    ProfilePage.path: (context) => const ProfilePage(),
+    SettingAndPrivacyPage.path: (context) => const SettingAndPrivacyPage(),
+    EditProfilePage.path: (context) => const EditProfilePage(),
+    UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
-    // '/upload_inst': (context) => const Kamishibai(
-    //       assetPath: 'assets/page_images/upload_inst.jpg',
-    //       nextPathList: [
-    //         '/upload_videoq',
-    //       ],
-    //       existUserFlowOfPop: true,
-    //     ),
-    '/upload_thankyouq': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_thankyouq.jpg',
-          nextPathList: [HomePage.path],
-        ),
-    '/upload_videoq': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_videoq.jpg',
-          nextPathList: [
-            '/upload_commentq',
-            HomePage.path,
-          ],
-        ),
-    '/learning_community_home': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/learning community home.png',
-          nextPathList: [
-            '/question',
-            '/feedback_line',
-            '/search',
-            '/upload_fb',
-            '/professional',
-            HomePage.path,
-          ],
-        ),
-    '/article': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/article.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
-    '/professional': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/professional.png',
-          nextPathList: [
-            '/search',
-            '/upload_fb',
-            '/professional',
-            HomePage.path,
-          ],
-        ),
-    '/profile': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/profile.png',
-          nextPathList: [
-            '/settings',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    '/search': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/search.png',
-          nextPathList: [
-            '/search',
-            '/upload_fb',
-            '/professional',
-            HomePage.path,
-          ],
-        ),
-    '/question': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/question.png',
-          nextPathList: [
-            '/feedback_line',
-            '/upload_videof',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    '/feedback_line': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/feedback_line.png',
-          nextPathList: [
-            '/feedback_video',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    '/feedback_video': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/feedback_video.png',
-          nextPathList: [
-            '/feedback',
-          ],
-          existUserFlowOfPop: true,
-        ),
-    '/feedback': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/feedback.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
-    '/upload_videof': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_videof.jpg',
-          nextPathList: ['/upload_thankyouf'],
-          existUserFlowOfPop: true,
-        ),
-    '/upload_thankyouf': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/upload_thankyouf.jpg',
-          nextPathList: ['/learning_community_home'],
-        ),
-    '/settings': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/settings.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
-    '/notifications': (context) => const Kamishibai(
-          assetPath: 'assets/page_images/notifications.png',
-          nextPathList: [],
-          existUserFlowOfPop: true,
-        ),
+    UploadQuestionPage.path: (context) => const UploadQuestionPage(),
+    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
   };
 }
