@@ -55,8 +55,6 @@ Doctor summary (to see all details, run flutter doctor -v):
 ディレクトリ構成などはまだ決まってない.
 状態管理は Riverpod を利用する.
 
-## 開発ルール
-
 ### ブランチ運用
 
 `git-flow` を採用する. 一旦頻出するブランチのみ列挙する.
