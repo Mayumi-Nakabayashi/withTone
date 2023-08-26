@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/components/text_button_zero_padding.dart';
@@ -25,6 +26,8 @@ class _LoginMailPageState extends State<LoginMailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final emailController = TextEditingController();
+    final passwordcontroller = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -42,6 +45,7 @@ class _LoginMailPageState extends State<LoginMailPage> {
                 ),
               ),
               TextFormField(
+                controller: emailController,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   hintText: "メールアドレスを入力してください",
@@ -72,6 +76,7 @@ class _LoginMailPageState extends State<LoginMailPage> {
                 ),
               ),
               TextFormField(
+                controller: passwordcontroller,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
                   hintText: "パスワードを入力してください",
@@ -107,9 +112,16 @@ class _LoginMailPageState extends State<LoginMailPage> {
               ),
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
-                label: 'ログイン',
-                onPressed: () => Navigator.pushNamed(context, HomePage.path),
-              ),
+                  label: 'ログイン',
+                  onPressed: () async {
+                    final email = emailController.text;
+                    final password = passwordcontroller.text;
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: email, password: password);
+                    if (mounted) {
+                      await Navigator.pushNamed(context, HomePage.path);
+                    }
+                  }),
             ],
           ),
         ),
