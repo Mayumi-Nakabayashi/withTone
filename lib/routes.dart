@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/upload_inst_page.dart';
+import 'package:withtone/app.dart';
 import 'package:withtone/views/components/kamishibai.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
@@ -35,7 +36,7 @@ class Routes {
     // ホーム画面
     // routes にないが, HomePage 内部で 5 画面管理している
     // routes で表現した方がわかりやすい? 引数で明示的に渡すことも検討する
-    HomePage.path: (context) => const HomePage(),
+    HomePage.path: (context) => HomePage(App.analytics, App.observer),
 
     // その他の画面
     ProfilePage.path: (context) => const ProfilePage(),
