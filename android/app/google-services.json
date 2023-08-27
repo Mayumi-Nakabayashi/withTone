@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "124992763448",
+    "project_id": "withtone-5d917",
+    "storage_bucket": "withtone-5d917.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124992763448:android:d4446b237e1e79cc2998cd",
+        "android_client_info": {
+          "package_name": "com.withtone.withtone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124992763448-pjvfjpifqvs166tvifakvduljllqqbls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA16Hjte83A8hpH72Tg3tNtihaVF-IpGws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124992763448-pjvfjpifqvs166tvifakvduljllqqbls.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "124992763448-2b2hb5pc377c08475r8kk61orb30ql3u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.withtone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

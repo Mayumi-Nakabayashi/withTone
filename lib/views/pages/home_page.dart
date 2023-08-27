@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:withtone/views/pages/content/content_page.dart';
 import 'package:withtone/views/pages/learning_community_home/learning_community_home_page.dart';
 import 'package:withtone/views/pages/notifications/notifications_page.dart';
@@ -43,12 +46,15 @@ enum TabItems {
   });
 
   final String title;
-  final icon;
+  final IconData icon;
   final Widget page;
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage(this.analytics, this.observer, {super.key});
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   static const String path = '/home';
 
@@ -56,8 +62,33 @@ class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin, RouteAware {
   TabItems _currentTab = TabItems.content;
+
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.observer.subscribe(this, ModalRoute.of(context)! as PageRoute);
+  }
+
+  @override
+  void dispose() {
+    widget.observer.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPush() {
+    _sendCurrentTabToAnalytics();
+  }
+
+  @override
+  void didPopNext() {
+    _sendCurrentTabToAnalytics();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +121,14 @@ class HomePageState extends State<HomePage> {
   void onSelect(TabItems selectedTab) {
     setState(() {
       _currentTab = selectedTab;
+      _sendCurrentTabToAnalytics();
     });
+  }
+
+  /// 現在の tab の screenName を analytics に設定する
+  Future<void> _sendCurrentTabToAnalytics() async {
+    final screenName = '${HomePage.path}/${_currentTab.name}';
+    await analytics.setCurrentScreen(screenName: screenName);
+    log(name: 'transition', screenName);
   }
 }

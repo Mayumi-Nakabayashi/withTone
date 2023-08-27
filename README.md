@@ -83,6 +83,12 @@ chore:    その他の変更（ソースやテストの変更を含まない）
 
 `git log` で過去の commit message を参考にしたり, [commit message で TTNE する方法](https://zenn.dev/ken_ty/articles/417f58aaa67ec3) を参考にしてください.
 
+###  便利なコマンド集
+
+| コマンド | できること |
+| --- | --- |
+| `open ios/Runner.xcworkspace/` | Runner を Xcode で起動する |
+
 ## これから join する / したい あなたへ
 
 withTone は随時メンバーを募集してます！
