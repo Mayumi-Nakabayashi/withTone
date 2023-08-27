@@ -77,7 +77,7 @@ prefix は [commitizen](cz-conventional-changelog-ja) に従う.
 feat:     新機能
 fix:      バグ修正
 docs:     ドキュメントのみの変更
-refactor: リファクタリングのための変更（機能追加やバグ修正を含まない） // ★
+refactor: リファクタリングのための変更（機能追加やバグ修正を含まない）
 chore:    その他の変更（ソースやテストの変更を含まない）
 ```
 
