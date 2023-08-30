@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/border_widget.dart';
-import 'package:withtone/views/components/settings_tile.dart';
 import 'package:withtone/views/pages/%20privacy/gradation_switch.dart';
 
 class PrivacyPage extends StatefulWidget {
