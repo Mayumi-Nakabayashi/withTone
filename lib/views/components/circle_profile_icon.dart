@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CircleProfileIcon extends StatelessWidget {
   const CircleProfileIcon(
       {super.key,
-      required this.label,
+      this.label = '',
       required this.imageUrl,
       this.onPressed,
       this.iconData = Icons.error,
@@ -72,11 +72,13 @@ class CircleProfileIcon extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 10),
-        Text(
-          label,
-          style: TextStyle(fontSize: textSzie),
-        )
+        label == '' ? const SizedBox.shrink() : const SizedBox(height: 10),
+        label == ''
+            ? const SizedBox.shrink()
+            : Text(
+                label,
+                style: TextStyle(fontSize: textSzie),
+              )
       ],
     );
   }
