@@ -52,8 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       imageUrl:
                                           'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
                                       isIcon: false,
-                                      width: 125,
-                                      height: 125,
+                                      size: 125,
                                       textSzie: 18),
                                 ),
                                 Expanded(
