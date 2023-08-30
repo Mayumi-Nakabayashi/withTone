@@ -10,8 +10,7 @@ class CircleProfileIcon extends StatelessWidget {
       this.onPressed,
       this.iconData = Icons.error,
       this.isIcon = true,
-      this.width = 90.0,
-      this.height = 90.0,
+      this.size = 90.0,
       this.textSzie = 15
       // デフォルト値を指定
       });
@@ -26,10 +25,8 @@ class CircleProfileIcon extends StatelessWidget {
   final VoidCallback? onPressed;
   //アイコンの有無
   final bool isIcon;
-  //アイコンの幅
-  final double width;
-  //アイコンの高さ
-  final double height;
+  //アイコンのサイズ
+  final double size;
   //ラベルの文字サイズ
   final double textSzie;
 
@@ -44,8 +41,8 @@ class CircleProfileIcon extends StatelessWidget {
             children: <Widget>[
               // 写真を背景に設定
               Container(
-                width: width, // ここでサイズを調整できます。
-                height: height, // 同上
+                width: size, // ここでサイズを調整できます。
+                height: size, // 同上
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -57,8 +54,8 @@ class CircleProfileIcon extends StatelessWidget {
               // 黒いフィルター（オーバーレイ）を写真の上に追加
               isIcon == true
                   ? Container(
-                      width: width,
-                      height: height,
+                      width: size,
+                      height: size,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.black
