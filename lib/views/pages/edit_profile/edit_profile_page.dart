@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/border_widget.dart';
+import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/views/pages/edit_profile/copy_tile.dart';
+import 'package:withtone/views/pages/edit_profile/edit_profile_tile.dart';
 
+///プロフィールを編集するページ
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
 
@@ -26,157 +31,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // タップ時の処理をここに書きます。
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              // 写真を背景に設定
-                              Container(
-                                width: 90, // ここでサイズを調整できます。
-                                height: 90, // 同上
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/page_images/profile_icon.png'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              // 黒いフィルター（オーバーレイ）を写真の上に追加
-                              Container(
-                                width: 90,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.black.withOpacity(
-                                      0.5), // ここの値で黒さを調整（0.0 ~ 1.0）。
-                                ),
-                              ),
-                              // カメラのアイコンを上に重ねる
-                              const Icon(Icons.photo_camera_outlined,
-                                  color: Colors.white, size: 40),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          '写真を変更',
-                          style: TextStyle(fontSize: 15),
-                        )
-                      ],
+                    CircleProfileIcon(
+                      imageUrl:
+                          'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
+                      label: '写真を変更',
+                      iconData: Icons.photo_camera_outlined,
+                      onPressed: () {},
                     ),
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // タップ時の処理をここに書きます。
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              // 写真を背景に設定
-                              Container(
-                                width: 90, // ここでサイズを調整できます。
-                                height: 90, // 同上
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.grey,
-                                  //何かしたらの動画のサムネが入る？
-                                  // image: DecorationImage(
-                                  //   image: AssetImage(
-                                  //       'assets/page_images/profile_icon.png'),
-                                  //   fit: BoxFit.cover,
-                                  // ),
-                                ),
-                              ),
-                              // 黒いフィルター（オーバーレイ）を写真の上に追加
-                              Container(
-                                width: 90,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.black.withOpacity(
-                                      0.5), // ここの値で黒さを調整（0.0 ~ 1.0）。
-                                ),
-                              ),
-                              // カメラのアイコンを上に重ねる
-                              const Icon(Icons.videocam_outlined,
-                                  color: Colors.white, size: 40),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          '動画を変更',
-                          style: TextStyle(fontSize: 15),
-                        )
-                      ],
-                    )
+                    CircleProfileIcon(
+                      imageUrl:
+                          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww2.fashion-guide.jp%2Fcolor%2Fgray-sample.html&psig=AOvVaw156bN6yRkEutWkZVTNKlpu&ust=1693462272626000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJia0Nvcg4EDFQAAAAAdAAAAABAE',
+                      label: '動画を変更',
+                      iconData: Icons.videocam_outlined,
+                      onPressed: () {},
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30),
-                const ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('名前'),
-                      Text('木村 なつみ', style: TextStyle(color: Colors.grey))
-                    ],
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-                const ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('ユーザー名'),
-                      Text('jacob_w', style: TextStyle(color: Colors.grey))
-                    ],
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text(
-                        'tiktok.com@jacob_w',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      IconButton(onPressed: () {}, icon: const Icon(Icons.copy))
-                    ],
-                  ),
-                ),
-                const ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('自己紹介'),
-                      Text('自己紹介を追加', style: TextStyle(color: Colors.grey))
-                    ],
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-                PreferredSize(
-                    preferredSize: const Size.fromHeight(1),
-                    child: Container(height: 1, color: Colors.black38)),
-                const ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('YouTube'),
-                      Text('YouTubeを追加', style: TextStyle(color: Colors.grey))
-                    ],
-                  ),
-                  trailing: Icon(Icons.chevron_right),
-                ),
+                const EditProfileTile(title: '名前', contents: '木村　なつみ'),
+                const EditProfileTile(title: 'ユーザー名', contents: 'jacob_w'),
+                const CopyTile(id: 'tiktok.com@jacob_w'),
+                const EditProfileTile(title: '自己紹介', contents: '自己紹介を追加'),
+                const BorderWidjet(),
+                const EditProfileTile(title: 'YouTube', contents: 'YouTubeを追加'),
               ],
             ),
           ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/app.dart';
-import 'package:withtone/views/components/kamishibai.dart';
+import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
+import 'package:withtone/views/pages/account/account_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
@@ -10,7 +11,7 @@ import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
-import 'package:withtone/views/pages/setting_and_privacy/setting_and_privacy_page.dart';
+import 'package:withtone/views/pages/setting/setting_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
@@ -40,8 +41,10 @@ class Routes {
 
     // その他の画面
     ProfilePage.path: (context) => const ProfilePage(),
-    SettingAndPrivacyPage.path: (context) => const SettingAndPrivacyPage(),
+    SettingsPage.path: (context) => const SettingsPage(),
     EditProfilePage.path: (context) => const EditProfilePage(),
+    AccountPage.path: (context) => const AccountPage(),
+    PrivacyPage.path: (context) => PrivacyPage(),
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
