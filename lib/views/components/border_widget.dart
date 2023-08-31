@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-//設置とプライバシー画面のリストタイルのカテゴリを区切るためのウィジェット(上に線、その下にカテゴリ名)
+///設置とプライバシー画面のリストタイルのカテゴリを区切るためのウィジェット(上に線、その下にカテゴリ名)
 class BorderWidjet extends StatelessWidget {
   const BorderWidjet({super.key, this.color = Colors.black38});
 
-  //borderの色デフォルトではColors.black38
+  ///borderの色デフォルトではColors.black38
   final Color color;
 
   @override

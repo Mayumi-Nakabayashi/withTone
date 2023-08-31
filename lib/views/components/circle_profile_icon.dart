@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-//プロフィール編集画面のIcon
-
+///プロフィール編集画面のIcon
 class CircleProfileIcon extends StatelessWidget {
   const CircleProfileIcon(
       {super.key,
@@ -15,19 +14,25 @@ class CircleProfileIcon extends StatelessWidget {
       // デフォルト値を指定
       });
 
-  //アイコンの下に表示されるラベル
+  ///アイコンの下に表示されるラベル
   final String label;
-  //アイコンの背景の画像
+
+  ///アイコンの背景の画像
   final String imageUrl;
-  //全面に表示されるアイコン　※IconDataにするかIconにするか？
+
+  ///全面に表示されるアイコン　※IconDataにするかIconにするか？
   final IconData iconData;
-  //アイコンをタップした時の処理
+
+  ///アイコンをタップした時の処理
   final VoidCallback? onPressed;
-  //アイコンの有無
+
+  ///アイコンの有無
   final bool isIcon;
-  //アイコンのサイズ
+
+  ///アイコンのサイズ
   final double size;
-  //ラベルの文字サイズ
+
+  ///ラベルの文字サイズ
   final double textSzie;
 
   @override

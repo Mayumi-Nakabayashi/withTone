@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 class CopyTile extends StatelessWidget {
   const CopyTile({super.key, required this.id});
 
-  //コピーしたいText
+  ///コピーしたいText
   final String id;
 
   @override

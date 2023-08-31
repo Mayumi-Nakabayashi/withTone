@@ -6,7 +6,7 @@ import 'package:withtone/views/pages/profile/item_view.dart';
 import 'package:withtone/views/pages/profile/profile_buttom.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
 
-/// プロフィール
+/// プロフィールページ
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 

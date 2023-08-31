@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-//設置とプライバシー画面のリストタイルのカテゴリを区切るためのウィジェット(上に線、その下にカテゴリ名)
+///設置とプライバシー画面のリストタイルのカテゴリを区切るためのウィジェット(上に線、その下にカテゴリ名)
 class SettingsTitle extends StatelessWidget {
   const SettingsTitle(
       {super.key, required this.title, this.color = Colors.black38});
 
-  //カテゴリ名
+  ///カテゴリ名
   final String title;
+
+  ///線の色
   final Color color;
 
   @override
@@ -17,7 +19,7 @@ class SettingsTitle extends StatelessWidget {
             preferredSize: const Size.fromHeight(1),
             child: Container(
               height: 1, //高さ
-              color: Colors.black38, //色
+              color: color, //色
             )),
         Padding(
           padding: const EdgeInsets.only(top: 20),

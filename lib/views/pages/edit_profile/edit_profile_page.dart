@@ -4,6 +4,7 @@ import 'package:withtone/views/components/circle_profile_icon.dart';
 import 'package:withtone/views/pages/edit_profile/copy_tile.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_tile.dart';
 
+///プロフィールを編集するページ
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
 
@@ -49,7 +50,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 const SizedBox(height: 30),
                 const EditProfileTile(title: '名前', contents: '木村　なつみ'),
                 const EditProfileTile(title: 'ユーザー名', contents: 'jacob_w'),
-                CopyTile(id: 'tiktok.com@jacob_w'),
+                const CopyTile(id: 'tiktok.com@jacob_w'),
                 const EditProfileTile(title: '自己紹介', contents: '自己紹介を追加'),
                 const BorderWidjet(),
                 const EditProfileTile(title: 'YouTube', contents: 'YouTubeを追加'),

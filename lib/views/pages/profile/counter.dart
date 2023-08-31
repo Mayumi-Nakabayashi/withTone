@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+///フォロワー数などの数を表示するウィジェト
 class Counter extends StatelessWidget {
   const Counter({super.key, required this.count, required this.label});
 
+  ///カウントする数字
   final int count;
+
+  ///カウントする項目名
   final String label;
   @override
   Widget build(BuildContext context) {

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/pages/%20privacy/gradation_switch.dart';
 
+///プライバシー関係の設定ページ(アカウント非公開など)
 class PrivacyPage extends StatefulWidget {
-  PrivacyPage({super.key});
-
-  bool isOpen = false;
+  const PrivacyPage({super.key});
 
   static const String path = '/privacy';
 
@@ -14,6 +13,8 @@ class PrivacyPage extends StatefulWidget {
 }
 
 class _PrivecyPageState extends State<PrivacyPage> {
+  bool isOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,10 +41,10 @@ class _PrivecyPageState extends State<PrivacyPage> {
                             style: TextStyle(fontSize: 16),
                           ),
                           GradientSwitch(
-                            value: widget.isOpen,
+                            value: isOpen,
                             onChanged: (bool value) {
                               setState(() {
-                                widget.isOpen = value;
+                                isOpen = value;
                               });
                             },
                           ),

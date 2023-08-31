@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/settings_tile.dart';
 
+///アカウントの設定をするページ(パスワード、ログアウトとか)
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
 

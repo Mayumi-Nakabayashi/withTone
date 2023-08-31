@@ -9,11 +9,13 @@ class SettingsTile extends StatelessWidget {
     required this.onPressed,
   });
 
-  //左側に表示されるアイコン
+  ///左側に表示されるアイコン
   final Icon? leadingIcon;
-  //リストタイトルの要素
+
+  ///リストタイトルの要素
   final String title;
-  //タップした時の処理
+
+  ///タップした時の処理
   final VoidCallback? onPressed;
 
   @override

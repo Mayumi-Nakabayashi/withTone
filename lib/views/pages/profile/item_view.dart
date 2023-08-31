@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
+///プロフィール画面の写真や動画のリストを表示する
 class ItemView extends StatelessWidget {
   const ItemView({
     super.key,
     required this.itemList,
   });
+
+  ///表示したいアイテムのリスト
   final List itemList;
   @override
   Widget build(BuildContext context) {

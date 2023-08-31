@@ -4,6 +4,7 @@ import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
 import 'package:withtone/views/pages/account/account_page.dart';
 import 'package:withtone/views/pages/setting/settings_line_title.dart';
 
+///設定の大項目があるページ(設定とプライバシー、アカウントなど)
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 

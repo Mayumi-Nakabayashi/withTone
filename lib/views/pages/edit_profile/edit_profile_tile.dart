@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-//プロフィール編集画面のリストタイル
+///プロフィール編集画面のリストタイル
 class EditProfileTile extends StatelessWidget {
   const EditProfileTile(
       {super.key, required this.title, required this.contents});
 
-  //リストタイルのタイトル(一番左のテキスト)
+  ///リストタイルのタイトル(一番左のテキスト)
   final String title;
-  //リストタイルの要素(データベースから取得した値)
+
+  ///リストタイルの要素(データベースから取得した値)
   final String contents;
 
   @override
