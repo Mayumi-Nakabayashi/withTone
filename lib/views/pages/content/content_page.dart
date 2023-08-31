@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/article_card.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 
 /// 学ぶ
@@ -46,6 +47,60 @@ class _ContentPageState extends State<ContentPage> {
           ),
         ],
       ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 26,
+          ),
+          // TODO: タブ切り替えの実装
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text('新着メニュー'),
+              Text('記事'),
+              Text('イベント'),
+            ],
+          ),
+          SizedBox(
+            height: 195,
+            child: PageView(
+              controller: PageController(viewportFraction: 0.4),
+              children: articleList
+                  .map(
+                    (item) => ArticleCard(
+                      imagePath: item['imagePath'],
+                      title: item['title'],
+                      timestamp: item['timestamp'],
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
+
+final List<Map<String, dynamic>> articleList = [
+  {
+    'imagePath': 'assets/logo/mainlogo.png',
+    'title': 'バイオリンのハイポジションに挑戦',
+    'timestamp': 'January, 19 2021',
+  },
+  {
+    'imagePath': 'assets/logo/app_nobackground.png',
+    'title': 'ビブラートで挫折しないための練習',
+    'timestamp': 'October, 20 2021',
+  },
+  {
+    'imagePath': 'assets/logo/appmain_color.png',
+    'title': 'バイオリンのハイポジションに挑戦',
+    'timestamp': 'January, 19 2021',
+  },
+  {
+    'imagePath': 'assets/logo/mainlogo.png',
+    'title': 'ビブラートで挫折しないための練習',
+    'timestamp': 'October, 20 2021',
+  },
+];
