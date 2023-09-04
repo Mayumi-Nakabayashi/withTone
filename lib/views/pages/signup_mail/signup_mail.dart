@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/learning_community_search.dart';
+import 'package:withtone/views/pages/signup_mail/emaill_send_check.dart';
 
 /// メールで登録するページ
 class SignupMailPage extends StatefulWidget {
@@ -106,8 +106,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
                   await FirebaseAuth.instance.createUserWithEmailAndPassword(
                       email: email, password: password);
                   if (mounted) {
-                    await Navigator.pushNamed(
-                        context, LeaningCommunitySearch.path);
+                    await Navigator.pushNamed(context, EmailSendCheck.path);
                   }
                 },
               ),
