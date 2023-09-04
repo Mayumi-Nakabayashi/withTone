@@ -12,6 +12,7 @@ import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
+import 'package:withtone/views/pages/signup_mail/emaill_send_check.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
@@ -29,6 +30,8 @@ class Routes {
     IntroPage.path: (context) => const IntroPage(),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
+    EmailSendCheck.path: (context) =>
+        EmailSendCheck(email: "", password: "", from: 1),
     PasswordReissuePage.path: (context) => const PasswordReissuePage(),
     PasswordReissueConfirmPage.path: (context) =>
         const PasswordReissueConfirmPage(),
