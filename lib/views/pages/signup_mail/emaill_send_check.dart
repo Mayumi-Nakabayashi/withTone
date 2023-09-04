@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/learning_community_search.dart';
 
 class EmailSendCheck extends StatefulWidget {
@@ -88,26 +89,20 @@ class EmailSendCheckState extends State<EmailSendCheck> {
               height: 20,
             ),
 
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 30.0),
-              child: SizedBox(
-                width: 200,
-                child: ElevatedButton(
-                  child: const Text('確認メールを再送信'),
-                  onPressed: () async {
-                    _result = await _auth.signInWithEmailAndPassword(
-                      email: widget.email,
-                      password: widget.password,
-                    );
+            PrimaryButton(
+              label: '確認メールを再送信',
+              onPressed: () async {
+                _result = await _auth.signInWithEmailAndPassword(
+                  email: widget.email,
+                  password: widget.password,
+                );
 
-                    _result?.user!.sendEmailVerification();
-                    setState(() {
-                      _btnClickNum++;
-                      _sentEmailText = '${widget.email}\nに確認メールを送信しました。';
-                    });
-                  },
-                ),
-              ),
+                _result?.user!.sendEmailVerification();
+                setState(() {
+                  _btnClickNum++;
+                  _sentEmailText = '${widget.email}\nに確認メールを送信しました。';
+                });
+              },
             ),
           ],
         ),
