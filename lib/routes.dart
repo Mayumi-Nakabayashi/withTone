@@ -30,8 +30,6 @@ class Routes {
     IntroPage.path: (context) => const IntroPage(),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
-    EmailSendCheck.path: (context) =>
-        EmailSendCheck(email: "", password: "", from: 1),
     PasswordReissuePage.path: (context) => const PasswordReissuePage(),
     PasswordReissueConfirmPage.path: (context) =>
         const PasswordReissueConfirmPage(),
