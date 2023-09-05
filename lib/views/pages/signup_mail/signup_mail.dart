@@ -106,7 +106,17 @@ class _SignupMailPageState extends State<SignupMailPage> {
                   await FirebaseAuth.instance.createUserWithEmailAndPassword(
                       email: email, password: password);
                   if (mounted) {
-                    await Navigator.pushNamed(context, EmailSendCheck.path);
+                    ///引数で渡したいため,routesで画面遷移させていない
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) => EmailSendCheck(
+                              email: email,
+                              password: password,
+                              from: 1,
+                            )),
+                      ),
+                    );
                   }
                 },
               ),
