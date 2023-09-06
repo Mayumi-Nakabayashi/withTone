@@ -3,6 +3,7 @@ import 'package:withtone/views/components/circle_icon_buttom.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
 import 'package:withtone/views/pages/profile/profile_buttom.dart';
 
+///プロフェッショナルページのリストタイル
 class ProfessionalTile extends StatelessWidget {
   const ProfessionalTile(
       {super.key,
@@ -13,17 +14,22 @@ class ProfessionalTile extends StatelessWidget {
       required this.score,
       this.onPressed});
 
-  //名前
+  ///名前
   final String name;
-  //画像URL
+
+  ///画像URL
   final String imageUrl;
-  //自己紹介
+
+  ///自己紹介
   final String introduction;
-  //タグ？(とりあえずTextで実装、今後TextButton？)
+
+  ///タグ？(とりあえずTextで実装、今後TextButton？)
   final String tags;
-  //星野横のスコア値
+
+  ///星野横のスコア値
   final String score;
-  //アイコンをタップした時の処理
+
+  ///アイコンをタップした時の処理
   final VoidCallback? onPressed;
 
   @override

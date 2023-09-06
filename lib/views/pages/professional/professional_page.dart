@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/circle_icon_buttom.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/views/components/dot.dart';
 import 'package:withtone/views/pages/professional/background_color.dart';
 import 'package:withtone/views/pages/professional/professional_tile.dart';
+import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 
+///プロフェッショナルページ
 class ProfessionalPage extends StatefulWidget {
   const ProfessionalPage({super.key});
 
