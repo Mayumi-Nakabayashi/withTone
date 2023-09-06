@@ -10,6 +10,7 @@ import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
@@ -49,5 +50,6 @@ class Routes {
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
     UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
+    ProfettionalToolPage.path: (context) => const ProfettionalToolPage()
   };
 }
