@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/views/components/dot.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
+import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/counter.dart';
 import 'package:withtone/views/pages/profile/item_view.dart';
 import 'package:withtone/views/pages/profile/profile_buttom.dart';
@@ -28,8 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SliverAppBar(
                 actions: [
                   IconButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, SettingsPage.path),
+                    onPressed: () => _showBottomSheet(context),
                     icon: const Icon(Icons.more_horiz),
                   )
                 ],
@@ -134,6 +136,50 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
+    );
+  }
+
+  ///BottomSheetを表示
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 200,
+          child: Wrap(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: ListTile(
+                  leading: const Icon(Icons.star),
+                  title: const Text('プロフェッショナルツール'),
+                  trailing: Dot(),
+                  onTap: () {
+                    Navigator.pushNamed(context, ProfettionalToolPage.path);
+                  },
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: BorderWidjet(
+                  color: Color(0xffD0D1D3),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('設定'),
+                onTap: () => Navigator.pushNamed(context, SettingsPage.path),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: BorderWidjet(
+                  color: Color(0xffD0D1D3),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
