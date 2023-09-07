@@ -13,7 +13,7 @@ import 'package:withtone/views/pages/setting/setting_page.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
-  static const String path = '/content';
+  static const String path = '/profile';
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
