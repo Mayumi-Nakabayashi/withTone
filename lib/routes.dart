@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/splash.dart';
+import 'package:withtone/splash_page.dart';
 import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/app.dart';
 import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
