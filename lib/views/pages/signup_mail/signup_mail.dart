@@ -103,8 +103,10 @@ class _SignupMailPageState extends State<SignupMailPage> {
                 onPressed: () async {
                   final email = emailController.text;
                   final password = passwordcontroller.text;
-                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: email, password: password);
+                  final result = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: email, password: password);
+                  await result.user!.sendEmailVerification();
                   if (mounted) {
                     ///引数で渡したいため,routesで画面遷移させていない
                     Navigator.push(
