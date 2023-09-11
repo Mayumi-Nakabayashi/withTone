@@ -65,11 +65,12 @@ class _ContentPageState extends State<ContentPage> {
           ),
           SizedBox(
             height: 195,
-            child: PageView(
-              controller: PageController(viewportFraction: 0.4),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
               children: articleList
                   .map(
                     (item) => ArticleCard(
+                      width: MediaQuery.of(context).size.width * 0.4,
                       imagePath: item['imagePath'],
                       title: item['title'],
                       timestamp: item['timestamp'],
