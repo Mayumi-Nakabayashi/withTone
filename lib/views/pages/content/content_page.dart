@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/components/article_card.dart';
-import 'package:withtone/views/components/learning_card.dart';
+import 'package:withtone/views/pages/content/article_card.dart';
+import 'package:withtone/views/pages/content/learning_card.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 
 /// 学ぶ
@@ -31,14 +31,14 @@ class _ContentPageState extends State<ContentPage> {
           ),
         ),
         actions: <Widget>[
-          // TODO: 検索機能み実装
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              size: 44,
-            ),
-            onPressed: () {},
-          ),
+          // TODO: 検索機能み実装（α版には含まないためコメントアウト）
+          // IconButton(
+          //   icon: const Icon(
+          //     Icons.search,
+          //     size: 44,
+          //   ),
+          //   onPressed: () {},
+          // ),
           IconButton(
             // FIXME: アイコン下手がきにしてます
             icon: const Icon(
