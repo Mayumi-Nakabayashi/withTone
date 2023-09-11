@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/splash_page.dart';
 import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/app.dart';
 import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
@@ -21,11 +22,12 @@ import 'package:withtone/views/pages/upload_video_question_page.dart';
 /// 基本的にインスタンス化せずに利用します
 class Routes {
   /// 初期ページのルート名
-  static const String initialRoute = IntroPage.path;
+  static const String initialRoute = SplashPage.path;
 
   /// ルーティング一覧
   static final Map<String, Widget Function(BuildContext)> routes = {
     // アプリ起動からホームに遷移するまでの画面
+    SplashPage.path: (context) => const SplashPage(),
     IntroPage.path: (context) => const IntroPage(),
     LoginMailPage.path: (context) => const LoginMailPage(),
     SignupMailPage.path: (context) => const SignupMailPage(),
