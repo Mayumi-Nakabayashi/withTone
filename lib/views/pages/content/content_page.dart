@@ -140,7 +140,7 @@ final List<Map<String, dynamic>> learningList = [
     'title': 'スタッカートのFBください！',
     'timestamp': 'January, 19 2021',
     'subtitle': '質問と回答をみる',
-    'tags': ['violin', 'tone'],
+    'tags': ['violin', 'tone', 'piano', 'test'],
   },
   {
     'thumbnail': 'assets/logo/app_nobackground.png',

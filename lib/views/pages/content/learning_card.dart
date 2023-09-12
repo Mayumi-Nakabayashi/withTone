@@ -72,30 +72,29 @@ class LeaningCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            subtitle,
-                            style: const TextStyle(
-                              decoration: TextDecoration.underline,
-                              height: 20 / 12,
-                              fontSize: 12.0,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text(
+                              subtitle,
+                              style: const TextStyle(
+                                decoration: TextDecoration.underline,
+                                height: 20 / 12,
+                                fontSize: 12.0,
+                              ),
                             ),
                           ),
-                          Row(
-                            children: tags
-                                .map(
-                                  (tag) => Padding(
-                                    padding: const EdgeInsets.only(left: 3.0),
-                                    child: Text(
-                                      '#$tag',
-                                      style: const TextStyle(
-                                        fontSize: 12.0,
-                                        color: Colors.black54,
-                                      ),
+                          tags.isEmpty
+                              ? Container()
+                              : Flexible(
+                                  child: Text(
+                                    tags.map((tag) => '#$tag').join(' '),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black54,
                                     ),
                                   ),
                                 )
-                                .toList(),
-                          ),
                         ],
                       ),
                     ],
