@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
 import 'package:withtone/views/components/dot.dart';
+import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/counter.dart';
@@ -52,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: CircleProfileIcon(
                                       label: '@jacob_w',
                                       imageUrl:
-                                          'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
+                                          'https://thumb.photo-ac.com/4c/4c903a6ccab7d95e9e051cc7ee2de98a_t.jpeg',
                                       isIcon: false,
                                       size: 125,
                                       textSzie: 18),
@@ -90,7 +91,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                                 ProfileButtom(
                                   label: '直接相談する',
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.pushNamed(
+                                      context, ArticlePage.path),
                                 )
                               ],
                             ),
