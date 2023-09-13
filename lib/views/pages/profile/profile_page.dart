@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/views/components/dot.dart';
+import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
+import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/counter.dart';
 import 'package:withtone/views/pages/profile/item_view.dart';
 import 'package:withtone/views/pages/profile/profile_buttom.dart';
@@ -10,7 +14,7 @@ import 'package:withtone/views/pages/setting/setting_page.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
-  static const String path = '/content';
+  static const String path = '/profile';
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -28,8 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
               SliverAppBar(
                 actions: [
                   IconButton(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, SettingsPage.path),
+                    onPressed: () => _showBottomSheet(context),
                     icon: const Icon(Icons.more_horiz),
                   )
                 ],
@@ -50,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: CircleProfileIcon(
                                       label: '@jacob_w',
                                       imageUrl:
-                                          'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
+                                          'https://thumb.photo-ac.com/4c/4c903a6ccab7d95e9e051cc7ee2de98a_t.jpeg',
                                       isIcon: false,
                                       size: 125,
                                       textSzie: 18),
@@ -88,7 +91,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                                 ProfileButtom(
                                   label: '直接相談する',
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.pushNamed(
+                                      context, ArticlePage.path),
                                 )
                               ],
                             ),
@@ -134,6 +138,50 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
+    );
+  }
+
+  ///BottomSheetを表示
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 200,
+          child: Wrap(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: ListTile(
+                  leading: const Icon(Icons.star),
+                  title: const Text('プロフェッショナルツール'),
+                  trailing: Dot(),
+                  onTap: () {
+                    Navigator.pushNamed(context, ProfettionalToolPage.path);
+                  },
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: BorderWidjet(
+                  color: Color(0xffD0D1D3),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('設定'),
+                onTap: () => Navigator.pushNamed(context, SettingsPage.path),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 10, left: 10),
+                child: BorderWidjet(
+                  color: Color(0xffD0D1D3),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
