@@ -3,6 +3,7 @@ import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/app.dart';
 import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
 import 'package:withtone/views/pages/account/account_page.dart';
+import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
@@ -45,7 +46,8 @@ class Routes {
     SettingsPage.path: (context) => const SettingsPage(),
     EditProfilePage.path: (context) => const EditProfilePage(),
     AccountPage.path: (context) => const AccountPage(),
-    PrivacyPage.path: (context) => PrivacyPage(),
+    PrivacyPage.path: (context) => const PrivacyPage(),
+    ArticlePage.path: (context) => const ArticlePage(),
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
