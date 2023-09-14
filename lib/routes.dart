@@ -53,4 +53,6 @@ class Routes {
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
-    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
+    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage()
+  };
+}
