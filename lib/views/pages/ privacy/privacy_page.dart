@@ -62,7 +62,7 @@ class _PrivecyPageState extends State<PrivacyPage> {
             ),
             const Padding(
               padding: EdgeInsets.all(8.0),
-              child: BorderWidjet(),
+              child: BorderWidget(),
             )
           ],
         ),
