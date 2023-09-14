@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///背景の色
 class BackgroundColor extends StatelessWidget {
   const BackgroundColor({super.key});
 
