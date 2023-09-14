@@ -15,6 +15,7 @@ import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_c
 import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
+import 'package:withtone/views/pages/signup_mail/emaill_send_check.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
