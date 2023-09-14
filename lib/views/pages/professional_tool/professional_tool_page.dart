@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:withtone/views/components/settings_tile.dart';
 import 'package:withtone/views/pages/setting/settings_line_title.dart';
 
-///アカウントの設定をするページ(パスワード、ログアウトとか)
-class ProfettionalToolPage extends StatefulWidget {
-  const ProfettionalToolPage({super.key});
+/// アカウントの設定をするページ(パスワード、ログアウトとか)
+class ProfessionalToolPage extends StatefulWidget {
+  const ProfessionalToolPage({super.key});
 
-  static const String path = '/profettional_tool';
+  static const String path = '/professional_tool';
 
   @override
-  State<ProfettionalToolPage> createState() => _ProfettionalToolPageState();
+  State<ProfessionalToolPage> createState() => _ProfessionalToolPageState();
 }
 
-class _ProfettionalToolPageState extends State<ProfettionalToolPage> {
+class _ProfessionalToolPageState extends State<ProfessionalToolPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

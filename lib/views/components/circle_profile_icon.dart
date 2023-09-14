@@ -10,7 +10,7 @@ class CircleProfileIcon extends StatelessWidget {
       this.iconData = Icons.error,
       this.isIcon = true,
       this.size = 90.0,
-      this.textSzie = 15
+      this.textSize = 15
       // デフォルト値を指定
       });
 
@@ -33,7 +33,7 @@ class CircleProfileIcon extends StatelessWidget {
   final double size;
 
   ///ラベルの文字サイズ
-  final double textSzie;
+  final double textSize;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class CircleProfileIcon extends StatelessWidget {
             ? const SizedBox.shrink()
             : Text(
                 label,
-                style: TextStyle(fontSize: textSzie),
+                style: TextStyle(fontSize: textSize),
               )
       ],
     );

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-///四角い枠の中にテキストが入っているボタン
-class ProfileButtom extends StatelessWidget {
-  const ProfileButtom(
+/// 四角い枠の中にテキストが入っているボタン
+class ProfileButton extends StatelessWidget {
+  const ProfileButton(
       {super.key,
       required this.label,
       required this.onPressed,
       this.borderColor = const Color(0xffE3E3E4)});
 
-  ///中に入るテキスト
+  /// 中に入るテキスト
   final String label;
 
-  ///ボタンを押した時の処理
+  /// ボタンを押した時の処理
   final VoidCallback? onPressed;
 
-  ///ボタンの枠の色
+  /// ボタンの枠の色
   final Color borderColor;
 
   @override

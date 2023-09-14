@@ -52,7 +52,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 const EditProfileTile(title: 'ユーザー名', contents: 'jacob_w'),
                 const CopyTile(id: 'tiktok.com@jacob_w'),
                 const EditProfileTile(title: '自己紹介', contents: '自己紹介を追加'),
-                const BorderWidjet(),
+                const BorderWidget(),
                 const EditProfileTile(title: 'YouTube', contents: 'YouTubeを追加'),
               ],
             ),

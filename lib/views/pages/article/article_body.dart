@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ArticleBody extends StatelessWidget {
-  ArticleBody(
-      {super.key, required this.articleHeading, required this.articleContent});
+  const ArticleBody({
+    super.key,
+    required this.articleHeading,
+    required this.articleContent,
+  });
 
-  String articleHeading;
-  String articleContent;
+  /// 記事の見出しテキスト
+  final String articleHeading;
+
+  /// 記事の本文
+  final String articleContent;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -23,13 +30,8 @@ class ArticleBody extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              left: 35,
-              right: 35,
-            ),
-            child: Text(
-              (articleContent),
-            ),
+            padding: const EdgeInsets.only(left: 35, right: 35),
+            child: Text((articleContent)),
           ),
         ],
       ),

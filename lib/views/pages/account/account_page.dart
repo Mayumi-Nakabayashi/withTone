@@ -28,7 +28,7 @@ class _AccountPageState extends State<AccountPage> {
             SettingsTile(title: 'パスワード', onPressed: () {}),
             SettingsTile(title: 'ログアウト', onPressed: () {}),
             SettingsTile(title: 'アカウントの削除', onPressed: () {}),
-            const BorderWidjet()
+            const BorderWidget()
           ],
         ),
       ),

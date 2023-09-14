@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 
 ///投稿者の情報と投稿日
 class ContributorInfo extends StatelessWidget {
-  ContributorInfo(
-      {super.key,
-      required this.name,
-      required this.date,
-      required this.imageUrl});
+  const ContributorInfo({
+    super.key,
+    required this.name,
+    required this.date,
+    required this.imageUrl,
+  });
 
-  ///投稿者の名前
-  String name;
+  /// 投稿者の名前
+  final String name;
 
-  ///投稿した日にち(とりあえずString)
-  String date;
+  /// 投稿した日にち(とりあえずString)
+  final String date;
 
-  ///投稿者のアイコン
-  String imageUrl;
+  /// 投稿者のアイコン
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {

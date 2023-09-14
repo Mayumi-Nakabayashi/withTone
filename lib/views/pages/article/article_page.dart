@@ -3,8 +3,9 @@ import 'package:withtone/views/pages/article/article_body.dart';
 import 'package:withtone/views/pages/article/bottom_gradation_widget.dart';
 import 'package:withtone/views/pages/article/contributor_info.dart';
 
+/// 記事ページ
 class ArticlePage extends StatelessWidget {
-  const ArticlePage({Key? key});
+  const ArticlePage({super.key});
 
   static const String path = '/article';
 
@@ -34,7 +35,7 @@ class ArticlePage extends StatelessWidget {
                                 bottom: 30,
                               ),
                               child: Text(
-                                articleTitel,
+                                articleTitle,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 3,
                                 style: const TextStyle(
@@ -52,7 +53,7 @@ class ArticlePage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ContributorInfo(
+                                  const ContributorInfo(
                                     name: '河村理香子',
                                     date: '2m ago',
                                     imageUrl:
@@ -95,7 +96,9 @@ class ArticlePage extends StatelessWidget {
               ];
             },
             body: ArticleBody(
-                articleHeading: articleHeading, articleContent: articleContent),
+              articleHeading: articleHeading,
+              articleContent: articleContent,
+            ),
           ),
           SafeArea(
               child: Padding(
@@ -183,7 +186,7 @@ class ArticleSliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-String articleTitel = 'ビブラートで挫折しないための練習';
+String articleTitle = 'ビブラートで挫折しないための練習';
 String articleHeading = 'A man’s sexuality is never your mind responsibility.';
 String articleContent =
     'This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.';

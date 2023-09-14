@@ -7,7 +7,7 @@ import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/counter.dart';
 import 'package:withtone/views/pages/profile/item_view.dart';
-import 'package:withtone/views/pages/profile/profile_buttom.dart';
+import 'package:withtone/views/pages/profile/profile_button.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
 
 /// プロフィールページ
@@ -56,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           'https://thumb.photo-ac.com/4c/4c903a6ccab7d95e9e051cc7ee2de98a_t.jpeg',
                                       isIcon: false,
                                       size: 125,
-                                      textSzie: 18),
+                                      textSize: 18),
                                 ),
                                 Expanded(
                                   flex: 1,
@@ -84,12 +84,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                ProfileButtom(
+                                ProfileButton(
                                   label: 'プロフィールを編集',
                                   onPressed: () => Navigator.pushNamed(
                                       context, EditProfilePage.path),
                                 ),
-                                ProfileButtom(
+                                ProfileButton(
                                   label: '直接相談する',
                                   onPressed: () => Navigator.pushNamed(
                                       context, ArticlePage.path),
@@ -155,15 +155,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: ListTile(
                   leading: const Icon(Icons.star),
                   title: const Text('プロフェッショナルツール'),
-                  trailing: Dot(),
+                  trailing: const Dot(),
                   onTap: () {
-                    Navigator.pushNamed(context, ProfettionalToolPage.path);
+                    Navigator.pushNamed(context, ProfessionalToolPage.path);
                   },
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 10, left: 10),
-                child: BorderWidjet(
+                child: BorderWidget(
                   color: Color(0xffD0D1D3),
                 ),
               ),
@@ -174,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const Padding(
                 padding: EdgeInsets.only(right: 10, left: 10),
-                child: BorderWidjet(
+                child: BorderWidget(
                   color: Color(0xffD0D1D3),
                 ),
               ),
