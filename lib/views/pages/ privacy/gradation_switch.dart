@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 
 ///背景がグラデーションになっているスイッチ
 class GradientSwitch extends StatefulWidget {
-  GradientSwitch({
+  const GradientSwitch({
+    super.key,
     required this.value,
     required this.onChanged,
   });
 
-  ///ON/OFFの値
+  /// ON/OFFの値
   final bool value;
 
-  ///ON/OFFの切り替えた時の処理
+  /// ON/OFFの切り替えた時の処理
   final ValueChanged<bool> onChanged;
   @override
-  _GradientSwitchState createState() => _GradientSwitchState();
+  State<GradientSwitch> createState() => _GradientSwitchState();
 }
 
 class _GradientSwitchState extends State<GradientSwitch> {

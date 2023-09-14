@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
-///通知が溜まっている時の点
+/// 通知が溜まっている時の点
 class Dot extends StatelessWidget {
-  Dot({super.key, this.size = 10, this.color = const Color(0xffFACF39)});
+  const Dot({
+    super.key,
+    this.size = 10,
+    this.color = const Color(0xffFACF39),
+  });
 
-  ///点のサイズ
-  double size;
+  /// 点のサイズ
+  final double size;
 
-  ///点の色
-  Color color;
+  /// 点の色
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

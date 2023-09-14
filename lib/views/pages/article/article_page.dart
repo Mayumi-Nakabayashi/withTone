@@ -3,8 +3,9 @@ import 'package:withtone/views/pages/article/article_body.dart';
 import 'package:withtone/views/pages/article/bottom_gradation_widget.dart';
 import 'package:withtone/views/pages/article/contributor_info.dart';
 
+/// 記事ページ
 class ArticlePage extends StatelessWidget {
-  const ArticlePage({Key? key});
+  const ArticlePage({super.key});
 
   static const String path = '/article';
 
@@ -52,7 +53,7 @@ class ArticlePage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ContributorInfo(
+                                  const ContributorInfo(
                                     name: '河村理香子',
                                     date: '2m ago',
                                     imageUrl:
@@ -95,7 +96,9 @@ class ArticlePage extends StatelessWidget {
               ];
             },
             body: ArticleBody(
-                articleHeading: articleHeading, articleContent: articleContent),
+              articleHeading: articleHeading,
+              articleContent: articleContent,
+            ),
           ),
           SafeArea(
               child: Padding(

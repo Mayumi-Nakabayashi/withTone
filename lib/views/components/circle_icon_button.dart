@@ -2,34 +2,36 @@ import 'package:flutter/material.dart';
 
 ///丸の中にアイコンが入っているボタン
 class CircleIconButton extends StatelessWidget {
-  CircleIconButton(
-      {required this.icon,
-      this.onTap,
-      this.width = 44,
-      this.height = 44,
-      this.backgroundColor = Colors.transparent,
-      this.iconColor = Colors.black,
-      this.isBorder = true});
+  const CircleIconButton({
+    super.key,
+    required this.icon,
+    this.onTap,
+    this.width = 44,
+    this.height = 44,
+    this.backgroundColor = Colors.transparent,
+    this.iconColor = Colors.black,
+    this.isBorder = true,
+  });
 
-  ///中に入るアイコン
+  /// 中に入るアイコン
   final IconData icon;
 
-  ///タップした時の処理
+  /// タップした時の処理
   final VoidCallback? onTap;
 
-  ///ボタンの幅
+  /// ボタンの幅
   final double width;
 
-  ///ボタンの高さ
+  /// ボタンの高さ
   final double height;
 
-  ///ボタンの背景の色
+  /// ボタンの背景の色
   final Color backgroundColor;
 
-  ///アイコンの色
+  /// アイコンの色
   final Color iconColor;
 
-  ///枠線が必要かどうか
+  /// 枠線が必要かどうか
   final bool isBorder;
 
   @override

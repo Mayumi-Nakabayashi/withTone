@@ -155,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: ListTile(
                   leading: const Icon(Icons.star),
                   title: const Text('プロフェッショナルツール'),
-                  trailing: Dot(),
+                  trailing: const Dot(),
                   onTap: () {
                     Navigator.pushNamed(context, ProfettionalToolPage.path);
                   },
