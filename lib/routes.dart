@@ -47,7 +47,6 @@ class Routes {
     EditProfilePage.path: (context) => const EditProfilePage(),
     AccountPage.path: (context) => const AccountPage(),
     PrivacyPage.path: (context) => const PrivacyPage(),
-    ArticlePage.path: (context) => const ArticlePage(),
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
