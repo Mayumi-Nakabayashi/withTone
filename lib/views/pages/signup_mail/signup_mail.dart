@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/learning_community_search.dart';
@@ -23,6 +24,8 @@ class _SignupMailPageState extends State<SignupMailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final emailController = TextEditingController();
+    final passwordcontroller = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -40,6 +43,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
                 ),
               ),
               TextFormField(
+                controller: emailController,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   hintText: "メールアドレスを入力してください",
@@ -70,6 +74,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
                 ),
               ),
               TextFormField(
+                controller: passwordcontroller,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
                   hintText: "パスワードを入力してください",
@@ -95,10 +100,16 @@ class _SignupMailPageState extends State<SignupMailPage> {
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
                 label: '登録',
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  LeaningCommunitySearch.path,
-                ),
+                onPressed: () async {
+                  final email = emailController.text;
+                  final password = passwordcontroller.text;
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  if (mounted) {
+                    await Navigator.pushNamed(
+                        context, LeaningCommunitySearch.path);
+                  }
+                },
               ),
             ],
           ),
