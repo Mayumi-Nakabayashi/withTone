@@ -28,37 +28,35 @@ class _PrivecyPageState extends State<PrivacyPage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 25.0, bottom: 25.0),
-              child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 25),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            '非公開アカウント',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          GradientSwitch(
-                            value: isOpen,
-                            onChanged: (bool value) {
-                              setState(() {
-                                isOpen = value;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 3, right: 3, top: 10),
-                        child: Text(
-                          'アカウントが非公開になっている場合、あなたが承認したユーザーのみがあなたをフォローしたり、動画を視聴したりすることができます。既存のフォロワーに影響はありません。',
-                          style: TextStyle(fontSize: 11),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0, right: 25),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          '非公開アカウント',
+                          style: TextStyle(fontSize: 16),
                         ),
+                        GradientSwitch(
+                          value: isOpen,
+                          onChanged: (bool value) {
+                            setState(() {
+                              isOpen = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 3, right: 3, top: 10),
+                      child: Text(
+                        'アカウントが非公開になっている場合、あなたが承認したユーザーのみがあなたをフォローしたり、動画を視聴したりすることができます。既存のフォロワーに影響はありません。',
+                        style: TextStyle(fontSize: 11),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
