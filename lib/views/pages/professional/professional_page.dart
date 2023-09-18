@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/admob/ad_banner.dart';
 import 'package:withtone/views/components/circle_icon_button.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
 import 'package:withtone/views/pages/professional/background_color.dart';
@@ -25,9 +26,10 @@ class _ProfessionalPageState extends State<ProfessionalPage> {
           SafeArea(
             child: Column(
               children: [
+                const AdBanner(), //バナー広告
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 40.0, left: 20, right: 20),
+                      const EdgeInsets.only(top: 30.0, left: 20, right: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -120,14 +122,6 @@ final List<Map> test = [
         'https://thumb.photo-ac.com/62/625530fdece22d5265e21b86bb816f18_t.jpeg',
     'introduction': 'ほぼ独学でバイオリンを学びました！',
     'tags': '#violin #pops #classic',
-    'score': '4.5'
-  },
-  {
-    'name': '石川 啄也',
-    'imageUrl':
-        'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
-    'introduction': 'Fulutter歴1年です!',
-    'tags': '#Flutter #Dart',
     'score': '4.5'
   },
 ];
