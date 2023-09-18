@@ -3,7 +3,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:withtone/views/components/admob/ad_mob.dart';
 
 class AdBanner extends StatefulWidget {
-  AdBanner({super.key});
+  const AdBanner({super.key});
 
   @override
   State<AdBanner> createState() => _AdBannerState();
@@ -12,6 +12,7 @@ class AdBanner extends StatefulWidget {
 class _AdBannerState extends State<AdBanner> {
   final AdMob _adMob = AdMob();
 
+//広告ロード
   @override
   void initState() {
     super.initState();
