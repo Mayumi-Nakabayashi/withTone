@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^2.15.1
   firebase_analytics: ^10.4.5
   firebase_auth: ^4.8.0
+  google_mobile_ads: ^3.0.0
 
 dev_dependencies:
   flutter_test:
