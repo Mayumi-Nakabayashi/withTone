@@ -30,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                surfaceTintColor: Colors.transparent,
                 actions: [
                   IconButton(
                     onPressed: () => _showBottomSheet(context),
