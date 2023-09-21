@@ -33,7 +33,8 @@ class _AdBannerState extends State<AdBanner> {
         builder: (BuildContext context,
             AsyncSnapshot<AnchoredAdaptiveBannerAdSize?> snapshot) {
           if (snapshot.hasData) {
-            return SizedBox(
+            return Container(
+              alignment: Alignment.center,
               width: double.infinity,
               child: _adMob.getAdBanner(),
             );
