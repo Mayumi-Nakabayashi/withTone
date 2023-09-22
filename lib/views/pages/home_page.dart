@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:withtone/views/pages/content/content_page.dart';
@@ -67,6 +68,21 @@ class HomePageState extends State<HomePage>
   TabItems _currentTab = TabItems.content;
 
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  Future<void> initPlugin() async {
+    final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    if (status == TrackingStatus.notDetermined) {
+      await Future.delayed(const Duration(milliseconds: 200));
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Can't show a dialog in initState, delaying initialization
+    WidgetsBinding.instance.addPostFrameCallback((_) => initPlugin());
+  }
 
   @override
   void didChangeDependencies() {
