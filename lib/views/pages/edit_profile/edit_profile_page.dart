@@ -33,14 +33,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   children: [
                     CircleProfileIcon(
                       imageUrl:
-                          'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
+                          'https://thumb.photo-ac.com/22/22fa5e2a507e43532a9ce8d562a7b4de_t.jpeg',
                       label: '写真を変更',
                       iconData: Icons.photo_camera_outlined,
                       onPressed: () {},
                     ),
                     CircleProfileIcon(
                       imageUrl:
-                          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww2.fashion-guide.jp%2Fcolor%2Fgray-sample.html&psig=AOvVaw156bN6yRkEutWkZVTNKlpu&ust=1693462272626000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJia0Nvcg4EDFQAAAAAdAAAAABAE',
+                          'https://thumb.photo-ac.com/22/22fa5e2a507e43532a9ce8d562a7b4de_t.jpeg',
                       label: '動画を変更',
                       iconData: Icons.videocam_outlined,
                       onPressed: () {},

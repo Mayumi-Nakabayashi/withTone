@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/admob/ad_banner.dart';
+import 'package:withtone/views/pages/content/content_appbar.dart';
+import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/content/article_card.dart';
 import 'package:withtone/views/pages/content/learning_card.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
@@ -17,95 +20,89 @@ class _ContentPageState extends State<ContentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        centerTitle: false,
-        title: const Text(
-          'チャレンジ',
-          style: TextStyle(
-            height: 24 / 18,
-            fontWeight: FontWeight.w800,
-            fontSize: 18,
-          ),
-        ),
-        actions: <Widget>[
-          // TODO: 検索機能み実装（α版には含まないためコメントアウト）
-          // IconButton(
-          //   icon: const Icon(
-          //     Icons.search,
-          //     size: 44,
-          //   ),
-          //   onPressed: () {},
-          // ),
-          IconButton(
-            // FIXME: アイコン下手がきにしてます
-            icon: const Icon(
-              Icons.insert_emoticon_rounded,
-              size: 44,
+      body: SafeArea(
+        child: Column(
+          children: [
+            const AdBanner(), //バナー広告
+            ContentAppBar(
+              title: const Text(
+                'チャレンジ',
+                style: TextStyle(
+                  height: 24 / 18,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 18,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  // FIXME: アイコン下手がきにしてます
+                  icon: const Icon(
+                    Icons.insert_emoticon_rounded,
+                    size: 44,
+                  ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, ProfilePage.path),
+                ),
+              ],
             ),
-            onPressed: () => Navigator.pushNamed(context, ProfilePage.path),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 26,
-          ),
-          // TODO: タブ切り替えの実装
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('新着メニュー'),
-              Text('記事'),
-              Text('イベント'),
-            ],
-          ),
-          SizedBox(
-            height: 195,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: articleList
-                  .map(
-                    (item) => ArticleCard(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      imagePath: item['imagePath'],
-                      title: item['title'],
-                      timestamp: item['timestamp'],
-                    ),
-                  )
-                  .toList(),
+            const SizedBox(
+              height: 26,
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 26.0),
-            child: Text(
-              '似たことで困っている質問を見てみよう',
-              style: TextStyle(
-                height: 24 / 18,
-                fontWeight: FontWeight.w800,
-                fontSize: 18,
+            // TODO: タブ切り替えの実装
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text('新着メニュー'),
+                Text('記事'),
+                Text('イベント'),
+              ],
+            ),
+            SizedBox(
+              height: 195,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: articleList
+                    .map(
+                      (item) => ArticleCard(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        imagePath: item['imagePath'],
+                        title: item['title'],
+                        timestamp: item['timestamp'],
+                        onPressed: () =>
+                            Navigator.pushNamed(context, ArticlePage.path),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView(
-              children: learningList
-                  .map(
-                    (item) => LeaningCard(
-                      thumbnail: item['thumbnail'],
-                      title: item['title'],
-                      timestamp: item['timestamp'],
-                      subtitle: item['subtitle'],
-                      tags: item['tags'],
-                    ),
-                  )
-                  .toList(),
+            const Padding(
+              padding: EdgeInsets.only(top: 26.0),
+              child: Text(
+                '似たことで困っている質問を見てみよう',
+                style: TextStyle(
+                  height: 24 / 18,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 18,
+                ),
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              child: ListView(
+                children: learningList
+                    .map(
+                      (item) => LeaningCard(
+                        thumbnail: item['thumbnail'],
+                        title: item['title'],
+                        timestamp: item['timestamp'],
+                        subtitle: item['subtitle'],
+                        tags: item['tags'],
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
