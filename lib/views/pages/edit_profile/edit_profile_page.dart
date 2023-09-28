@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:withtone/models/user.dart';
 import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
 import 'package:withtone/views/pages/edit_profile/copy_tile.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 ///プロフィールを編集するページ
 class EditProfilePage extends StatefulWidget {
@@ -14,49 +17,82 @@ class EditProfilePage extends StatefulWidget {
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
+Future<void> updateUser(User user) async {
+  await FirebaseFirestore.instance
+      .collection('user')
+      .doc(user.id)
+      .set(user.toJson(), SetOptions(merge: true));
+}
+
+Future<void> _getCurrentUser() async {
+  // final currentUser = AuthRepository.currentUser as Person;
+
+  // _userNameController.text = currentUser.userName;
+  // _userIdController.text = currentUser.userId;
+  // _currentHeaderImageUrl = currentUser.headerImage;
+  // _currentUserImageUrl = currentUser.userImage;
+  // _userIdController.text = currentUser.userId;
+  // _userSelfIntroductionController.text = currentUser.selfIntroduction;
+  // _initalPrefectureArea = currentUser.prefecture;
+  // _prefController.text = _initalPrefectureArea?.name ?? '未登録';
+  // _initalCityArea = currentUser.city;
+  // _cityController.text = _initalCityArea?.name ?? '未登録';
+  // _genderController.text = currentUser.gender;
+
+  // _dartsLiveRating = currentUser.dartsLiveRating;
+
+  // _phoenixRating = currentUser.phoenixRating;
+  // _selectedTags = currentUser.tag.toList();
+
+  // setState(() {});
+}
+
 class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('プロフィールを編集'),
-            bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(1),
-                child: Container(height: 1, color: Colors.black38))),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50, left: 8.0, right: 8.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CircleProfileIcon(
-                      imageUrl:
-                          'https://pbs.twimg.com/profile_images/1410912969085444097/0g6BdWsP_400x400.jpg',
-                      label: '写真を変更',
-                      iconData: Icons.photo_camera_outlined,
-                      onPressed: () {},
-                    ),
-                    CircleProfileIcon(
-                      imageUrl:
-                          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww2.fashion-guide.jp%2Fcolor%2Fgray-sample.html&psig=AOvVaw156bN6yRkEutWkZVTNKlpu&ust=1693462272626000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJia0Nvcg4EDFQAAAAAdAAAAABAE',
-                      label: '動画を変更',
-                      iconData: Icons.videocam_outlined,
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                const EditProfileTile(title: '名前', contents: '木村　なつみ'),
-                const EditProfileTile(title: 'ユーザー名', contents: 'jacob_w'),
-                const CopyTile(id: 'tiktok.com@jacob_w'),
-                const EditProfileTile(title: '自己紹介', contents: '自己紹介を追加'),
-                const BorderWidget(),
-                const EditProfileTile(title: 'YouTube', contents: 'YouTubeを追加'),
-              ],
-            ),
+      appBar: AppBar(
+          title: const Text('プロフィールを編集'),
+          bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(1),
+              child: Container(height: 1, color: Colors.black38))),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50, left: 8.0, right: 8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CircleProfileIcon(
+                    imageUrl: '',
+                    label: '写真を変更',
+                    iconData: Icons.photo_camera_outlined,
+                    onPressed: () {},
+                  ),
+                  CircleProfileIcon(
+                    imageUrl: '',
+                    label: '動画を変更',
+                    iconData: Icons.videocam_outlined,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+              const EditProfileTile(title: '名前', contents: '木村　なつみ'),
+              const EditProfileTile(title: 'ユーザー名', contents: 'jacob_w'),
+              const CopyTile(id: 'tiktok.com@jacob_w'),
+              const EditProfileTile(title: '自己紹介', contents: '自己紹介を追加'),
+              const BorderWidget(),
+              const EditProfileTile(title: 'YouTube', contents: 'YouTubeを追加'),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('変更'),
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

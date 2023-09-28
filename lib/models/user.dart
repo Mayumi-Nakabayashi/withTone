@@ -6,6 +6,7 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   const factory User({
+    required String id,
     required String userName,
     @Default('@withTone') String userId,
     @Default('') String userImage,
