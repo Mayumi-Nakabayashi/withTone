@@ -3,7 +3,7 @@
 音楽人生に新しい選択肢を。
 世界中の音楽仲間とつながろう
 
-![withtoneのHero画像](./assets/docs/withtone_hero.jpg)
+<img src="./assets/docs/withtone_hero.jpg" width="640">
 
 withTone は音楽ソーシャル学習プラットフォームです。  
 楽器を演奏する人々が自分にとって居心地の良いコミュニティが見つけられず、
