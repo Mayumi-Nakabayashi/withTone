@@ -19,6 +19,8 @@ class ContentPage extends StatefulWidget {
 class _ContentPageState extends State<ContentPage> {
   @override
   Widget build(BuildContext context) {
+    final double floatingButtonWidth = MediaQuery.of(context).size.width * 0.75;
+    const double floatingButtonHeight = 46;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -102,6 +104,30 @@ class _ContentPageState extends State<ContentPage> {
               ),
             ),
           ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: SizedBox(
+        width: floatingButtonWidth,
+        height: floatingButtonHeight,
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            // TODO: 遷移先の実装
+          },
+          label: const Text(
+            '今すぐ質問する',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          backgroundColor: const Color(0xFF005792),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30),
+            ),
+          ),
         ),
       ),
     );
