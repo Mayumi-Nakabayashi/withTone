@@ -40,6 +40,8 @@ dependencies:
   firebase_auth: ^4.8.0
   google_mobile_ads: ^3.0.0
   app_tracking_transparency: ^2.0.4
+  google_sign_in: ^6.1.5
+  sign_in_with_apple: ^5.0.0
 
 dev_dependencies:
   flutter_test:
