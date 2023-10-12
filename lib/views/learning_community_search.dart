@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/pages/home_page.dart';
 
+class SearchItem {
+  final String label;
+  SearchItem({required this.label});
+
+  bool isSelected = false;
+}
+
+List<SearchItem> searchItems = [
+  SearchItem(label: '作曲'),
+  SearchItem(label: '路上パフォーマンス'),
+  SearchItem(label: 'ピアノ'),
+  SearchItem(label: 'DTM'),
+  SearchItem(label: '弾いてみた動画'),
+  SearchItem(label: 'ギター'),
+  SearchItem(label: 'バイオリン'),
+  SearchItem(label: 'クラシック'),
+  SearchItem(label: '機材'),
+  SearchItem(label: 'アニソン'),
+  SearchItem(label: 'レコーディング'),
+  SearchItem(label: '音大受験'),
+];
+
 class LeaningCommunitySearch extends StatefulWidget {
   const LeaningCommunitySearch({super.key});
 
@@ -17,229 +39,143 @@ class _LeaningCommunitySearchState extends State<LeaningCommunitySearch> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          SizedBox(
-            child: Image.asset(
-              'assets/page_images/content.png',
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            SizedBox(
+              child: Image.asset(
+                'assets/page_images/content.png',
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Container(
-            color: const Color.fromRGBO(33, 33, 33, 0.93),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 190,
-                ),
-                const Text(
-                  'あなたの経験、得意なことを',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const Text(
-                  '教えてください!',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                TextFormField(
-                  cursorColor: Colors.white,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                      hintText: '#検索',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                        borderSide: const BorderSide(
-                          color: Colors.white,
-                        ),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 20,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      suffixIcon: const Icon(
-                        Icons.search_rounded,
-                        color: Colors.white,
-                      )),
-                ),
-                const SizedBox(
-                  height: 28,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        isPressed = !isPressed;
-                        setState(() {
-                          _buttonColor = isPressed
-                              ? const Color.fromRGBO(0, 87, 146, 78)
-                              : Colors.white;
-                          _textColor = isPressed ? Colors.white : Colors.grey;
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: _buttonColor, // ボタンの色を設定
-                      ),
-                      child: Text(
-                        '作曲',
-                        style: TextStyle(
-                          color: _textColor,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('路上パフォーマンス'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('ピアノ'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('DTM'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('弾いてみた動画'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('ギター'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('バイオリン'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('クラシック'),
-                    ),
-                    const SizedBox(
-                      width: 18,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('機材'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('アニソン'),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('レコーディング'),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('音大受験'),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                Center(
-                  child: Container(
-                    height: 42,
-                    width: 250,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color.fromRGBO(0, 87, 146, 1),
-                          Color.fromRGBO(255, 185, 33, 1)
-                        ], //青から緑へのグラデーション
-                      ),
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          HomePage.path,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        // グラデーション色を定義
-                      ),
-                      child: const Text(
-                        'コミュニティに行く',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            Container(
+              color: const Color.fromRGBO(33, 33, 33, 0.93),
             ),
-          ),
-        ],
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 60.0, top: 150),
+                          child: Text(
+                            'あなたの経験、得意なことを\n教えてください!',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    TextFormField(
+                      cursorColor: Colors.white,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                          hintText: '#検索',
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: const BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          suffixIcon: const Icon(
+                            Icons.search_rounded,
+                            color: Colors.white,
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 28,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceAround,
+                        children: searchItems.map((item) {
+                          return ElevatedButton(
+                            onPressed: () => setState(() {
+                              item.isSelected = !item.isSelected;
+                            }),
+                            style: ElevatedButton.styleFrom(
+                              // ボタンの背景色を設定
+                              backgroundColor: item.isSelected
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.white,
+                              // ボタンの文字色を設定
+                              foregroundColor: item.isSelected
+                                  ? Colors.white
+                                  : Theme.of(context).primaryColor,
+                            ),
+                            child: Text(
+                              item.label,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Center(
+                      child: Container(
+                        height: 42,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color.fromRGBO(0, 87, 146, 1),
+                              Color.fromRGBO(255, 185, 33, 1)
+                            ], //青から緑へのグラデーション
+                          ),
+                        ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              HomePage.path,
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,
+                            // グラデーション色を定義
+                          ),
+                          child: const Text(
+                            'コミュニティに行く',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
