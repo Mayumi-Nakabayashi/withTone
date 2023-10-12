@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
@@ -13,6 +14,7 @@ class PasswordReissuePage extends StatefulWidget {
 }
 
 class _PasswordReissuePageState extends State<PasswordReissuePage> {
+  TextEditingController mailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +42,7 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
               ),
               const SizedBox(height: 40), // 適当な余白
               TextFormField(
+                controller: mailController,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -60,12 +63,15 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
               ),
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
-                label: '送信する',
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  PasswordReissueConfirmPage.path,
-                ),
-              ),
+                  label: '送信する',
+                  onPressed: () {
+                    final auth = FirebaseAuth.instance;
+                    auth.sendPasswordResetEmail(email: mailController.text);
+                    Navigator.pushNamed(
+                      context,
+                      PasswordReissueConfirmPage.path,
+                    );
+                  }),
             ],
           ),
         ),
