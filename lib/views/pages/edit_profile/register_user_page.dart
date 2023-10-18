@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/models/user/register.dart';
-import 'package:withtone/providers/repositories/user_repository/user_repository.dart';
+import 'package:withtone/providers/repositories/register_repository/register_repository.dart';
 import 'package:withtone/views/components/primary_button.dart';
 
 class ResisterUserPage extends StatefulWidget {
