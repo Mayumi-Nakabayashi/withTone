@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:withtone/models/user/register.dart';
 import 'package:withtone/providers/repositories/register_repository/register_repository.dart';
 import 'package:withtone/views/components/primary_button.dart';
+import 'package:withtone/views/learning_community_search.dart';
 
 class ResisterUserPage extends StatefulWidget {
   const ResisterUserPage({super.key});
@@ -72,6 +73,9 @@ class _ResisterUserPageState extends State<ResisterUserPage> {
                       final userName = userNameController.text;
                       final register = Register(id: uid, userName: userName);
                       await RegisterRepository.updateRegister(register);
+                      // ignore: use_build_context_synchronously
+                      await Navigator.pushNamed(
+                          context, LeaningCommunitySearch.path);
                     },
                   ),
                 )
