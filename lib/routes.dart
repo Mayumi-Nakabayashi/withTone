@@ -4,6 +4,9 @@ import 'package:withtone/upload_inst_page.dart';
 import 'package:withtone/app.dart';
 import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
 import 'package:withtone/views/pages/account/account_page.dart';
+import 'package:withtone/views/pages/account_delete/account_stopdelete_delete_page.dart';
+import 'package:withtone/views/pages/account_delete/account_stopdelete_page.dart';
+import 'package:withtone/views/pages/account_delete/account_stopdelete_stop_page.dart';
 import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
@@ -52,6 +55,10 @@ class Routes {
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
     UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
-    ArticlePage.path: (context) => const ArticlePage()
+    ArticlePage.path: (context) => const ArticlePage(),
+    AccountStopdeletePage.path: (context) => const AccountStopdeletePage(),
+    AccountStopdeleteStopPage.path: (cotext) =>
+        const AccountStopdeleteStopPage(),
+    AccountStopdeleteDeletePage.path: (context) => AccountStopdeleteDeletePage()
   };
 }
