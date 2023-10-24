@@ -20,6 +20,13 @@ class ContentPage extends StatefulWidget {
 class _ContentPageState extends State<ContentPage> {
   bool _visible = true;
 
+  /// タブ用ラベル
+  final _tabs = <Widget>[
+    const Tab(text: '新着メニュー'),
+    const Tab(text: '記事'),
+    const Tab(text: 'イベント'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final double floatingButtonWidth = MediaQuery.of(context).size.width * 0.75;
@@ -78,14 +85,35 @@ class _ContentPageState extends State<ContentPage> {
               const SizedBox(
                 height: 26,
               ),
-              // TODO: タブ切り替えの実装
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('新着メニュー'),
-                  Text('記事'),
-                  Text('イベント'),
-                ],
+              DefaultTabController(
+                length: _tabs.length,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: TabBar(
+                    tabs: _tabs,
+                    labelPadding: const EdgeInsets.all(0),
+                    dividerColor: Colors.transparent,
+                    splashFactory: NoSplash.splashFactory,
+                    indicatorColor: Colors.transparent,
+                    labelColor: const Color(0xffFFB921),
+                    labelStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      shadows: [
+                        Shadow(
+                          color: Colors.grey,
+                          offset: Offset(0, 4.0),
+                          blurRadius: 4.0,
+                        ),
+                      ],
+                    ),
+                    unselectedLabelColor: const Color(0xff5E6272),
+                    unselectedLabelStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 195,
