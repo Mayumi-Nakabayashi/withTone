@@ -32,11 +32,7 @@ class _AccountPageState extends State<AccountPage> {
                 title: 'ログアウト',
                 onPressed: () {
                   final auth = FirebaseAuth.instance;
-                  try {
-                    auth.signOut();
-                  } catch (e) {
-                    GoogleSignIn().signOut();
-                  }
+                  GoogleSignIn().signOut();
                   auth.signOut();
                 }),
             SettingsTile(title: 'アカウントの削除', onPressed: () {}),
