@@ -34,12 +34,13 @@ class _SignupModalContentState extends State<SignupModalContent> {
           label: 'Google で登録する',
           onTap: () async {
             final googleUser = await GoogleSignIn().signIn();
-            final googleAuth = await googleUser!.authentication;
-            final credential = GoogleAuthProvider.credential(
-              accessToken: googleAuth.accessToken,
-              idToken: googleAuth.idToken,
-            );
+            final googleAuth = await googleUser?.authentication;
+
             try {
+              final credential = GoogleAuthProvider.credential(
+                accessToken: googleAuth!.accessToken,
+                idToken: googleAuth.idToken,
+              );
               final result = await auth.signInWithCredential(credential);
               final user = result.user;
             } catch (e) {
