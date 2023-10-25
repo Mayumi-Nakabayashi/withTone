@@ -7,8 +7,14 @@ class FavoriteBotton extends StatefulWidget {
     this.trueColor = const Color(0xffEA4359),
     this.falseColor = const Color(0xffDFE1D9),
   }) : super(key: key);
+
+  /// アイコンのサイズ
   final double size;
+
+  ///お気に入りしている時の色
   final Color trueColor;
+
+  ///お気に入りしていない時の色
   final Color falseColor;
 
   @override
