@@ -3,14 +3,14 @@ import 'package:withtone/views/pages/learning_community_home/widget/feedback_lis
 import 'package:withtone/views/pages/learning_community_home/widget/feedback_text_form.dart';
 
 class FeedBackBottomSheet extends StatelessWidget {
-  const FeedBackBottomSheet({super.key, required this.feedBacks});
+  FeedBackBottomSheet({super.key, required this.feedBacks});
 
   ///コメントのリスト
   final List feedBacks;
+  final TextEditingController c = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController c = TextEditingController();
     return Container(
         height: MediaQuery.of(context).size.height * 0.8, //画面の高さの1/8の高さ
         decoration: const BoxDecoration(
