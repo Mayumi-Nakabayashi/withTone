@@ -25,7 +25,7 @@ class FeedBackFavoriteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FavoriteBotton(
+        FavoriteButton(
           size: size,
         ),
         Text(

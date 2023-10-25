@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FavoriteBotton extends StatefulWidget {
-  const FavoriteBotton({
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({
     Key? key,
     this.size = 35,
     this.trueColor = const Color(0xffEA4359),
@@ -18,10 +18,10 @@ class FavoriteBotton extends StatefulWidget {
   final Color falseColor;
 
   @override
-  State<FavoriteBotton> createState() => _FavoriteMarkState();
+  State<FavoriteButton> createState() => _FavoriteMarkState();
 }
 
-class _FavoriteMarkState extends State<FavoriteBotton> {
+class _FavoriteMarkState extends State<FavoriteButton> {
   bool _isFavorite = false;
 
   @override
