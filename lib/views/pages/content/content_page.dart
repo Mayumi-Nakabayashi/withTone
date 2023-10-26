@@ -20,30 +20,19 @@ class ContentPage extends StatefulWidget {
 class _ContentPageState extends State<ContentPage> {
   bool _visible = true;
 
-  /// タブ用ラベル
-  final _tabs = <Widget>[
-    const Tab(text: '新着メニュー'),
-    const Tab(text: '記事'),
-    const Tab(text: 'イベント'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final double floatingButtonWidth = MediaQuery.of(context).size.width * 0.75;
     const double floatingButtonHeight = 46;
 
-    final List<ArticleCard> articleItems = articleList
-        .map(
-          (item) => ArticleCard(
-            width: MediaQuery.of(context).size.width * 0.4,
-            imagePath: item['imagePath'],
-            title: item['title'],
-            timestamp: item['timestamp'],
-            onPressed: () => Navigator.pushNamed(context, ArticlePage.path),
-          ),
-        )
-        .toList();
+    /// TabBar ラベル
+    const tabs = <Widget>[
+      Tab(text: '新着メニュー'),
+      Tab(text: '記事'),
+      Tab(text: 'イベント'),
+    ];
 
+    /// 下部 ListView コンテンツ
     final List<LeaningCard> leaningItems = learningList
         .map(
           (item) => LeaningCard(
@@ -86,40 +75,98 @@ class _ContentPageState extends State<ContentPage> {
                 height: 26,
               ),
               DefaultTabController(
-                length: _tabs.length,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: TabBar(
-                    tabs: _tabs,
-                    labelPadding: const EdgeInsets.all(0),
-                    dividerColor: Colors.transparent,
-                    splashFactory: NoSplash.splashFactory,
-                    indicatorColor: Colors.transparent,
-                    labelColor: const Color(0xffFFB921),
-                    labelStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      shadows: [
-                        Shadow(
-                          color: Colors.grey,
-                          offset: Offset(0, 4.0),
-                          blurRadius: 4.0,
+                length: tabs.length,
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 18.0),
+                      child: TabBar(
+                        tabs: tabs,
+                        labelPadding: EdgeInsets.all(0),
+                        dividerColor: Colors.transparent,
+                        splashFactory: NoSplash.splashFactory,
+                        indicatorColor: Colors.transparent,
+                        labelColor: Color(0xffFFB921),
+                        labelStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          shadows: [
+                            Shadow(
+                              color: Colors.grey,
+                              offset: Offset(0, 4.0),
+                              blurRadius: 4.0,
+                            ),
+                          ],
                         ),
-                      ],
+                        unselectedLabelColor: Color(0xff5E6272),
+                        unselectedLabelStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                    unselectedLabelColor: const Color(0xff5E6272),
-                    unselectedLabelStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
+                    SizedBox(
+                      height: 200,
+                      child: TabBarView(
+                        children: [
+                          SizedBox(
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: articleList['lesson']!
+                                  .map(
+                                    (item) => ArticleCard(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
+                                      imagePath: item['imagePath'],
+                                      title: item['title'],
+                                      timestamp: item['timestamp'],
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, ArticlePage.path),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                          SizedBox(
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: articleList['article']!
+                                  .map(
+                                    (item) => ArticleCard(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
+                                      imagePath: item['imagePath'],
+                                      title: item['title'],
+                                      timestamp: item['timestamp'],
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, ArticlePage.path),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                          SizedBox(
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: articleList['event']!
+                                  .map(
+                                    (item) => ArticleCard(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.4,
+                                      imagePath: item['imagePath'],
+                                      title: item['title'],
+                                      timestamp: item['timestamp'],
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, ArticlePage.path),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 195,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: articleItems,
+                  ],
                 ),
               ),
               const Padding(
@@ -197,28 +244,80 @@ class _ContentPageState extends State<ContentPage> {
   }
 }
 
-final List<Map<String, dynamic>> articleList = [
-  {
-    'imagePath': 'assets/logo/mainlogo.png',
-    'title': 'バイオリンのハイポジションに挑戦',
-    'timestamp': 'January, 19 2021',
-  },
-  {
-    'imagePath': 'assets/logo/app_nobackground.png',
-    'title': 'ビブラートで挫折しないための練習',
-    'timestamp': 'October, 20 2021',
-  },
-  {
-    'imagePath': 'assets/logo/appmain_color.png',
-    'title': 'バイオリンのハイポジションに挑戦',
-    'timestamp': 'January, 19 2021',
-  },
-  {
-    'imagePath': 'assets/logo/mainlogo.png',
-    'title': 'ビブラートで挫折しないための練習',
-    'timestamp': 'October, 20 2021',
-  },
-];
+final Map<String, List<Map<String, dynamic>>> articleList = {
+  'lesson': [
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+  ],
+  'article': [
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習（記事）',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+  ],
+  'event': [
+    {
+      'imagePath': 'assets/logo/app_nobackground.png',
+      'title': 'ビブラートイベント',
+      'category': 'event',
+      'timestamp': 'October, 20 2021',
+    },
+  ],
+};
 
 final List<Map<String, dynamic>> learningList = [
   {
