@@ -32,6 +32,79 @@ class _ContentPageState extends State<ContentPage> {
       Tab(text: 'イベント'),
     ];
 
+    Widget tabBar = const TabBar(
+      tabs: tabs,
+      labelPadding: EdgeInsets.all(0),
+      dividerColor: Colors.transparent,
+      splashFactory: NoSplash.splashFactory,
+      indicatorColor: Colors.transparent,
+      labelColor: Color(0xffFFB921),
+      labelStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        shadows: [
+          Shadow(
+            color: Colors.grey,
+            offset: Offset(0, 4.0),
+            blurRadius: 4.0,
+          ),
+        ],
+      ),
+      unselectedLabelColor: Color(0xff5E6272),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+
+    Widget listViewWidget(String category) {
+      return ListView(
+        scrollDirection: Axis.horizontal,
+        children: articleList[category]!
+            .map(
+              (item) => ArticleCard(
+                width: MediaQuery.of(context).size.width * 0.4,
+                imagePath: item['imagePath'],
+                title: item['title'],
+                timestamp: item['timestamp'],
+                onPressed: () => Navigator.pushNamed(context, ArticlePage.path),
+              ),
+            )
+            .toList(),
+      );
+    }
+
+    /// tab コンテンツ
+    Widget tabBarWidget() {
+      return DefaultTabController(
+        length: tabs.length,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: tabBar,
+            ),
+            SizedBox(
+              height: 200,
+              child: TabBarView(
+                children: [
+                  SizedBox(
+                    child: listViewWidget('lesson'),
+                  ),
+                  SizedBox(
+                    child: listViewWidget('article'),
+                  ),
+                  SizedBox(
+                    child: listViewWidget('event'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     /// 下部 ListView コンテンツ
     final List<LeaningCard> leaningItems = learningList
         .map(
@@ -74,101 +147,7 @@ class _ContentPageState extends State<ContentPage> {
               const SizedBox(
                 height: 26,
               ),
-              DefaultTabController(
-                length: tabs.length,
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18.0),
-                      child: TabBar(
-                        tabs: tabs,
-                        labelPadding: EdgeInsets.all(0),
-                        dividerColor: Colors.transparent,
-                        splashFactory: NoSplash.splashFactory,
-                        indicatorColor: Colors.transparent,
-                        labelColor: Color(0xffFFB921),
-                        labelStyle: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          shadows: [
-                            Shadow(
-                              color: Colors.grey,
-                              offset: Offset(0, 4.0),
-                              blurRadius: 4.0,
-                            ),
-                          ],
-                        ),
-                        unselectedLabelColor: Color(0xff5E6272),
-                        unselectedLabelStyle: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 200,
-                      child: TabBarView(
-                        children: [
-                          SizedBox(
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: articleList['lesson']!
-                                  .map(
-                                    (item) => ArticleCard(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
-                                      imagePath: item['imagePath'],
-                                      title: item['title'],
-                                      timestamp: item['timestamp'],
-                                      onPressed: () => Navigator.pushNamed(
-                                          context, ArticlePage.path),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                          SizedBox(
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: articleList['article']!
-                                  .map(
-                                    (item) => ArticleCard(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
-                                      imagePath: item['imagePath'],
-                                      title: item['title'],
-                                      timestamp: item['timestamp'],
-                                      onPressed: () => Navigator.pushNamed(
-                                          context, ArticlePage.path),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                          SizedBox(
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: articleList['event']!
-                                  .map(
-                                    (item) => ArticleCard(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
-                                      imagePath: item['imagePath'],
-                                      title: item['title'],
-                                      timestamp: item['timestamp'],
-                                      onPressed: () => Navigator.pushNamed(
-                                          context, ArticlePage.path),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              tabBarWidget(),
               const Padding(
                 padding: EdgeInsets.only(top: 26.0),
                 child: Text(
