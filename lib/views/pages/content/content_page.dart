@@ -25,18 +25,87 @@ class _ContentPageState extends State<ContentPage> {
     final double floatingButtonWidth = MediaQuery.of(context).size.width * 0.75;
     const double floatingButtonHeight = 46;
 
-    final List<ArticleCard> articleItems = articleList
-        .map(
-          (item) => ArticleCard(
-            width: MediaQuery.of(context).size.width * 0.4,
-            imagePath: item['imagePath'],
-            title: item['title'],
-            timestamp: item['timestamp'],
-            onPressed: () => Navigator.pushNamed(context, ArticlePage.path),
-          ),
-        )
-        .toList();
+    /// TabBar ラベル
+    const tabs = <Widget>[
+      Tab(text: '新着メニュー'),
+      Tab(text: '記事'),
+      Tab(text: 'イベント'),
+    ];
 
+    Widget tabBar = const TabBar(
+      tabs: tabs,
+      labelPadding: EdgeInsets.all(0),
+      dividerColor: Colors.transparent,
+      splashFactory: NoSplash.splashFactory,
+      indicatorColor: Colors.transparent,
+      labelColor: Color(0xffFFB921),
+      labelStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        shadows: [
+          Shadow(
+            color: Colors.grey,
+            offset: Offset(0, 4.0),
+            blurRadius: 4.0,
+          ),
+        ],
+      ),
+      unselectedLabelColor: Color(0xff5E6272),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+
+    Widget listViewWidget(String category) {
+      return ListView(
+        scrollDirection: Axis.horizontal,
+        children: articleList[category]!
+            .map(
+              (item) => ArticleCard(
+                width: MediaQuery.of(context).size.width * 0.4,
+                imagePath: item['imagePath'],
+                title: item['title'],
+                timestamp: item['timestamp'],
+                onPressed: () => Navigator.pushNamed(context, ArticlePage.path),
+              ),
+            )
+            .toList(),
+      );
+    }
+
+    /// tab コンテンツ
+    Widget tabBarWidget() {
+      return DefaultTabController(
+        length: tabs.length,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: tabBar,
+            ),
+            SizedBox(
+              height: 200,
+              child: TabBarView(
+                children: [
+                  SizedBox(
+                    child: listViewWidget('lesson'),
+                  ),
+                  SizedBox(
+                    child: listViewWidget('article'),
+                  ),
+                  SizedBox(
+                    child: listViewWidget('event'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    /// 下部 ListView コンテンツ
     final List<LeaningCard> leaningItems = learningList
         .map(
           (item) => LeaningCard(
@@ -78,22 +147,7 @@ class _ContentPageState extends State<ContentPage> {
               const SizedBox(
                 height: 26,
               ),
-              // TODO: タブ切り替えの実装
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('新着メニュー'),
-                  Text('記事'),
-                  Text('イベント'),
-                ],
-              ),
-              SizedBox(
-                height: 195,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: articleItems,
-                ),
-              ),
+              tabBarWidget(),
               const Padding(
                 padding: EdgeInsets.only(top: 26.0),
                 child: Text(
@@ -169,28 +223,80 @@ class _ContentPageState extends State<ContentPage> {
   }
 }
 
-final List<Map<String, dynamic>> articleList = [
-  {
-    'imagePath': 'assets/logo/mainlogo.png',
-    'title': 'バイオリンのハイポジションに挑戦',
-    'timestamp': 'January, 19 2021',
-  },
-  {
-    'imagePath': 'assets/logo/app_nobackground.png',
-    'title': 'ビブラートで挫折しないための練習',
-    'timestamp': 'October, 20 2021',
-  },
-  {
-    'imagePath': 'assets/logo/appmain_color.png',
-    'title': 'バイオリンのハイポジションに挑戦',
-    'timestamp': 'January, 19 2021',
-  },
-  {
-    'imagePath': 'assets/logo/mainlogo.png',
-    'title': 'ビブラートで挫折しないための練習',
-    'timestamp': 'October, 20 2021',
-  },
-];
+final Map<String, List<Map<String, dynamic>>> articleList = {
+  'lesson': [
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+    {
+      'imagePath': 'assets/logo/mainlogo.png',
+      'title': 'バイオリンのハイポジションに挑戦（メニュー）',
+      'category': 'lesson',
+      'timestamp': 'January, 19 2021',
+    },
+  ],
+  'article': [
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習(記事)',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+    {
+      'imagePath': 'assets/logo/appmain_color.png',
+      'title': 'ビブラートで挫折しないための練習（記事）',
+      'category': 'article',
+      'timestamp': 'October, 20 2021',
+    },
+  ],
+  'event': [
+    {
+      'imagePath': 'assets/logo/app_nobackground.png',
+      'title': 'ビブラートイベント',
+      'category': 'event',
+      'timestamp': 'October, 20 2021',
+    },
+  ],
+};
 
 final List<Map<String, dynamic>> learningList = [
   {
