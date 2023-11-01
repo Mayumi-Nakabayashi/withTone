@@ -1,10 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/learning_community_search.dart';
+import 'package:withtone/views/pages/register_user/register_user_page.dart';
 
 class EmailSendCheck extends StatefulWidget {
   // 呼び出し元Widgetから受け取った後、変更をしないためfinalを宣言。
@@ -49,7 +50,7 @@ class EmailSendCheckState extends State<EmailSendCheck> {
       // emailVerifiedがtrueに変更されたタイミングでタイマーを停止
       timer.cancel();
       if (mounted) {
-        await Navigator.pushNamed(context, LeaningCommunitySearch.path);
+        await Navigator.pushNamed(context, RegisterUserPage.path);
       }
     });
   }
