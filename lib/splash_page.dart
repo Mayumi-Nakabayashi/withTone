@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/pages/home_page.dart';
+import 'package:withtone/views/pages/intro/constantly_moving_lottie.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -39,9 +40,8 @@ class _SplashPageState extends State<SplashPage> {
               children: [
                 Column(
                   children: [
-                    SizedBox(
-                      width: 300,
-                      child: Image.asset('assets/logo/mainlogo.png'),
+                    const ConstantlyMoving(
+                        asset: 'assets/logo/animelogo.json'
                     ),
                     Text(
                       '音楽ソーシャル学習プラットフォーム',
