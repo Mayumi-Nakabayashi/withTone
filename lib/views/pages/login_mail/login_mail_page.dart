@@ -24,10 +24,11 @@ class _LoginMailPageState extends State<LoginMailPage> {
     setState(() => _showPassword = !_showPassword);
   }
 
+  final emailController = TextEditingController();
+  final passwordcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordcontroller = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
