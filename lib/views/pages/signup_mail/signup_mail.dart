@@ -23,7 +23,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
   }
 
   final emailController = TextEditingController();
-  final passwordcontroller = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
                 ),
               ),
               TextFormField(
-                controller: passwordcontroller,
+                controller: passwordController,
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
                   hintText: "パスワードを入力してください",
@@ -103,7 +103,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
                 label: '登録',
                 onPressed: () async {
                   final email = emailController.text;
-                  final password = passwordcontroller.text;
+                  final password = passwordController.text;
                   final result = await FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                           email: email, password: password);
