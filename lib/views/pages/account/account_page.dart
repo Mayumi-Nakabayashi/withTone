@@ -15,6 +15,14 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+  // ログアウトボタンを押した時の処理
+  Function onPressedLogoutButton = () {
+    // ログアウト
+    final auth = FirebaseAuth.instance;
+    GoogleSignIn().signOut();
+    auth.signOut();
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +36,7 @@ class _AccountPageState extends State<AccountPage> {
           children: [
             SettingsTile(title: 'アカウント情報', onPressed: () {}),
             SettingsTile(title: 'パスワード', onPressed: () {}),
-            SettingsTile(
-                title: 'ログアウト',
-                onPressed: () {
-                  final auth = FirebaseAuth.instance;
-                  GoogleSignIn().signOut();
-                  auth.signOut();
-                }),
+            SettingsTile(title: 'ログアウト', onPressed: onPressedLogoutButton()),
             SettingsTile(title: 'アカウントの削除', onPressed: () {}),
             const BorderWidget()
           ],
