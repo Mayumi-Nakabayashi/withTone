@@ -22,6 +22,7 @@ import 'package:withtone/views/pages/setting/setting_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
+import 'package:withtone/views/pages/upload_question_fb/upload_question_fb_page.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
 import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
 
@@ -56,6 +57,7 @@ class Routes {
     AccountPage.path: (context) => const AccountPage(),
     PrivacyPage.path: (context) => const PrivacyPage(),
     UploadFbPage.path: (context) => const UploadFbPage(),
+    UploadQuestionFBPage.path: (context) => const UploadQuestionFBPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
     UploadCommentqPage.path: (context) => const UploadCommentqPage(),
