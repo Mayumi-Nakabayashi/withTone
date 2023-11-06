@@ -69,13 +69,13 @@ class _SplashPageState extends State<SplashPage> {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       if (mounted) {
-        await Navigator.pushNamed(context, IntroPage.path);
+        await Navigator.pushReplacementNamed(context, IntroPage.path);
       }
       return;
     }
 
     if (mounted) {
-      await Navigator.pushNamed(context, HomePage.path);
+      await Navigator.pushReplacementNamed(context, HomePage.path);
     }
   }
 }
