@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class ConstantlyMoving extends StatefulWidget {
-  const ConstantlyMoving({super.key, required this.asset});
+const ConstantlyMoving({super.key, this.size = 380});
+final int size;
+...
+return SizedBox(width: size, height: size,...)
+...
 
   final String asset;
 
