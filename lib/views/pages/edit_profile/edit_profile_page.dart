@@ -1,6 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:withtone/models/user.dart';
+import 'package:withtone/models/user/register.dart';
 import 'package:withtone/views/components/border_widget.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
 import 'package:withtone/views/pages/edit_profile/copy_tile.dart';
@@ -17,34 +16,11 @@ class EditProfilePage extends StatefulWidget {
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-Future<void> updateUser(User user) async {
+Future<void> updateUser(Register register) async {
   await FirebaseFirestore.instance
-      .collection('user')
-      .doc(user.id)
-      .set(user.toJson(), SetOptions(merge: true));
-}
-
-Future<void> _getCurrentUser() async {
-  // final currentUser = AuthRepository.currentUser as Person;
-
-  // _userNameController.text = currentUser.userName;
-  // _userIdController.text = currentUser.userId;
-  // _currentHeaderImageUrl = currentUser.headerImage;
-  // _currentUserImageUrl = currentUser.userImage;
-  // _userIdController.text = currentUser.userId;
-  // _userSelfIntroductionController.text = currentUser.selfIntroduction;
-  // _initalPrefectureArea = currentUser.prefecture;
-  // _prefController.text = _initalPrefectureArea?.name ?? '未登録';
-  // _initalCityArea = currentUser.city;
-  // _cityController.text = _initalCityArea?.name ?? '未登録';
-  // _genderController.text = currentUser.gender;
-
-  // _dartsLiveRating = currentUser.dartsLiveRating;
-
-  // _phoenixRating = currentUser.phoenixRating;
-  // _selectedTags = currentUser.tag.toList();
-
-  // setState(() {});
+      .collection('register')
+      .doc(register.id)
+      .set(register.toJson(), SetOptions(merge: true));
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
