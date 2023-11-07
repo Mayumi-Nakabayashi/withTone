@@ -25,6 +25,13 @@ class _SignupMailPageState extends State<SignupMailPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   String errorText = '';
 
   /// 新規ユーザー仮登録実行
