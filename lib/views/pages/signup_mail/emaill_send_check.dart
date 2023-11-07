@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/edit_profile/register_user_page.dart';
 
 class EmailSendCheck extends StatefulWidget {
