@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/app.dart';
 import 'package:withtone/splash_page.dart';
 import 'package:withtone/upload_inst_page.dart';
-import 'package:withtone/app.dart';
+import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/%20privacy/privacy_page.dart';
 import 'package:withtone/views/pages/account/account_page.dart';
+import 'package:withtone/views/pages/account_delete/account_stopdelete_delete_page.dart';
+import 'package:withtone/views/pages/account_delete/account_stopdelete_page.dart';
+import 'package:withtone/views/pages/account_delete/account_stopdelete_stop_page.dart';
+import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
-import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
+import 'package:withtone/views/pages/register_user/register_user_page.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
@@ -50,6 +55,13 @@ class Routes {
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
-    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage()
+    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
+    ArticlePage.path: (context) => const ArticlePage(),
+    AccountStopdeletePage.path: (context) => const AccountStopdeletePage(),
+    AccountStopdeleteStopPage.path: (context) =>
+        const AccountStopdeleteStopPage(),
+    AccountStopdeleteDeletePage.path: (context) =>
+        const AccountStopdeleteDeletePage(),
+    RegisterUserPage.path: (constext) => const RegisterUserPage()
   };
 }

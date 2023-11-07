@@ -1,20 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/learning_community_search.dart';
 
-/// パスワード再発行依頼を送信するページ
-class PasswordReissuePage extends StatefulWidget {
-  const PasswordReissuePage({super.key});
+/// ユーザー名を登録する画面
+class RegisterUserPage extends StatefulWidget {
+  const RegisterUserPage({super.key});
 
-  static const String path = '/password_reissue';
+  static const String path = '/register_user';
 
   @override
-  State<PasswordReissuePage> createState() => _PasswordReissuePageState();
+  State<RegisterUserPage> createState() => _RegisterUserPageState();
 }
 
-class _PasswordReissuePageState extends State<PasswordReissuePage> {
-  TextEditingController mailController = TextEditingController();
+class _RegisterUserPageState extends State<RegisterUserPage> {
+  final userNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,29 +24,34 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
+              const SizedBox(height: 100),
               const SizedBox(
                 width: double.infinity,
                 child: Text(
-                  'パスワードをお忘れですか？',
+                  '名前を作成',
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              const SizedBox(height: 40), // 適当な余白
               const SizedBox(
                 width: double.infinity,
                 child: Text(
-                  '登録時のメールアドレスを入力してください。再設定用のメールを送信します。',
+                  '後でいつでも変更できます',
                   textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 12,
+                  ),
                 ),
               ),
-              const SizedBox(height: 40), // 適当な余白
               TextFormField(
-                controller: mailController,
+                controller: userNameController,
                 cursorColor: Colors.black,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: "メールアドレスを入力してください",
+                  hintText: "木村なつみ",
                 ),
                 focusNode: FocusNode(),
                 maxLength: 40,
@@ -63,13 +68,11 @@ class _PasswordReissuePageState extends State<PasswordReissuePage> {
               ),
               const SizedBox(height: 40), // 適当な余白
               PrimaryButton(
-                  label: '送信する',
-                  onPressed: () {
-                    final auth = FirebaseAuth.instance;
-                    auth.sendPasswordResetEmail(email: mailController.text);
-                    Navigator.pushNamed(
+                  label: '次へ',
+                  onPressed: () async {
+                    await Navigator.pushNamed(
                       context,
-                      PasswordReissueConfirmPage.path,
+                      LeaningCommunitySearch.path,
                     );
                   }),
             ],

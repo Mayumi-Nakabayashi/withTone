@@ -66,6 +66,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 child: const Text('変更'),
               )
             ],
+
           ),
         ),
       ),

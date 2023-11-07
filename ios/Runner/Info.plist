@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+    	<array>
+        	<dict>
+            	<key>CFBundleTypeRole</key>
+            	<string>Editor</string>
+            	<key>CFBundleURLSchemes</key>
+            	<array>
+                	<string>com.googleusercontent.apps.124992763448-nl37mb2957osesg3vvtf8s1ggobivudr</string>
+            	</array>
+        	</dict>
+    	</array>    
+	<key>NSUserTrackingUsageDescription</key>
+    <string>表示する広告を適切に選択するために使用します。</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-6759177008690654~8996532581</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

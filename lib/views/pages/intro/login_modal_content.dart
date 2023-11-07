@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:withtone/views/pages/intro/intro_modal_list_tile.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 
@@ -13,6 +16,8 @@ class LoginModalContent extends StatefulWidget {
 class _LoginModalContentState extends State<LoginModalContent> {
   @override
   Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance;
+
     return Column(
       children: [
         const SizedBox(
@@ -27,13 +32,43 @@ class _LoginModalContentState extends State<LoginModalContent> {
         IntroModalListTile(
           leadingAssetPath: 'assets/logo/google.png',
           label: 'Google で続ける',
-          onTap: () {},
+          onTap: () async {
+            final googleUser = await GoogleSignIn().signIn();
+            final googleAuth = await googleUser!.authentication;
+            final credential = GoogleAuthProvider.credential(
+              accessToken: googleAuth.accessToken,
+              idToken: googleAuth.idToken,
+            );
+            try {
+              final result = await auth.signInWithCredential(credential);
+              final user = result.user;
+            } catch (e) {
+              print(e);
+            }
+          },
         ),
         const SizedBox(height: 20), // 適当な余白
         IntroModalListTile(
           leadingAssetPath: 'assets/logo/apple.png',
           label: 'Apple で続ける',
-          onTap: () {},
+          onTap: () async {
+            final appleIdCredential =
+                await SignInWithApple.getAppleIDCredential(
+              scopes: [
+                AppleIDAuthorizationScopes.email,
+                AppleIDAuthorizationScopes.fullName,
+              ],
+            );
+            final oAuthProvider = OAuthProvider('apple.com');
+            final credential = oAuthProvider.credential(
+              idToken: appleIdCredential.identityToken,
+              accessToken: appleIdCredential.authorizationCode,
+            );
+            try {
+              final result = await auth.signInWithCredential(credential);
+              final user = result.user;
+            } catch (e) {}
+          },
         ),
         const SizedBox(height: 20), // 適当な余白
         IntroModalListTile(
