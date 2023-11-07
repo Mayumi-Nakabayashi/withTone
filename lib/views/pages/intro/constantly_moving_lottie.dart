@@ -37,7 +37,13 @@ class _ConstantlyMovingState extends State<ConstantlyMoving> {
                   height: 380,
                   child: Lottie(composition: composition));
             } else {
-              return const Center(child: CircularProgressIndicator());
+return SizedBox(
+  width: size,
+  height: size,
+  child: FutureBUilder<LottieComposition>(
+    ... ( SizedBox は削除 )
+  ),
+);
             }
           },
         ),
