@@ -25,6 +25,15 @@ class _SignupMailPageState extends State<SignupMailPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  /// 新規ユーザー仮登録実行
+  Future<UserCredential> _signup(String email, String password) async {
+    final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,9 +113,7 @@ class _SignupMailPageState extends State<SignupMailPage> {
                 onPressed: () async {
                   final email = emailController.text;
                   final password = passwordController.text;
-                  final result = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: email, password: password);
+                  final result = await _signup(email, password);
                   await result.user!.sendEmailVerification();
                   if (mounted) {
                     ///引数で渡したいため,routesで画面遷移させていない
