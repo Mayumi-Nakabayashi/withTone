@@ -24,7 +24,7 @@ class SlideShowLottie extends StatefulWidget {
   final bool isBorder;
 
   @override
-  _SlideShowLottieState createState() => _SlideShowLottieState();
+  State<SlideShowLottie> createState() => _SlideShowLottieState();
 }
 
 class _SlideShowLottieState extends State<SlideShowLottie>
@@ -36,29 +36,25 @@ class _SlideShowLottieState extends State<SlideShowLottie>
 
   @override
   Widget build(BuildContext context) {
-    var controllre = AnimationController(
+    var controller = AnimationController(
         vsync: this,
 
         //Durationの値で再生から終了までにかかる時間を設定できる。指定なしであれば元々のファイルの再生時間で再生
         duration: const Duration(seconds: 5));
 
     void startAnimation() {
-      if (controllre.value == 0) {
-        controllre.forward().then((value) => controllre.reset());
+      if (controller.value == 0) {
+        controller.forward().then((value) => controller.reset());
       }
-      if (controllre.value != 0) {
-        controllre.reset();
-        controllre.forward();
+      if (controller.value != 0) {
+        controller.reset();
+        controller.forward();
       }
-    }
-
-    void stopAnimation() {
-      controllre.stop();
     }
 
     var pageController = PageController();
 
-    _onChanged(int page) {
+    onChanged(int page) {
       startAnimation();
     }
 
@@ -75,10 +71,10 @@ class _SlideShowLottieState extends State<SlideShowLottie>
             child: PageView.builder(
                 itemCount: widget.assetsList.length,
                 controller: pageController,
-                onPageChanged: _onChanged,
+                onPageChanged: onChanged,
                 itemBuilder: (context, i) {
                   return LottieTile(
-                      animationController: controllre,
+                      animationController: controller,
                       assets: widget.assetsList[i]);
                 })),
         ElevatedButton(
