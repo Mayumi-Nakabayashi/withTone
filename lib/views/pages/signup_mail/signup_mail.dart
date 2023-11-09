@@ -26,6 +26,36 @@ class _SignupMailPageState extends State<SignupMailPage> {
   final passwordController = TextEditingController();
 
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  String errorText = '';
+
+  /// 新規ユーザー仮登録実行
+  Future<void> _signup({
+    required String email,
+    required String password,
+    required VoidCallback successCallback,
+  }) async {
+    try {
+      final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // メール認証を送信
+      await result.user?.sendEmailVerification();
+      successCallback();
+    } catch (e) {
+      setState(() {
+        errorText = e.toString();
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
@@ -34,7 +64,17 @@ class _SignupMailPageState extends State<SignupMailPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
-              const SizedBox(height: 100),
+              errorText.isNotEmpty
+                  ? Container(
+                      padding: const EdgeInsets.all(40),
+                      width: double.infinity,
+                      child: Text(
+                        errorText,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(color: Color(0xffFF0000)),
+                      ),
+                    )
+                  : const SizedBox(height: 100),
               const SizedBox(
                 width: double.infinity,
                 child: Text(
@@ -102,25 +142,25 @@ class _SignupMailPageState extends State<SignupMailPage> {
               PrimaryButton(
                 label: '登録',
                 onPressed: () async {
-                  final email = emailController.text;
-                  final password = passwordController.text;
-                  final result = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: email, password: password);
-                  await result.user!.sendEmailVerification();
-                  if (mounted) {
-                    ///引数で渡したいため,routesで画面遷移させていない
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => EmailSendCheck(
-                              email: email,
-                              password: password,
+                  await _signup(
+                    email: emailController.text,
+                    password: passwordController.text,
+                    successCallback: () {
+                      if (mounted) {
+                        ///引数で渡したいため,routesで画面遷移させていない
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EmailSendCheck(
+                              email: emailController.text,
+                              password: passwordController.text,
                               from: 1,
-                            )),
-                      ),
-                    );
-                  }
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                  );
                 },
               ),
             ],
