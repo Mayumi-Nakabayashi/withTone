@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 /// Lottie をスライドショーで表示するWidget
-class SlideShowlottie extends StatefulWidget {
-  const SlideShowlottie(
-      {super.key,
-      required this.assetsList,
-      this.width = 300,
-      this.height = 300,
-      this.isBorder = false});
+class SlideShowLottie extends StatefulWidget {
+  const SlideShowLottie({
+    super.key,
+    required this.assetsList,
+    this.width = 300,
+    this.height = 300,
+    this.isBorder = false,
+  });
 
   ///スライドショーのassetのリスト
   final List assetsList;
@@ -23,10 +24,10 @@ class SlideShowlottie extends StatefulWidget {
   final bool isBorder;
 
   @override
-  _SlideShowlottieState createState() => _SlideShowlottieState();
+  _SlideShowLottieState createState() => _SlideShowLottieState();
 }
 
-class _SlideShowlottieState extends State<SlideShowlottie>
+class _SlideShowLottieState extends State<SlideShowLottie>
     with TickerProviderStateMixin {
   @override
   void initState() {
