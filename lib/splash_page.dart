@@ -33,21 +33,11 @@ class _SplashPageState extends State<SplashPage> {
             stops: const [0.0, 1.0],
           ),
         ),
-        child: SafeArea(
+        child: const SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    const SingleShotLottie(asset: 'assets/logo/animelogo.json'),
-                    Text(
-                      '音楽ソーシャル学習プラットフォーム',
-                      style: TextStyle(color: Colors.white.withOpacity(0.53)),
-                    ),
-                  ],
-                ),
-              ],
+            child: SingleShotLottie(
+              asset: 'assets/logo/animelogo.json',
+              size: 300,
             ),
           ),
         ),
