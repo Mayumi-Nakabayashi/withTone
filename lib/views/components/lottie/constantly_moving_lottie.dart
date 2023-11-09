@@ -3,10 +3,13 @@ import 'package:lottie/lottie.dart';
 
 /// ループ再生するLottieアニメーションWidget
 class ConstantlyMoving extends StatefulWidget {
-  const ConstantlyMoving({super.key, required this.asset});
+  const ConstantlyMoving({super.key, this.size = 380, required this.asset});
 
   /// lottieファイルのassetパス
   final String asset;
+
+  /// 表示するサイズ
+  final double size;
 
   @override
   State<ConstantlyMoving> createState() => _ConstantlyMovingState();
@@ -23,23 +26,20 @@ class _ConstantlyMovingState extends State<ConstantlyMoving> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FutureBuilder<LottieComposition>(
-          future: _composition,
-          builder: (context, snapshot) {
-            var composition = snapshot.data;
-            if (composition != null) {
-              return SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: Lottie(composition: composition));
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
-      ],
+    return SizedBox(
+      width: widget.size,
+      height: widget.size,
+      child: FutureBuilder<LottieComposition>(
+        future: _composition,
+        builder: (context, snapshot) {
+          var composition = snapshot.data;
+          if (composition != null) {
+            return Lottie(composition: composition);
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }
