@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/pages/intro/constantly_moving_lottie.dart';
 import 'package:withtone/views/pages/intro/login_modal_content.dart';
 import 'package:withtone/views/pages/intro/signup_modal_content.dart';
 
