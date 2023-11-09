@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+/// Lottieファイルを一度だけ再生するWidget
 class SingleShotLottie extends StatefulWidget {
   const SingleShotLottie({super.key, required this.asset});
+
+  /// lottieファイルのassetパス
   final String asset;
 
   @override

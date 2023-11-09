@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+/// Lottie をスライドショーで表示するWidget
 class SlideShowlottie extends StatefulWidget {
   const SlideShowlottie(
       {super.key,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+/// ループ再生するLottieアニメーションWidget
 class ConstantlyMoving extends StatefulWidget {
   const ConstantlyMoving({super.key, required this.asset});
 
+  /// lottieファイルのassetパス
   final String asset;
 
   @override
