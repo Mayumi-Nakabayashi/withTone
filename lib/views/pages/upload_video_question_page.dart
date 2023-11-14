@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 質問動画を撮影する画面
 class UploadVideoQuestionPage extends StatefulWidget {
   const UploadVideoQuestionPage({super.key});
 
@@ -21,27 +22,71 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          SizedBox(
-            child: Image.asset(
-              'assets/page_images/upload_videoq.jpg',
-              fit: BoxFit.cover,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('戻る'),
-                  ),
+          Container(color: Colors.pink),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AppBar(backgroundColor: Colors.transparent),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => {},
+                      style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
+                        surfaceTintColor: Colors.transparent,
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.tag_faces_sharp, size: 50),
+                          Text(
+                            'Effects',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => {},
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        shape: const CircleBorder(),
+                        backgroundColor: Colors.yellow[800],
+                        padding: const EdgeInsets.all(20),
+                      ),
+                      child: const Icon(
+                        Icons.camera_alt,
+                        size: 50,
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => {},
+                      style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
+                        surfaceTintColor: Colors.transparent,
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.photo, size: 50),
+                          Text(
+                            'Upload',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
