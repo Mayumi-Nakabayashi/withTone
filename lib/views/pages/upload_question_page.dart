@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
-import 'package:withtone/views/pages/upload_video_question_page.dart';
+import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
 
 class UploadQuestionPage extends StatefulWidget {
   const UploadQuestionPage({super.key});
