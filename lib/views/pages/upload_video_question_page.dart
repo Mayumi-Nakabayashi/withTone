@@ -22,7 +22,6 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        alignment: Alignment.bottomCenter,
         children: [
           Container(color: Colors.pink), // TODO: ここにカメラ画像を表示する
           Column(
@@ -44,7 +43,6 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                       onPressed: () => {},
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
-                        shape: const CircleBorder(),
                         backgroundColor: Colors.yellow[800],
                         padding: const EdgeInsets.all(20),
                       ),
