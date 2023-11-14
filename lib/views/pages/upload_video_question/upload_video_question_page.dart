@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 
 /// 質問動画を撮影する画面
 class UploadVideoQuestionPage extends StatefulWidget {
@@ -57,6 +58,14 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                 ),
               ),
             ],
+          ),
+          // 暫定で次へボタンを画面中央に表示
+          Center(
+            child: ElevatedButton(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(UploadCommentqPage.path),
+              child: const Text('次へ'),
+            ),
           ),
         ],
       ),
