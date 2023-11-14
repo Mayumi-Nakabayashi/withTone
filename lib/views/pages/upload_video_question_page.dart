@@ -24,7 +24,7 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Container(color: Colors.pink),
+          Container(color: Colors.pink), // TODO: ここにカメラ画像を表示する
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -55,6 +55,7 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                         ],
                       ),
                     ),
+                    // TODO: いい感じのアニメーションをつけるビデオボタンを作る
                     ElevatedButton(
                       onPressed: () => {},
                       style: ElevatedButton.styleFrom(
