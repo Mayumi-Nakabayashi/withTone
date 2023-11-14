@@ -41,11 +41,14 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                         backgroundColor: Colors.transparent,
                         surfaceTintColor: Colors.transparent,
                       ),
-                      child: const Column(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.tag_faces_sharp, size: 50),
-                          Text(
+                          Image.asset(
+                            'assets/logo/Effects_Illustration.png',
+                            fit: BoxFit.cover,
+                          ),
+                          const Text(
                             'Effects',
                             style: TextStyle(color: Colors.white),
                           )
@@ -72,11 +75,14 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                         backgroundColor: Colors.transparent,
                         surfaceTintColor: Colors.transparent,
                       ),
-                      child: const Column(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.photo, size: 50),
-                          Text(
+                          Image.asset(
+                            'assets/logo/Upload_Illustration.png',
+                            fit: BoxFit.cover,
+                          ),
+                          const Text(
                             'Upload',
                             style: TextStyle(color: Colors.white),
                           )
