@@ -34,26 +34,10 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ElevatedButton(
-                      onPressed: () => {},
-                      style: ElevatedButton.styleFrom(
-                        shadowColor: Colors.transparent,
-                        backgroundColor: Colors.transparent,
-                        surfaceTintColor: Colors.transparent,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            'assets/logo/Effects_Illustration.png',
-                            fit: BoxFit.cover,
-                          ),
-                          const Text(
-                            'Effects',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
+                    VideoSideButton(
+                      onPressed: () {},
+                      label: 'Effects',
+                      assetPath: 'assets/logo/Effects_Illustration.png',
                     ),
                     // TODO: いい感じのアニメーションをつけるビデオボタンを作る
                     ElevatedButton(
@@ -64,37 +48,54 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                         backgroundColor: Colors.yellow[800],
                         padding: const EdgeInsets.all(20),
                       ),
-                      child: const Icon(
-                        Icons.camera_alt,
-                        size: 50,
-                      ),
+                      child: const Icon(Icons.camera_alt, size: 50),
                     ),
-                    ElevatedButton(
-                      onPressed: () => {},
-                      style: ElevatedButton.styleFrom(
-                        shadowColor: Colors.transparent,
-                        backgroundColor: Colors.transparent,
-                        surfaceTintColor: Colors.transparent,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            'assets/logo/Upload_Illustration.png',
-                            fit: BoxFit.cover,
-                          ),
-                          const Text(
-                            'Upload',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
+                    VideoSideButton(
+                      onPressed: () {},
+                      label: 'Upload',
+                      assetPath: 'assets/logo/Upload_Illustration.png',
                     ),
                   ],
                 ),
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// ビデオの左右にあるボタン
+class VideoSideButton extends StatelessWidget {
+  final String label;
+  final String assetPath;
+  final void Function()? onPressed;
+
+  const VideoSideButton({
+    Key? key,
+    required this.label,
+    required this.assetPath,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            assetPath,
+            fit: BoxFit.cover,
+          ),
+          Text(label, style: const TextStyle(color: Colors.white))
         ],
       ),
     );
