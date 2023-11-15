@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
 
@@ -35,17 +36,13 @@ class _UploadInstPageState extends State<UploadInstPage> {
               fit: BoxFit.cover,
             ),
           ),
-          Container(
-            color: const Color.fromRGBO(33, 33, 33, 0.93),
-          ),
+          Container(color: const Color.fromRGBO(33, 33, 33, 0.93)),
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
 
                 ///TODOバックボタンのアイコンを変更or相談する。
                 ///TODOバックボタンのロジックを書く
@@ -94,30 +91,13 @@ class _UploadInstPageState extends State<UploadInstPage> {
                         );
                       }),
                 ),
-                const SizedBox(
-                  height: 150,
-                ),
-                Center(
-                  child: SizedBox(
-                    height: 42,
-                    width: 260,
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        UploadQuestionPage.path,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(0, 87, 146, 1),
-                        // グラデーション色を定義
-                      ),
-                      child: const Text(
-                        '次へ',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 60),
+                  child: PrimaryButton(
+                    label: '次へ',
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      UploadQuestionPage.path,
                     ),
                   ),
                 ),
