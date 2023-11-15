@@ -12,12 +12,6 @@ class UploadVideoQuestionPage extends StatefulWidget {
       _UploadVideoQuestionPageState();
 }
 
-class ButtonItem {
-  final String label;
-  bool isSelected = false;
-  ButtonItem({required this.label, this.isSelected = false});
-}
-
 class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
   @override
   Widget build(BuildContext context) {

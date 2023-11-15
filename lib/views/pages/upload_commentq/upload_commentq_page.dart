@@ -12,12 +12,6 @@ class UploadCommentqPage extends StatefulWidget {
   State<UploadCommentqPage> createState() => _UploadCommentqPageState();
 }
 
-class ButtonItem {
-  final String label;
-  bool isSelected = false;
-  ButtonItem({required this.label, this.isSelected = false});
-}
-
 class _UploadCommentqPageState extends State<UploadCommentqPage> {
   @override
   Widget build(BuildContext context) {
