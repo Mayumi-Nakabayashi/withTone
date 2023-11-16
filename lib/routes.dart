@@ -15,6 +15,7 @@ import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/register_user/register_user_page.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
@@ -49,6 +50,7 @@ class Routes {
     // その他の画面
     ProfilePage.path: (context) => const ProfilePage(),
     SettingsPage.path: (context) => const SettingsPage(),
+    ProfessionalToolPage.path: (context) => const ProfessionalToolPage(),
     EditProfilePage.path: (context) => const EditProfilePage(),
     AccountPage.path: (context) => const AccountPage(),
     PrivacyPage.path: (context) => const PrivacyPage(),
