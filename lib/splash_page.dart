@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:withtone/views/components/lottie/single_shot_lottie.dart';
 import 'package:withtone/views/pages/home_page.dart';
-import 'package:withtone/views/pages/intro/constantly_moving_lottie.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -33,23 +33,11 @@ class _SplashPageState extends State<SplashPage> {
             stops: const [0.0, 1.0],
           ),
         ),
-        child: SafeArea(
+        child: const SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    const ConstantlyMoving(
-                        asset: 'assets/logo/animelogo.json'
-                    ),
-                    Text(
-                      '音楽ソーシャル学習プラットフォーム',
-                      style: TextStyle(color: Colors.white.withOpacity(0.53)),
-                    ),
-                  ],
-                ),
-              ],
+            child: SingleShotLottie(
+              asset: 'assets/logo/animelogo.json',
+              size: 300,
             ),
           ),
         ),
