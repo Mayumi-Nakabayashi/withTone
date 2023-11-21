@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:withtone/views/components/settings_tile.dart';
 import 'package:withtone/views/pages/setting/settings_line_title.dart';
 
+import '../professional_portal/professional_portal_page.dart';
+
 /// アカウントの設定をするページ(パスワード、ログアウトとか)
 class ProfessionalToolPage extends StatefulWidget {
   const ProfessionalToolPage({super.key});
@@ -31,7 +33,8 @@ class _ProfessionalToolPageState extends State<ProfessionalToolPage> {
             ),
             SettingsTile(
               title: 'プロフェッショナルポータル',
-              onPressed: () {},
+              onPressed: () =>
+                    Navigator.pushNamed(context, ProfessionalPortalPage.path),
               leadingIcon: const Icon(Icons.star_border_rounded),
             ),
             const Padding(
