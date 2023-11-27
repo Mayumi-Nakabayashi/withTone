@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
-import 'package:withtone/views/pages/upload_video_question_page.dart';
+import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
 
 class UploadQuestionPage extends StatefulWidget {
   const UploadQuestionPage({super.key});
@@ -69,6 +69,10 @@ class _UploadQuestionPageState extends State<UploadQuestionPage> {
                               }
                               buttonItems[index].isSelected = true;
                             });
+                            Navigator.pushNamed(
+                              context,
+                              UploadVideoQuestionPage.path,
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: const Size.fromWidth(double.maxFinite),
@@ -92,13 +96,6 @@ class _UploadQuestionPageState extends State<UploadQuestionPage> {
                           ),
                         );
                       }),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    UploadVideoQuestionPage.path,
-                  ),
-                  child: const Text('/upload_videoq への導線, 開発で仮置き'),
                 ),
               ],
             ),

@@ -105,6 +105,8 @@ flutter:
   - assets/logo/twitter.png
   - assets/logo/mainlogo.png
   - assets/logo/animelogo.json
+  - assets/logo/Effects_Illustration.png
+  - assets/logo/Upload_Illustration.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

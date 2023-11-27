@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/upload_inst_page.dart';
+import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
 
 class UploadFbPage extends StatefulWidget {
@@ -97,30 +98,13 @@ class _UploadFbPageState extends State<UploadFbPage> {
                         );
                       }),
                 ),
-                const SizedBox(
-                  height: 150,
-                ),
-                Center(
-                  child: SizedBox(
-                    height: 42,
-                    width: 260,
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        UploadInstPage.path,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(0, 87, 146, 1),
-                        // グラデーション色を定義
-                      ),
-                      child: const Text(
-                        '次へ',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 60),
+                  child: PrimaryButton(
+                    label: '次へ',
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      UploadInstPage.path,
                     ),
                   ),
                 ),
