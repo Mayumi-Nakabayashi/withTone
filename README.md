@@ -97,6 +97,8 @@ chore:    その他の変更（ソースやテストの変更を含まない）
 | コマンド | できること |
 | --- | --- |
 | `open ios/Runner.xcworkspace/` | Runner を Xcode で起動する |
+| `flutter pub run build_runner build --delete-conflicting-outputs`  | build_runner を実行する |
+| `flutter pub run build_runner watch --delete-conflicting-outputs`  | ファイルを watch して build_runner を実行する |
 
 ## これから join する / したい あなたへ
 
