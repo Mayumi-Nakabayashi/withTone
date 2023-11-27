@@ -1,0 +1,3 @@
+# 自動生成されるファイルの差分をPRで collapse するための設定
+*.freezed.dart linguist-generated=true
+*.g.dart linguist-generated=true
