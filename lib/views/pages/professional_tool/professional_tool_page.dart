@@ -8,7 +8,7 @@ import '../professional_portal/professional_portal_page.dart';
 class ProfessionalToolPage extends StatefulWidget {
   const ProfessionalToolPage({super.key});
 
-  static const String path = '/professional_tool';
+  static const String path = '/professional_portal';
 
   @override
   State<ProfessionalToolPage> createState() => _ProfessionalToolPageState();
