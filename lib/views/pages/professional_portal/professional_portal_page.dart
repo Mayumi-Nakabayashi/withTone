@@ -24,18 +24,18 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
           bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-            expandedHeight: 200.0,
+            expandedHeight: 350.0,
             floating: false,
             pinned: true,
             flexibleSpace:
     FlexibleSpaceBar(
     centerTitle: true,title:
      const Text(
-    "Collapsing Toolbar",style:
+    "Professional portalページ",style:
     TextStyle(color: Colors.white,fontSize: 16.0,)
     ),
     background: Image.asset(
-    'assets/header_picture.png',
+    'assets/pictures/professional_portal_1.jpg',
     fit:
     BoxFit.cover)
     ),

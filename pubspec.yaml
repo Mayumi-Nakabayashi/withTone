@@ -118,6 +118,9 @@ flutter:
     - assets/logo/animelogo.json
     - assets/logo/Effects_Illustration.png
     - assets/logo/Upload_Illustration.png
+  - assets/logo/Upload_Illustration.png
+  - assets/pictures/professional_portal_1.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
