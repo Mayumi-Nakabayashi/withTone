@@ -59,12 +59,14 @@ class _UploadCommentqPageState extends State<UploadCommentqPage> {
                     final post = Post(
                       id: docId, // 後で更新して入れる
                       uid: uid,
-                      title: 'タイトル',
-                      body: '本文です。',
+                      title: '【超初心者】バイオリンを買ってから７日間の練習メニュー',
+                      body: '''
+バイオリンを始めたばかりの超初心者用の動画です。
+７日間でバイオリンの準備から持ち方、簡単な曲にチャレンジ！
+''',
                       // 先に動画をアップロードして、そのURLを入れる
-                      movieUrl: '動画のURL',
-                      favoriteUsers: [],
-                      tags: ['ハッシュタグ'],
+                      movieUrl: 'https://www.youtube.com/watch?v=8HqQ3XgxBhY',
+                      tags: ['#バイオリン', '#初心者', '#質問歓迎'],
                       // これは自動で入れたい
                       createdAt: DateTime.now(),
                       updatedAt: DateTime.now(),
@@ -74,6 +76,14 @@ class _UploadCommentqPageState extends State<UploadCommentqPage> {
                         .collection('posts')
                         .doc(docId)
                         .update(post.toJson());
+                    // いいねをつける 別にここでやらなくても良いが、データ型の確認の為
+                    FirebaseFirestore.instance
+                        .collection('posts')
+                        .doc(docId)
+                        .collection('favorite')
+                        .add({
+                      'users': [uid]
+                    });
                   },
                 );
                 Navigator.of(context).pushNamed(HomePage.path);

@@ -37,11 +37,6 @@ mixin _$Post {
   /// 動画のURL
   String get movieUrl => throw _privateConstructorUsedError;
 
-  /// お気に入りしたユーザーのuid一覧
-  ///
-  /// サブコレクションにしたい
-  List<String> get favoriteUsers => throw _privateConstructorUsedError;
-
   /// 紐づけられたタグ一覧
   ///
   /// タグ名がそのまま入る
@@ -72,7 +67,6 @@ abstract class $PostCopyWith<$Res> {
       String title,
       String body,
       String movieUrl,
-      List<String> favoriteUsers,
       List<String> tags,
       DateTime createdAt,
       DateTime updatedAt});
@@ -96,7 +90,6 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? title = null,
     Object? body = null,
     Object? movieUrl = null,
-    Object? favoriteUsers = null,
     Object? tags = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -122,10 +115,6 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.movieUrl
           : movieUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      favoriteUsers: null == favoriteUsers
-          ? _value.favoriteUsers
-          : favoriteUsers // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -155,7 +144,6 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       String title,
       String body,
       String movieUrl,
-      List<String> favoriteUsers,
       List<String> tags,
       DateTime createdAt,
       DateTime updatedAt});
@@ -176,7 +164,6 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? title = null,
     Object? body = null,
     Object? movieUrl = null,
-    Object? favoriteUsers = null,
     Object? tags = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -202,10 +189,6 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.movieUrl
           : movieUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      favoriteUsers: null == favoriteUsers
-          ? _value._favoriteUsers
-          : favoriteUsers // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -231,12 +214,10 @@ class _$PostImpl implements _Post {
       required this.title,
       required this.body,
       required this.movieUrl,
-      required final List<String> favoriteUsers,
       required final List<String> tags,
       required this.createdAt,
       required this.updatedAt})
-      : _favoriteUsers = favoriteUsers,
-        _tags = tags;
+      : _tags = tags;
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
@@ -262,21 +243,6 @@ class _$PostImpl implements _Post {
   /// 動画のURL
   @override
   final String movieUrl;
-
-  /// お気に入りしたユーザーのuid一覧
-  ///
-  /// サブコレクションにしたい
-  final List<String> _favoriteUsers;
-
-  /// お気に入りしたユーザーのuid一覧
-  ///
-  /// サブコレクションにしたい
-  @override
-  List<String> get favoriteUsers {
-    if (_favoriteUsers is EqualUnmodifiableListView) return _favoriteUsers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_favoriteUsers);
-  }
 
   /// 紐づけられたタグ一覧
   ///
@@ -306,7 +272,7 @@ class _$PostImpl implements _Post {
 
   @override
   String toString() {
-    return 'Post(id: $id, uid: $uid, title: $title, body: $body, movieUrl: $movieUrl, favoriteUsers: $favoriteUsers, tags: $tags, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Post(id: $id, uid: $uid, title: $title, body: $body, movieUrl: $movieUrl, tags: $tags, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -320,8 +286,6 @@ class _$PostImpl implements _Post {
             (identical(other.body, body) || other.body == body) &&
             (identical(other.movieUrl, movieUrl) ||
                 other.movieUrl == movieUrl) &&
-            const DeepCollectionEquality()
-                .equals(other._favoriteUsers, _favoriteUsers) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -331,17 +295,8 @@ class _$PostImpl implements _Post {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      uid,
-      title,
-      body,
-      movieUrl,
-      const DeepCollectionEquality().hash(_favoriteUsers),
-      const DeepCollectionEquality().hash(_tags),
-      createdAt,
-      updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, uid, title, body, movieUrl,
+      const DeepCollectionEquality().hash(_tags), createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -364,7 +319,6 @@ abstract class _Post implements Post {
       required final String title,
       required final String body,
       required final String movieUrl,
-      required final List<String> favoriteUsers,
       required final List<String> tags,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$PostImpl;
@@ -393,12 +347,6 @@ abstract class _Post implements Post {
 
   /// 動画のURL
   String get movieUrl;
-  @override
-
-  /// お気に入りしたユーザーのuid一覧
-  ///
-  /// サブコレクションにしたい
-  List<String> get favoriteUsers;
   @override
 
   /// 紐づけられたタグ一覧

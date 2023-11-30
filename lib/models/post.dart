@@ -24,11 +24,6 @@ class Post with _$Post {
     /// 動画のURL
     required String movieUrl,
 
-    /// お気に入りしたユーザーのuid一覧
-    ///
-    /// サブコレクションにしたい
-    required List<String> favoriteUsers,
-
     /// 紐づけられたタグ一覧
     ///
     /// タグ名がそのまま入る
