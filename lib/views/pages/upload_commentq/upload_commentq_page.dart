@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:withtone/models/post.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
 
@@ -47,6 +50,32 @@ class _UploadCommentqPageState extends State<UploadCommentqPage> {
             PrimaryButton(
               label: '質問を投稿',
               onPressed: () {
+                // 仮投稿作成
+                // documentId が欲しいので、一度 add してから update する
+                FirebaseFirestore.instance.collection('posts').add({}).then(
+                  (docRef) {
+                    final docId = docRef.id;
+                    final uid = FirebaseAuth.instance.currentUser?.uid ?? '';
+                    final post = Post(
+                      id: docId, // 後で更新して入れる
+                      uid: uid,
+                      title: 'タイトル',
+                      body: '本文です。',
+                      // 先に動画をアップロードして、そのURLを入れる
+                      movieUrl: '動画のURL',
+                      favoriteUsers: [],
+                      tags: ['ハッシュタグ'],
+                      // これは自動で入れたい
+                      createdAt: DateTime.now(),
+                      updatedAt: DateTime.now(),
+                    );
+                    // post を更新
+                    FirebaseFirestore.instance
+                        .collection('posts')
+                        .doc(docId)
+                        .update(post.toJson());
+                  },
+                );
                 Navigator.of(context).pushNamed(HomePage.path);
               },
             )
