@@ -21,7 +21,11 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Post {
   /// posts/{id} で表されるドキュメントのID
-  String get id => throw _privateConstructorUsedError; // uid は、投稿したユーザーのID??
+  String get id => throw _privateConstructorUsedError;
+
+  /// uid は、投稿したユーザーのID
+  ///
+  /// uid は Auth でログインした時に取得できる
   String get uid => throw _privateConstructorUsedError;
 
   /// タイトル
@@ -31,18 +35,26 @@ mixin _$Post {
   String get body => throw _privateConstructorUsedError;
 
   /// 動画のURL
-  ///
-  /// 画像が入る可能性もある? 分けた方がよさそう
   String get movieUrl => throw _privateConstructorUsedError;
 
-  /// お気に入りしたユーザー
+  /// お気に入りしたユーザーのuid一覧
+  ///
+  /// サブコレクションにしたい
   List<String> get favoriteUsers => throw _privateConstructorUsedError;
 
   /// 紐づけられたタグ一覧
+  ///
+  /// タグ名がそのまま入る
   List<String> get tags => throw _privateConstructorUsedError;
 
   /// 作成日時
   DateTime get createdAt => throw _privateConstructorUsedError;
+
+  /// 更新日時
+  ///
+  /// [body] や [title] が更新されたら更新される。
+  /// コメントやいいね数などが増えても更新されない。
+  DateTime get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,7 +74,8 @@ abstract class $PostCopyWith<$Res> {
       String movieUrl,
       List<String> favoriteUsers,
       List<String> tags,
-      DateTime createdAt});
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -86,6 +99,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? favoriteUsers = null,
     Object? tags = null,
     Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -120,6 +134,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -139,7 +157,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       String movieUrl,
       List<String> favoriteUsers,
       List<String> tags,
-      DateTime createdAt});
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -160,6 +179,7 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? favoriteUsers = null,
     Object? tags = null,
     Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_$PostImpl(
       id: null == id
@@ -194,6 +214,10 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -209,7 +233,8 @@ class _$PostImpl implements _Post {
       required this.movieUrl,
       required final List<String> favoriteUsers,
       required final List<String> tags,
-      required this.createdAt})
+      required this.createdAt,
+      required this.updatedAt})
       : _favoriteUsers = favoriteUsers,
         _tags = tags;
 
@@ -219,7 +244,10 @@ class _$PostImpl implements _Post {
   /// posts/{id} で表されるドキュメントのID
   @override
   final String id;
-// uid は、投稿したユーザーのID??
+
+  /// uid は、投稿したユーザーのID
+  ///
+  /// uid は Auth でログインした時に取得できる
   @override
   final String uid;
 
@@ -232,15 +260,17 @@ class _$PostImpl implements _Post {
   final String body;
 
   /// 動画のURL
-  ///
-  /// 画像が入る可能性もある? 分けた方がよさそう
   @override
   final String movieUrl;
 
-  /// お気に入りしたユーザー
+  /// お気に入りしたユーザーのuid一覧
+  ///
+  /// サブコレクションにしたい
   final List<String> _favoriteUsers;
 
-  /// お気に入りしたユーザー
+  /// お気に入りしたユーザーのuid一覧
+  ///
+  /// サブコレクションにしたい
   @override
   List<String> get favoriteUsers {
     if (_favoriteUsers is EqualUnmodifiableListView) return _favoriteUsers;
@@ -249,9 +279,13 @@ class _$PostImpl implements _Post {
   }
 
   /// 紐づけられたタグ一覧
+  ///
+  /// タグ名がそのまま入る
   final List<String> _tags;
 
   /// 紐づけられたタグ一覧
+  ///
+  /// タグ名がそのまま入る
   @override
   List<String> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
@@ -263,9 +297,16 @@ class _$PostImpl implements _Post {
   @override
   final DateTime createdAt;
 
+  /// 更新日時
+  ///
+  /// [body] や [title] が更新されたら更新される。
+  /// コメントやいいね数などが増えても更新されない。
+  @override
+  final DateTime updatedAt;
+
   @override
   String toString() {
-    return 'Post(id: $id, uid: $uid, title: $title, body: $body, movieUrl: $movieUrl, favoriteUsers: $favoriteUsers, tags: $tags, createdAt: $createdAt)';
+    return 'Post(id: $id, uid: $uid, title: $title, body: $body, movieUrl: $movieUrl, favoriteUsers: $favoriteUsers, tags: $tags, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -283,7 +324,9 @@ class _$PostImpl implements _Post {
                 .equals(other._favoriteUsers, _favoriteUsers) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
@@ -297,7 +340,8 @@ class _$PostImpl implements _Post {
       movieUrl,
       const DeepCollectionEquality().hash(_favoriteUsers),
       const DeepCollectionEquality().hash(_tags),
-      createdAt);
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -322,7 +366,8 @@ abstract class _Post implements Post {
       required final String movieUrl,
       required final List<String> favoriteUsers,
       required final List<String> tags,
-      required final DateTime createdAt}) = _$PostImpl;
+      required final DateTime createdAt,
+      required final DateTime updatedAt}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -330,7 +375,11 @@ abstract class _Post implements Post {
 
   /// posts/{id} で表されるドキュメントのID
   String get id;
-  @override // uid は、投稿したユーザーのID??
+  @override
+
+  /// uid は、投稿したユーザーのID
+  ///
+  /// uid は Auth でログインした時に取得できる
   String get uid;
   @override
 
@@ -343,21 +392,30 @@ abstract class _Post implements Post {
   @override
 
   /// 動画のURL
-  ///
-  /// 画像が入る可能性もある? 分けた方がよさそう
   String get movieUrl;
   @override
 
-  /// お気に入りしたユーザー
+  /// お気に入りしたユーザーのuid一覧
+  ///
+  /// サブコレクションにしたい
   List<String> get favoriteUsers;
   @override
 
   /// 紐づけられたタグ一覧
+  ///
+  /// タグ名がそのまま入る
   List<String> get tags;
   @override
 
   /// 作成日時
   DateTime get createdAt;
+  @override
+
+  /// 更新日時
+  ///
+  /// [body] や [title] が更新されたら更新される。
+  /// コメントやいいね数などが増えても更新されない。
+  DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

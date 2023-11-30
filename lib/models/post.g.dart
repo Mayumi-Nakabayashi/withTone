@@ -17,6 +17,7 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
           .toList(),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
@@ -29,4 +30,5 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'favoriteUsers': instance.favoriteUsers,
       'tags': instance.tags,
       'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
     };
