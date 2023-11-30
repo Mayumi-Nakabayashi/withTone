@@ -20,9 +20,10 @@ import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/register_user/register_user_page.dart';
 import 'package:withtone/views/pages/setting/setting_page.dart';
 import 'package:withtone/views/pages/signup_mail/signup_mail.dart';
+import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 import 'package:withtone/views/pages/upload_fb.dart';
 import 'package:withtone/views/pages/upload_question_page.dart';
-import 'package:withtone/views/pages/upload_video_question_page.dart';
+import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
 
 /// ルーティング管理
 /// 基本的にインスタンス化せずに利用します
@@ -57,6 +58,7 @@ class Routes {
     UploadFbPage.path: (context) => const UploadFbPage(),
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
+    UploadCommentqPage.path: (context) => const UploadCommentqPage(),
     UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
     ArticlePage.path: (context) => const ArticlePage(),
     AccountStopdeletePage.path: (context) => const AccountStopdeletePage(),

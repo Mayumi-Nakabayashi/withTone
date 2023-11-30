@@ -62,7 +62,21 @@ Doctor summary (to see all details, run flutter doctor -v):
 
 バックエンドは Firebase, アプリは Flutter で開発.
 ディレクトリ構成などはまだ決まってない.
+
 状態管理は Riverpod を利用する.
+generator を利用している。以下資料を参考にしてください。
+
+動画:
+
+- https://www.youtube.com/watch?v=w2xo2FjDUNQ
+- https://www.youtube.com/watch?v=0HVru4WtdWo&list=PLY1cxwSQf6nzcA62KQSgkL1TwAeM1Raaj
+- https://www.youtube.com/watch?v=OLYcFlPp_rM&list=PLY1cxwSQf6nzcA62KQSgkL1TwAeM1Raaj&index=2
+- https://www.youtube.com/watch?v=vuT2kbh0ihA&list=PLY1cxwSQf6nzcA62KQSgkL1TwAeM1Raaj&index=3
+- https://www.youtube.com/watch?v=hMDs2QAIDDg&list=PLY1cxwSQf6nzcA62KQSgkL1TwAeM1Raaj&index=4
+
+記事:
+
+- https://zenn.dev/riscait/books/flutter-riverpod-practical-introduction/viewer/riverpod-generator
 
 ### ブランチ運用
 

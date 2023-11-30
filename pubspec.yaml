@@ -43,7 +43,10 @@ dependencies:
   app_tracking_transparency: ^2.0.4
   google_sign_in: ^6.1.5
   sign_in_with_apple: ^5.0.0
-  freezed_annotation: ^2.4.1
+  flutter_riverpod: ^2.4.9 # riverpod で状態管理する
+  riverpod_annotation: ^2.3.3 # generator を使うために必要なアノテーション
+  freezed_annotation: ^2.4.1 # freezed を使うために必要なアノテーション
+  json_annotation: ^4.8.1 # json_serializable を使うために必要なアノテーション
 
 dev_dependencies:
   flutter_test:
@@ -55,9 +58,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  freezed: ^2.4.2
-  build_runner: ^2.1.5
-  json_serializable: ^6.7.1
+  build_runner: ^2.4.6 # コード生成ツール
+  riverpod_generator: ^2.3.9 # annotation から provider を生成するツール
+  freezed: ^2.4.5 # annotation から immutable な class を生成するツール
+  json_serializable: ^6.7.1 # annotation から class の json serialize/deserialize を生成するツール
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -109,6 +113,8 @@ flutter:
   - assets/logo/twitter.png
   - assets/logo/mainlogo.png
   - assets/logo/animelogo.json
+  - assets/logo/Effects_Illustration.png
+  - assets/logo/Upload_Illustration.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
