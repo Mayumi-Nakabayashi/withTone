@@ -16,9 +16,9 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-          children: [
-            NestedScrollView(
+      body: DefaultTabController(
+          length: 2,
+          child: NestedScrollView(
               headerSliverBuilder: (BuildContext context,
                   bool innerBoxIsScrolled) {
                 return <Widget>[
@@ -44,28 +44,26 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
                   ),
                 ];
               },
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FloatingActionButton.extended(
-                      onPressed: () {
-                      // TODO: 遷移先の実装
-                    },
-                      label: const Text(
-                        '今すぐ質問する',
-                        style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+              body: Column(
+                children: [
+                  Center(
+                    child: FloatingActionButton.extended(
+                          onPressed: () {
+                          // TODO: 遷移先の実装
+                        },
+                          label: const Text(
+                            '今すぐ質問する',
+                            style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ]
-                ),
+                  ),
+                ],
               ),
             ),
-          ]
       ),
     );
   }
