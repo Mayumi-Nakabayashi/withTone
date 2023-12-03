@@ -13,8 +13,10 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       body: json['body'] as String,
       movieUrl: json['movieUrl'] as String,
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt:
+          const TimestampField().fromJson(json['createdAt'] as Timestamp?),
+      updatedAt:
+          const TimestampField().fromJson(json['updatedAt'] as Timestamp?),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
@@ -25,6 +27,6 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'body': instance.body,
       'movieUrl': instance.movieUrl,
       'tags': instance.tags,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': const TimestampField().toJson(instance.createdAt),
+      'updatedAt': const TimestampField().toJson(instance.updatedAt),
     };

@@ -43,13 +43,15 @@ mixin _$Post {
   List<String> get tags => throw _privateConstructorUsedError;
 
   /// 作成日時
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  @TimestampField()
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   /// 更新日時
   ///
   /// [body] や [title] が更新されたら更新される。
   /// コメントやいいね数などが増えても更新されない。
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  @TimestampField()
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,8 +70,8 @@ abstract class $PostCopyWith<$Res> {
       String body,
       String movieUrl,
       List<String> tags,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @TimestampField() DateTime? createdAt,
+      @TimestampField() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -91,8 +93,8 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? body = null,
     Object? movieUrl = null,
     Object? tags = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -119,14 +121,14 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -145,8 +147,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       String body,
       String movieUrl,
       List<String> tags,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @TimestampField() DateTime? createdAt,
+      @TimestampField() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -165,8 +167,8 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? body = null,
     Object? movieUrl = null,
     Object? tags = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$PostImpl(
       id: null == id
@@ -193,14 +195,14 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -215,8 +217,8 @@ class _$PostImpl implements _Post {
       required this.body,
       required this.movieUrl,
       required final List<String> tags,
-      required this.createdAt,
-      required this.updatedAt})
+      @TimestampField() required this.createdAt,
+      @TimestampField() required this.updatedAt})
       : _tags = tags;
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
@@ -261,14 +263,16 @@ class _$PostImpl implements _Post {
 
   /// 作成日時
   @override
-  final DateTime createdAt;
+  @TimestampField()
+  final DateTime? createdAt;
 
   /// 更新日時
   ///
   /// [body] や [title] が更新されたら更新される。
   /// コメントやいいね数などが増えても更新されない。
   @override
-  final DateTime updatedAt;
+  @TimestampField()
+  final DateTime? updatedAt;
 
   @override
   String toString() {
@@ -320,8 +324,8 @@ abstract class _Post implements Post {
       required final String body,
       required final String movieUrl,
       required final List<String> tags,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$PostImpl;
+      @TimestampField() required final DateTime? createdAt,
+      @TimestampField() required final DateTime? updatedAt}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -356,14 +360,16 @@ abstract class _Post implements Post {
   @override
 
   /// 作成日時
-  DateTime get createdAt;
+  @TimestampField()
+  DateTime? get createdAt;
   @override
 
   /// 更新日時
   ///
   /// [body] や [title] が更新されたら更新される。
   /// コメントやいいね数などが増えても更新されない。
-  DateTime get updatedAt;
+  @TimestampField()
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

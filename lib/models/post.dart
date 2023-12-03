@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:withtone/models/time_stamp_field.dart';
 
 part 'post.freezed.dart';
 part 'post.g.dart';
@@ -30,13 +32,13 @@ class Post with _$Post {
     required List<String> tags,
 
     /// 作成日時
-    required DateTime createdAt,
+    @TimestampField() required DateTime? createdAt,
 
     /// 更新日時
     ///
     /// [body] や [title] が更新されたら更新される。
     /// コメントやいいね数などが増えても更新されない。
-    required DateTime updatedAt,
+    @TimestampField() required DateTime? updatedAt,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);
