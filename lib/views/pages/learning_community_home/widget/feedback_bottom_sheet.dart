@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:withtone/providers/feedback/add_feedback.dart';
+import 'package:withtone/views/components/error_dialog.dart';
 import 'package:withtone/views/pages/learning_community_home/widget/feedback_list_tile.dart';
 import 'package:withtone/views/pages/learning_community_home/widget/feedback_text_form.dart';
+import 'package:withtone/views/pages/learning_community_home/widget/send_button.dart';
 
-class FeedBackBottomSheet extends StatelessWidget {
-  FeedBackBottomSheet({super.key, required this.feedBacks});
+class FeedBackBottomSheet extends HookConsumerWidget {
+  const FeedBackBottomSheet({super.key, required this.feedBacks});
 
   ///コメントのリスト
   final List feedBacks;
-  final TextEditingController c = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final feedBackTextController = useTextEditingController();
     return Container(
         height: MediaQuery.of(context).size.height * 0.8, //画面の高さの1/8の高さ
         decoration: const BoxDecoration(
@@ -47,7 +52,24 @@ class FeedBackBottomSheet extends StatelessWidget {
                 },
               ),
             ),
-            FeedBackTextForm(controller: c)
+            Stack(
+              children: [
+                SendButton(onPressed: () async {
+                  final notifier = ref.read(addFeedbackProvider.notifier);
+                  await notifier
+                      .addFeedback(feedBackTextController.text)
+                      .then((value) => feedBackTextController.clear())
+                      .catchError((e) {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return ErrorDialog(e: e);
+                        });
+                  });
+                }),
+                FeedBackTextForm(controller: feedBackTextController),
+              ],
+            )
           ],
         ));
   }
