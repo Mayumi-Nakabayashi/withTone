@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/circle_profile_icon.dart';
-import 'package:withtone/views/pages/learning_community_home/widget/feedback_favorite_button.dart';
 import 'package:withtone/views/pages/learning_community_home/widget/feedback_button.dart';
+import 'package:withtone/views/pages/learning_community_home/widget/feedback_favorite_button.dart';
 import 'package:withtone/views/pages/learning_community_home/widget/leaning_user_icon.dart';
+import 'package:withtone/views/pages/learning_community_home/widget/question_button.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 
 /// コミュニティ
@@ -27,8 +28,8 @@ class _LearningCommunityHomePageState extends State<LearningCommunityHomePage> {
               width: double.infinity,
               height: double.infinity,
               child: const Image(
-                  image: AssetImage(
-                      'assets/page_images/upload_thankyouq.jpg'))), //
+                  image: AssetImage('assets/page_images/feedback_video.png'))),
+          const Center(child: QuestionButton()),
           Positioned(
             bottom: 100,
             right: 20,
