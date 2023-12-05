@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
-import 'package:withtone/views/pages/upload_question_fb/upload_fb_comment_page.dart';
+import 'package:withtone/views/pages/upload_question_fb/upload_comment_fb_page.dart';
 
 class UploadQuestionFBPage extends StatefulWidget {
   const UploadQuestionFBPage({super.key});
@@ -21,8 +21,8 @@ class ButtonItem {
 
 class _UploadQuestionFBPageState extends State<UploadQuestionFBPage> {
   List<ButtonItem> buttonItems = [
-    ButtonItem(label: 'はい', path: UploadFbCommentPage.path),
-    ButtonItem(label: 'いいえ', path: UploadFbCommentPage.path),
+    ButtonItem(label: 'はい', path: UploadCommentFbPage.path),
+    ButtonItem(label: 'いいえ', path: UploadCommentFbPage.path),
   ];
   List<ButtonItem> buttonItem = [];
   @override
