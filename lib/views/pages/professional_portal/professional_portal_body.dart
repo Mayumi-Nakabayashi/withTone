@@ -71,9 +71,11 @@ class ProfessionalPortalBody extends StatelessWidget {
             //childAspectRatio: 3/4,  // アスペクト比
             children: [
               for (var i = 0; i < 6; i++)
-                Container(
-                  color: i.isEven ? Colors.blue : Colors.red,
-                )
+                  Image.asset(
+                    'assets/pictures/professional_portal_1.jpg', // 画像のファイルパス
+                    width: 80.0,
+                    height: 100.0,
+                  ),
             ],
           ),
         ],
