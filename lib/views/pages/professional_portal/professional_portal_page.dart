@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'professional_portal_body.dart';
+
 
 /// プロフェッショナルポータルページ
 class ProfessionalPortalPage extends StatefulWidget {
@@ -16,9 +18,8 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DefaultTabController(
-          length: 2,
-          child: NestedScrollView(
+
+      body: NestedScrollView(
               headerSliverBuilder: (BuildContext context,
                   bool innerBoxIsScrolled) {
                 return <Widget>[
@@ -44,27 +45,19 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
                   ),
                 ];
               },
-              body: Column(
-                children: [
-                  Center(
-                    child: FloatingActionButton.extended(
-                          onPressed: () {
-                          // TODO: 遷移先の実装
-                        },
-                          label: const Text(
-                            '今すぐ質問する',
-                            style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            ),
-                          ),
-                        ),
-                  ),
-                ],
-              ),
+
+            body: ProfessionalPortalBody(
+              professionalportalHeading: professionalportalHeading,
+              professionalportalContent: professionalportalContent,
             ),
       ),
     );
   }
 }
+
+
+String articleTitle = 'ビブラートで挫折しないための練習';
+String professionalportalHeading = 'Harmonize, Connect, Inspire';
+String professionalportalContent =
+    'example';
+String goodCount = '2.1k';
