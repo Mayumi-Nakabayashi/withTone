@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
-import 'package:withtone/views/pages/upload_question_fb/upload_comment_fb_page.dart';
-import 'package:withtone/views/pages/upload_question_fb/upload_media_fb_page.dart';
+import 'package:withtone/views/pages/upload_feedback/upload_comment_fb_page.dart';
+import 'package:withtone/views/pages/upload_feedback/upload_media_fb_page.dart';
 
 class UploadQuestionFBPage extends StatefulWidget {
   const UploadQuestionFBPage({super.key});

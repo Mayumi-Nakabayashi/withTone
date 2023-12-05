@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
-import 'package:withtone/views/pages/upload_question_fb/upload_thanks_fb_page.dart';
+import 'package:withtone/views/pages/upload_feedback/upload_thanks_fb_page.dart';
 
 /// コミュニティからの投稿動画にFBコメントをつける画面
 class UploadCommentFbPage extends StatefulWidget {

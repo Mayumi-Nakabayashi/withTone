@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/pages/upload_question_fb/upload_comment_fb_page.dart';
+import 'package:withtone/views/pages/upload_feedback/upload_comment_fb_page.dart';
 
 /// フィードバック動画・画像を撮影する画面
 class UploadMediaFbPage extends StatefulWidget {
