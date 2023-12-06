@@ -70,7 +70,7 @@ class ProfessionalPortalBody extends StatelessWidget {
             crossAxisSpacing: 16.0,
             childAspectRatio: 3 / 4, /// アスペクト比
             children: List.generate(
-              6,
+              4,
                   (index) {
                 return Card(
                   child: Container(
