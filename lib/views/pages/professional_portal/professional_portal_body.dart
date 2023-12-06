@@ -68,7 +68,7 @@ class ProfessionalPortalBody extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 16.0,
             crossAxisSpacing: 16.0,
-            childAspectRatio: 3 / 4, // アスペクト比
+            childAspectRatio: 3 / 4, /// アスペクト比
             children: List.generate(
               6,
                   (index) {
