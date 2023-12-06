@@ -64,19 +64,31 @@ class ProfessionalPortalBody extends StatelessWidget {
           ),
           GridView.count(
             shrinkWrap: true,
-            padding: const EdgeInsets.all(60.0),
+            padding: const EdgeInsets.all(16.0),
             crossAxisCount: 2,
-            mainAxisSpacing: 30,
-            crossAxisSpacing: 25,
-            //childAspectRatio: 3/4,  // アスペクト比
-            children: [
-              for (var i = 0; i < 6; i++)
-                  Image.asset(
-                    'assets/pictures/professional_portal_1.jpg', // 画像のファイルパス
-                    width: 80.0,
-                    height: 100.0,
+            mainAxisSpacing: 16.0,
+            crossAxisSpacing: 16.0,
+            childAspectRatio: 3 / 4, // アスペクト比
+            children: List.generate(
+              6,
+                  (index) {
+                return Card(
+                  child: Container(
+                    width: 50.0, // 幅
+                    height: 10.0 * (4 / 3), // アスペクト比を考慮して高さを計算
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        index < 5
+                            ? 'assets/pictures/professional_portal_${index + 2}.jpg'
+                            : 'assets/pictures/professional_portal_1.png',
+                        fit: BoxFit.cover, // 画像をContainerにフィットさせる
+                      ),
+                    ),
                   ),
-            ],
+                );
+              },
+            ),
           ),
         ],
       ),
