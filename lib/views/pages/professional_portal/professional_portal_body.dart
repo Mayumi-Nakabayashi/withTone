@@ -14,7 +14,7 @@ class ProfessionalPortalBody extends StatelessWidget {
   final String professionalportalContent;
 
   /// ボタン
-  ///
+  ////
 
   @override
   Widget build(BuildContext context) {
