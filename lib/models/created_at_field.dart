@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-//TODO ken-tyさんと被るかもしてれないからいらなくなったら削除
-
 class CreatedAtField implements JsonConverter<DateTime?, dynamic> {
   const CreatedAtField();
 
