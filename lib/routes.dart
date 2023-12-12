@@ -66,6 +66,6 @@ class Routes {
         const AccountStopdeleteStopPage(),
     AccountStopdeleteDeletePage.path: (context) =>
         const AccountStopdeleteDeletePage(),
-    RegisterUserPage.path: (constext) => const RegisterUserPage()
+    ResisterUserPage.path: (constext) => const ResisterUserPage()
   };
 }
