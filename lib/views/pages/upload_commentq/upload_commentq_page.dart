@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:withtone/models/post.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
 
@@ -47,6 +50,32 @@ class _UploadCommentqPageState extends State<UploadCommentqPage> {
             PrimaryButton(
               label: '質問を投稿',
               onPressed: () {
+                // 仮投稿作成
+                final postRef = FirebaseFirestore.instance.collection('posts');
+                final docId = postRef.doc().id;
+                final uid = FirebaseAuth.instance.currentUser?.uid ?? '';
+                final post = Post(
+                  id: docId,
+                  uid: uid,
+                  title: '【超初心者】バイオリンを買ってから７日間の練習メニュー',
+                  body: '''
+バイオリンを始めたばかりの超初心者用の動画です。
+７日間でバイオリンの準備から持ち方、簡単な曲にチャレンジ！
+''',
+                  // 先に動画をアップロードして、そのURLを入れる
+                  movieUrl: 'https://www.youtube.com/watch?v=8HqQ3XgxBhY',
+                  tags: ['#バイオリン', '#初心者', '#質問歓迎'],
+                  // これは自動で入れたい
+                  createdAt: DateTime.now(), // これだとサーバー時刻じゃない
+                  updatedAt: DateTime.now(),
+                );
+
+                postRef.doc(docId).set(post.toJson());
+
+                // いいねをつける 別にここでやらなくても良いが、データ型の確認の為
+                postRef.doc(docId).collection('favorite').add({
+                  'users': [uid]
+                });
                 Navigator.of(context).pushNamed(HomePage.path);
               },
             )
