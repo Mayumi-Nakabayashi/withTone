@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:withtone/models/created_at_field.dart';
-import 'package:withtone/models/time_stamp_field.dart';
 
 part 'post.freezed.dart';
 part 'post.g.dart';
