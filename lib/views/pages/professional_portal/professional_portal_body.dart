@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ProfessionalPortalBody extends StatelessWidget {
-  ProfessionalPortalBody({
+  const ProfessionalPortalBody({
     super.key,
     required this.professionalportalHeading,
     required this.professionalportalContent,
   });
-
   /// 記事の見出しテキスト
   final String professionalportalHeading;
 
@@ -14,8 +13,6 @@ class ProfessionalPortalBody extends StatelessWidget {
   final String professionalportalContent;
 
   /// ボタン
-  ////
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -70,7 +67,7 @@ class ProfessionalPortalBody extends StatelessWidget {
             crossAxisSpacing: 16.0,
             childAspectRatio: 3 / 4, /// アスペクト比
             children: List.generate(
-              4,
+              6,
                   (index) {
                 return Card(
                   child: Container(

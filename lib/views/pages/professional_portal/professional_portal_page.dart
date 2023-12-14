@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'professional_portal_body.dart';
 
 
@@ -18,7 +17,6 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: NestedScrollView(
               headerSliverBuilder: (BuildContext context,
                   bool innerBoxIsScrolled) {
@@ -55,8 +53,6 @@ class _ProfessionalPortalPageState extends State<ProfessionalPortalPage> {
   }
 }
 
-
-String articleTitle = 'ビブラートで挫折しないための練習';
 String professionalportalHeading = 'Harmonize, Connect, Inspire';
 String professionalportalContent =
     'example';
