@@ -16,9 +16,8 @@ class ResisterUserPage extends ConsumerStatefulWidget {
       _ResisterUserPageState();
 }
 
-final userNameController = TextEditingController();
-
 class _ResisterUserPageState extends ConsumerState<ResisterUserPage> {
+  final userNameController = TextEditingController();
   @override
   void dispose() {
     userNameController.dispose();
