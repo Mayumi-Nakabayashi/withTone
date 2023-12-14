@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/routes.dart';
+import 'package:withtone/views/theme/fonts.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -22,6 +23,7 @@ class App extends StatelessWidget {
           primary: const Color(0xff005792),
           secondary: const Color(0xffffb921),
         ),
+        fontFamily: WithtoneText.bodyS.fontFamily,
         useMaterial3: true,
       ),
       routes: Routes.routes,
