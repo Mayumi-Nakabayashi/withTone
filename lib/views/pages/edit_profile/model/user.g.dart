@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'register.dart';
+part of 'user.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RegisterImpl _$$RegisterImplFromJson(Map<String, dynamic> json) =>
-    _$RegisterImpl(
+_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       id: json['id'] as String,
       userName: json['userName'] as String,
       userId: json['userId'] as String? ?? '@withTone',
@@ -17,7 +16,7 @@ _$RegisterImpl _$$RegisterImplFromJson(Map<String, dynamic> json) =>
       youtubeUrl: json['youtubeUrl'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$RegisterImplToJson(_$RegisterImpl instance) =>
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userName': instance.userName,

@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'register.freezed.dart';
-part 'register.g.dart';
+part 'user.freezed.dart';
+part 'user.g.dart';
 
 @freezed
-class Register with _$Register {
-  const factory Register({
+class User with _$User {
+  const factory User({
     required String id,
     required String userName,
     @Default('@withTone') String userId,
@@ -13,8 +13,7 @@ class Register with _$Register {
     @Default('') String selfIntroduction,
     @Default('') String tiktokUrl,
     @Default('') String youtubeUrl,
-  }) = _Register;
+  }) = _User;
 
-  factory Register.fromJson(Map<String, dynamic> json) =>
-      _$RegisterFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
