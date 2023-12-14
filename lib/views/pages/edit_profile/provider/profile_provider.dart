@@ -1,17 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:withtone/views/pages/edit_profile/model/register.dart';
+import 'package:withtone/providers/firebase_provider/firestore_provider.dart';
+import 'package:withtone/views/pages/edit_profile/model/user.dart';
 
-import '../../../../providers/firebase_provider/firestore_provider.dart';
-
-final registerReference = Provider.autoDispose((ref) {
+final usersReference = Provider.autoDispose((ref) {
   final firestore = ref.watch(firestoreProvider);
-  return firestore.collection('registers').withConverter(
+  return firestore.collection('users').withConverter(
         fromFirestore: (ds, _) {
           final data = ds.data();
           if (data == null) {
             return null;
           }
-          return Register.fromJson(data);
+          return User.fromJson(data);
         },
         toFirestore: (value, _) => value?.toJson() ?? {},
       );
