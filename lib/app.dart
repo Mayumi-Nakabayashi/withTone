@@ -23,7 +23,7 @@ class App extends StatelessWidget {
           primary: const Color(0xff005792),
           secondary: const Color(0xffffb921),
         ),
-        fontFamily: WithtoneText.bodyS.fontFamily,
+        fontFamily: WithToneText.bodyS.fontFamily,
         useMaterial3: true,
       ),
       routes: Routes.routes,

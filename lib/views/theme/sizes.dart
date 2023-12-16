@@ -23,6 +23,6 @@ class RawSize {
   static const p200 = 200.0;
   static const p250 = 250.0;
   static const p300 = 300.0;
-  static const p400 = 300.0;
-  static const p600 = 300.0;
+  static const p400 = 400.0;
+  static const p600 = 600.0;
 }
