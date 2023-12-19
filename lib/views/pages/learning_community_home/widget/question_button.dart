@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:withtone/views/pages/upload_feedback/upload_question_fb_page.dart';
+import 'package:withtone/views/pages/learning_community_home/learning_community_question_page.dart';
 
 class QuestionButton extends StatelessWidget {
   const QuestionButton({super.key});
@@ -30,8 +30,7 @@ class QuestionButton extends StatelessWidget {
           ),
           child: TextButton(
             onPressed: () {
-              // TODO: ここの遷移先は仮です。修正してください。
-              Navigator.pushNamed(context, UploadQuestionFBPage.path);
+              Navigator.pushNamed(context, LearningCommunityQuestionPage.path);
             },
             style: TextButton.styleFrom(
               fixedSize: const Size(blurButtonWidth, blurButtonHeight),
