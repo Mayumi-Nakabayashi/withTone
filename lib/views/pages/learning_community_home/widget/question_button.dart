@@ -11,11 +11,12 @@ class QuestionButton extends StatelessWidget {
     const double blurButtonWidth = 258;
     const double blurButtonHeight = 65;
 
-    return ClipRect(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(50),
       child: BackdropFilter(
         filter: ui.ImageFilter.blur(
-          sigmaX: 5.0,
-          sigmaY: 5.0,
+          sigmaX: 10.0,
+          sigmaY: 10.0,
         ),
         child: Container(
           alignment: Alignment.center,
