@@ -31,7 +31,7 @@ class WithToneText {
     fontFamily: WithToneFont.general,
   );
   static const bodyS = TextStyle(
-    fontSize: RawSize.p16,
+    fontSize: RawSize.p14,
     fontFamily: WithToneFont.general,
   );
 }
