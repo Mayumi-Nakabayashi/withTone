@@ -21,6 +21,7 @@ class WithToneText {
   static const titleS = TextStyle(
     fontSize: RawSize.p20,
     fontFamily: WithToneFont.general,
+    fontWeight: FontWeight.bold,
   );
   static const bodyL = TextStyle(
     fontSize: RawSize.p18,
