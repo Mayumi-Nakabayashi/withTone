@@ -6,17 +6,17 @@ import 'package:withtone/views/learning_community_search.dart';
 import 'package:withtone/views/pages/edit_profile/model/user.dart';
 import 'package:withtone/views/pages/edit_profile/provider/profile_provider.dart';
 
-class ResisterUserPage extends ConsumerStatefulWidget {
-  const ResisterUserPage({super.key});
+class RegisterUserPage extends ConsumerStatefulWidget {
+  const RegisterUserPage({super.key});
 
   static const String path = '/register_user';
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _ResisterUserPageState();
+      _RegisterUserPageState();
 }
 
-class _ResisterUserPageState extends ConsumerState<ResisterUserPage> {
+class _RegisterUserPageState extends ConsumerState<RegisterUserPage> {
   final userNameController = TextEditingController();
   @override
   void dispose() {

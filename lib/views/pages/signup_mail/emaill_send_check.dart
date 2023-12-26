@@ -50,7 +50,7 @@ class EmailSendCheckState extends State<EmailSendCheck> {
       // emailVerifiedがtrueに変更されたタイミングでタイマーを停止
       timer.cancel();
       if (mounted) {
-        await Navigator.pushNamed(context, ResisterUserPage.path);
+        await Navigator.pushNamed(context, RegisterUserPage.path);
       }
     });
   }
