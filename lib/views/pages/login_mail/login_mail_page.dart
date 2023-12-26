@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/components/text_button_zero_padding.dart';
@@ -115,10 +114,10 @@ class _LoginMailPageState extends State<LoginMailPage> {
               PrimaryButton(
                   label: 'ログイン',
                   onPressed: () async {
-                    final email = emailController.text;
-                    final password = passwordController.text;
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: email, password: password);
+                    // final email = emailController.text;
+                    // final password = passwordController.text;
+                    // await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    //     email: email, password: password);
                     if (mounted) {
                       await Navigator.pushNamed(context, HomePage.path);
                     }

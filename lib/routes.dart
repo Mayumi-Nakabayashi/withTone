@@ -12,6 +12,7 @@ import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/edit_profile/edit_profile_page.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/intro/intro_page.dart';
+import 'package:withtone/views/pages/learning_community_home/learning_community_question_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
@@ -74,6 +75,8 @@ class Routes {
         const AccountStopdeleteStopPage(),
     AccountStopdeleteDeletePage.path: (context) =>
         const AccountStopdeleteDeletePage(),
-    RegisterUserPage.path: (constext) => const RegisterUserPage()
+    RegisterUserPage.path: (constext) => const RegisterUserPage(),
+    LearningCommunityQuestionPage.path: (constext) =>
+        const LearningCommunityQuestionPage()
   };
 }
