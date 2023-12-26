@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// フィードバックのコメントかくテキストフィールド
-class FeedBackTextForm extends StatelessWidget {
+class FeedBackTextForm extends ConsumerWidget {
   const FeedBackTextForm({super.key, required this.controller});
   final TextEditingController controller;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Row(
@@ -14,7 +15,7 @@ class FeedBackTextForm extends StatelessWidget {
         children: [
           Expanded(
               child: Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            padding: const EdgeInsets.only(left: 8.0, right: 32.0),
             child: TextFormField(
               maxLines: 99,
               minLines: 1,
@@ -30,7 +31,7 @@ class FeedBackTextForm extends StatelessWidget {
                     borderSide: BorderSide.none),
               ),
             ),
-          ))
+          )),
         ],
       ),
     );
