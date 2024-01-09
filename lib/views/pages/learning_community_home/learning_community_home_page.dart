@@ -10,11 +10,13 @@ class LearningCommunityHomePage extends ConsumerWidget {
     final postList = ref.watch(postListProvider);
     return postList.when(
         loading: () {
+          // post取得中の処理
           return const Center(
             child: CircularProgressIndicator(),
           );
         },
         data: (data) {
+          // post取得後の処理
           return SizedBox(
             width: double.infinity,
             height: double.infinity,
@@ -29,6 +31,7 @@ class LearningCommunityHomePage extends ConsumerWidget {
                 }),
           );
         },
+        // post取得でエラーだった場合の処理
         error: (error, stackTrace) => const Center(
               child: Text('error'),
             ));

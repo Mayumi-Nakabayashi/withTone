@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 import 'package:withtone/providers/feedback/feedback_list.dart';
 import 'package:withtone/views/components/error_dialog.dart';
 import 'package:withtone/views/pages/learning_community_home/feedback/feedback_list_tile.dart';
@@ -34,7 +34,7 @@ class _FeedBackBottomSheetState extends ConsumerState<FeedBackBottomSheet> {
   Widget build(BuildContext context) {
     final feedbackList = ref.watch(feedbackListProvider(widget.post));
     return Container(
-        height: MediaQuery.of(context).size.height * 0.8, //画面の高さの1/8の高さ
+        height: MediaQuery.of(context).size.height * 0.8, //画面の高さの80%の高さ
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10), topRight: Radius.circular(10)),
@@ -42,6 +42,7 @@ class _FeedBackBottomSheetState extends ConsumerState<FeedBackBottomSheet> {
         ),
         child: feedbackList.when(
             data: (data) {
+              //feedback取得後の処理
               return Column(
                 children: [
                   Row(
@@ -103,8 +104,10 @@ class _FeedBackBottomSheetState extends ConsumerState<FeedBackBottomSheet> {
               );
             },
             loading: () {
+              //feedback取得中の処理
               return const Center(child: CircularProgressIndicator());
             },
+            //feedback取得でエラーだった場合の処理
             error: (error, stackTrace) => const Center(
                   child: Text('error'),
                 )));

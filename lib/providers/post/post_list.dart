@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 import 'package:withtone/providers/auth/uid.dart';
 import 'package:withtone/providers/post/post_ref.dart';
 
@@ -7,6 +7,7 @@ part 'post_list.g.dart';
 
 @riverpod
 class PostList extends _$PostList {
+  // postを取得してくるメソッド（メインコンテンツ部分）
   Future<List<Post>> fetchPost() async {
     final postRef = ref.watch(postRefProvider);
     final doc = await postRef.orderBy('createdAt', descending: true).get();
@@ -19,7 +20,8 @@ class PostList extends _$PostList {
     return fetchPost();
   }
 
-  Future<void> addFeedback({
+// postを追加するメソッド
+  Future<void> addPost({
     required String title,
     required String body,
     required String movieUrl,
@@ -32,7 +34,7 @@ class PostList extends _$PostList {
     final postRef = ref.read(postRefProvider).doc();
     final uid = ref.read(uidProvider);
 
-    final feedback = Post(
+    final post = Post(
       id: postRef.id,
       uid: uid,
       title: title,
@@ -43,6 +45,6 @@ class PostList extends _$PostList {
       updatedAt: null,
     );
 
-    await postRef.set(feedback);
+    await postRef.set(post);
   }
 }

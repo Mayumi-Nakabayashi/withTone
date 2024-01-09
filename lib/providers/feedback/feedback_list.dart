@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:withtone/models/feedback/feedback.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 import 'package:withtone/providers/auth/uid.dart';
 import 'package:withtone/providers/feedback/feedback_ref.dart';
 
@@ -24,7 +24,6 @@ class FeedbackList extends _$FeedbackList {
   //フィードバックを再取得するメソッド
   Future<void> refreshFeedback(Post post) async {
     state = const AsyncValue.loading();
-
     state = await AsyncValue.guard(() async {
       return fetchFeedback(post);
     });
@@ -41,7 +40,7 @@ class FeedbackList extends _$FeedbackList {
       final uid = ref.read(uidProvider);
       final feedback = Feedback(id: feedbackRef.id, uid: uid, comment: comment);
       await feedbackRef.set(feedback);
-      return fetchFeedback(post);
+      return fetchFeedback(post); //投稿終わったら再取得
     });
   }
 }

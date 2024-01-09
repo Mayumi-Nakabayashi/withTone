@@ -7,12 +7,12 @@ part 'feedback.g.dart';
 @freezed
 class Feedback with _$Feedback {
   const factory Feedback({
-    required String id,
-    required String uid,
-    required String comment,
-    @Default([]) List<String> favoriteUsers,
-    @Default('') String url,
-    @CreatedAtField() DateTime? createdAt,
+    required String id, /// ドキュメントID
+    required String uid, /// 投稿者のUID
+    required String comment, /// コメント
+    @Default([]) List<String> favoriteUsers, /// お気に入りユーザーのUIDリスト
+    @Default('') String url, /// 動画URL
+    @CreatedAtField() DateTime? createdAt, /// 投稿時刻
   }) = _Feedback;
   factory Feedback.fromJson(Map<String, dynamic> json) =>
       _$FeedbackFromJson(json);

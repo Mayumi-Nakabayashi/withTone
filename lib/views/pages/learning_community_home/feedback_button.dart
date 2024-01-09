@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 import 'package:withtone/views/pages/learning_community_home/feedback/feedback_bottom_sheet.dart';
 
 class FeedBackButton extends StatelessWidget {

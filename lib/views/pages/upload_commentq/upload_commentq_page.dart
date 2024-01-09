@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
 

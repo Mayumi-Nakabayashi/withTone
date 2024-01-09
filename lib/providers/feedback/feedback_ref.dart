@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:withtone/models/feedback/feedback.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 
 part 'feedback_ref.g.dart';
 
