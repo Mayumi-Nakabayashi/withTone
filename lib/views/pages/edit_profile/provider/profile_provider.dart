@@ -15,3 +15,13 @@ final usersReference = Provider.autoDispose((ref) {
         toFirestore: (value, _) => value?.toJson() ?? {},
       );
 });
+
+final userStreamProvider = StreamProvider.autoDispose.family(
+  (ref, String? uid) {
+    return ref
+        .watch(usersReference)
+        .doc(uid)
+        .snapshots()
+        .map((event) => event.data());
+  },
+);
