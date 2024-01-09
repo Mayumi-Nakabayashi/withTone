@@ -28,8 +28,6 @@ class _FeedBackBottomSheetState extends ConsumerState<FeedBackBottomSheet> {
     super.dispose();
   }
 
-  ///コメントのリスト
-
   @override
   Widget build(BuildContext context) {
     final feedbackList = ref.watch(feedbackListProvider(widget.post));
