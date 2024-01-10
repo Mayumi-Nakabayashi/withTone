@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 
+// 撮影した画像を保存するプロバイダー
+final imageProvider = StateProvider<XFile?>((ref) => null);
+
 // カメラコントローラを取得するプロバイダー
 // この画面でしか使わないので、一旦ここに書いておく
 final cameraControllerProvider =
@@ -32,10 +35,9 @@ class UploadVideoQuestionPage extends ConsumerWidget {
   static const String path = '/upload_video_question';
 
   /// 写真撮影ボタン押下時処理
-  Future<void> onPressTakePictureButton(
+  Future<XFile> onPressTakePictureButton(
       BuildContext context, CameraController controller) async {
-    final image = await controller.takePicture();
-    print("imagePath: ${image.path}");
+    return await controller.takePicture();
   }
 
   @override
@@ -81,8 +83,12 @@ class UploadVideoQuestionPage extends ConsumerWidget {
                     ElevatedButton(
                       onPressed: () => {
                         cameraController.when(
-                          data: (data) =>
-                              onPressTakePictureButton(context, data),
+                          data: (data) {
+                            onPressTakePictureButton(context, data).then(
+                                (value) => ref
+                                    .read(imageProvider.notifier)
+                                    .state = value);
+                          },
                           error: (err, stack) => print("error: $err"),
                           // 読込中は何も表示しない
                           loading: () => print("loading"),
