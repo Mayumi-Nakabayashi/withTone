@@ -1,28 +1,72 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 
+// カメラコントローラを取得するプロバイダー
+// この画面でしか使わないので、一旦ここに書いておく
+final cameraControllerProvider =
+    FutureProvider.autoDispose<CameraController>((ref) async {
+  // 利用可能なカメラの一覧を取得
+  final cameras = await availableCameras();
+  // 基本的には、※0: 外カメ　1: 内カメ
+  final camera = cameras[1];
+  final controller = CameraController(
+    camera,
+    ResolutionPreset.medium,
+  );
+  // プロバイダーの破棄時にカメラコントローラを破棄する
+  ref.onDispose(() {
+    controller.dispose();
+  });
+
+  // コントローラを初期化
+  await controller.initialize();
+  return controller;
+});
+
 /// 質問動画を撮影する画面
-class UploadVideoQuestionPage extends StatefulWidget {
+class UploadVideoQuestionPage extends ConsumerWidget {
   const UploadVideoQuestionPage({super.key});
 
   static const String path = '/upload_video_question';
 
-  @override
-  State<UploadVideoQuestionPage> createState() =>
-      _UploadVideoQuestionPageState();
-}
+  /// 写真撮影ボタン押下時処理
+  Future<void> onPressTakePictureButton(
+      BuildContext context, CameraController controller) async {
+    final image = await controller.takePicture();
+    print("imagePath: ${image.path}");
+  }
 
-class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cameraController = ref.watch(cameraControllerProvider);
+
     return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.flip_camera_android),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: Stack(
         children: [
-          Container(color: Colors.pink), // TODO: ここにカメラ画像を表示する
+          cameraController.when(
+              // 撮影プレビュー
+              data: (data) => CameraPreview(data),
+              error: (err, stack) => Text('Error: $err'),
+              // 読込中プログレス
+              loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  )),
+
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              AppBar(backgroundColor: Colors.transparent),
               Padding(
                 padding: const EdgeInsets.only(bottom: 80.0),
                 child: Row(
@@ -33,9 +77,17 @@ class _UploadVideoQuestionPageState extends State<UploadVideoQuestionPage> {
                       label: 'Effects',
                       assetPath: 'assets/logo/Effects_Illustration.png',
                     ),
-                    // TODO: いい感じのアニメーションをつけるビデオボタンを作る
+                    // 撮影ボタン
                     ElevatedButton(
-                      onPressed: () => {},
+                      onPressed: () => {
+                        cameraController.when(
+                          data: (data) =>
+                              onPressTakePictureButton(context, data),
+                          error: (err, stack) => print("error: $err"),
+                          // 読込中は何も表示しない
+                          loading: () => print("loading"),
+                        ),
+                      },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                         backgroundColor: Colors.yellow[800],
