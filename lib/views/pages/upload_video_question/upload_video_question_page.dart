@@ -65,7 +65,6 @@ class UploadVideoQuestionPage extends ConsumerWidget {
               loading: () => const Center(
                     child: CircularProgressIndicator(),
                   )),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -84,10 +83,12 @@ class UploadVideoQuestionPage extends ConsumerWidget {
                       onPressed: () => {
                         cameraController.when(
                           data: (data) {
-                            onPressTakePictureButton(context, data).then(
-                                (value) => ref
-                                    .read(imageProvider.notifier)
-                                    .state = value);
+                            onPressTakePictureButton(context, data)
+                                .then((value) {
+                              ref.read(imageProvider.notifier).state = value;
+                              Navigator.of(context)
+                                  .pushNamed(UploadCommentqPage.path);
+                            });
                           },
                           error: (err, stack) => print("error: $err"),
                           // 読込中は何も表示しない
@@ -110,14 +111,6 @@ class UploadVideoQuestionPage extends ConsumerWidget {
                 ),
               ),
             ],
-          ),
-          // 暫定で次へボタンを画面中央に表示
-          Center(
-            child: ElevatedButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(UploadCommentqPage.path),
-              child: const Text('次へ'),
-            ),
           ),
         ],
       ),
