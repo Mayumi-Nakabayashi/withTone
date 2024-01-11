@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 
+// 画像と動画のモードの切り替え状態
+enum CameraMode { image, video }
+
+// 画像と動画のモードの切り替え状態を管理するプロバイダー
+final cameraModeProvider =
+    StateProvider.autoDispose<CameraMode>((ref) => CameraMode.image);
+
 // 撮影した画像を保存するプロバイダー
 final imageProvider = StateProvider<XFile?>((ref) => null);
 
@@ -69,7 +76,7 @@ class UploadVideoQuestionPage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 80.0),
+                padding: const EdgeInsets.only(bottom: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -109,6 +116,21 @@ class UploadVideoQuestionPage extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.camera_alt_rounded, color: Colors.grey),
+                  Switch(
+                      activeColor: Colors.white,
+                      value: ref.watch(cameraModeProvider) == CameraMode.video,
+                      onChanged: (value) {
+                        print("value: $value");
+                        ref.watch(cameraModeProvider.notifier).state =
+                            value ? CameraMode.video : CameraMode.image;
+                      }),
+                  const Icon(Icons.video_camera_front, color: Colors.grey),
+                ],
               ),
             ],
           ),
