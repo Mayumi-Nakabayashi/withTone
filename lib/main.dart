@@ -15,6 +15,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // riverpod使用のためプロバイダースコープでくくる
+
   runApp(const ProviderScope(child: App()));
 }

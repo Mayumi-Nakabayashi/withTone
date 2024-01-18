@@ -54,6 +54,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 const EditProfileTile(title: '自己紹介', contents: '自己紹介を追加'),
                 const BorderWidget(),
                 const EditProfileTile(title: 'YouTube', contents: 'YouTubeを追加'),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('編集'),
+                )
               ],
             ),
           ),

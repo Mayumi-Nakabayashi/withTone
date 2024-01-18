@@ -67,7 +67,7 @@ class Routes {
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
     UploadCommentqPage.path: (context) => const UploadCommentqPage(),
-    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
+    UploadVideoQuestionPage.path: (context) => UploadVideoQuestionPage(),
     ArticlePage.path: (context) => const ArticlePage(),
     AccountStopdeletePage.path: (context) => const AccountStopdeletePage(),
     AccountStopdeleteStopPage.path: (context) =>

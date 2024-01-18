@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:withtone/providers/firebase_provider/firebase_auth_provider.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/learning_community_search.dart';
+import 'package:withtone/views/pages/edit_profile/model/user.dart';
+import 'package:withtone/views/pages/edit_profile/provider/profile_provider.dart';
 
-/// ユーザー名を登録する画面
-class RegisterUserPage extends StatefulWidget {
+class RegisterUserPage extends ConsumerStatefulWidget {
   const RegisterUserPage({super.key});
 
   static const String path = '/register_user';
 
   @override
-  State<RegisterUserPage> createState() => _RegisterUserPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RegisterUserPageState();
 }
 
-class _RegisterUserPageState extends State<RegisterUserPage> {
+class _RegisterUserPageState extends ConsumerState<RegisterUserPage> {
   final userNameController = TextEditingController();
+  @override
+  void dispose() {
+    userNameController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,10 +80,19 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
               PrimaryButton(
                   label: '次へ',
                   onPressed: () async {
-                    await Navigator.pushNamed(
-                      context,
-                      LeaningCommunitySearch.path,
-                    );
+                    final uid = ref.read(uidProvider);
+                    if (uid == null) {
+                      return;
+                    }
+                    final userName = userNameController.text;
+                    final user = User(id: uid, userName: userName);
+                    await ref.read(usersReference).add(user);
+                    if (mounted) {
+                      await Navigator.pushNamed(
+                        context,
+                        LeaningCommunitySearch.path,
+                      );
+                    }
                   }),
             ],
           ),

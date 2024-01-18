@@ -12,7 +12,13 @@
                 	<string>com.googleusercontent.apps.124992763448-nl37mb2957osesg3vvtf8s1ggobivudr</string>
             	</array>
         	</dict>
-    	</array>    
+    	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>アプリに表示・使用するための写真や動画を撮影する目的でリクエストします。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>アプリに表示・使用するための写真や動画をライブラリから選択する目的でリクエストします。</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>アプリに表示・使用するための写真や動画を撮影する目的でリクエストします。</string>
 	<key>NSUserTrackingUsageDescription</key>
     <string>表示する広告を適切に選択するために使用します。</string>
 	<key>GADApplicationIdentifier</key>

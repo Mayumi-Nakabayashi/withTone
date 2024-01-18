@@ -1,18 +1,28 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:withtone/models/post/post.dart';
+
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
+import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
 
 /// 質問動画にコメントをつける画面
+
 class UploadCommentqPage extends ConsumerStatefulWidget {
+
+
+
   const UploadCommentqPage({super.key});
 
   static const String path = '/upload_commentq';
 
   @override
+
   ConsumerState<UploadCommentqPage> createState() => _UploadCommentqPageState();
 }
 
@@ -53,11 +63,9 @@ class _UploadCommentqPageState extends ConsumerState<UploadCommentqPage> {
             ),
             const SizedBox(height: 20),
             // TODO: ここに動画を表示する
-            Container(
-              width: 300,
-              height: 300,
-              color: Colors.red,
-            ),
+            ref.watch(imageProvider) != null
+                ? Image.file(File(ref.watch(imageProvider)?.path ?? 'null'))
+                : const SizedBox(),
             const SizedBox(height: 20),
             PrimaryButton(
               label: '質問を投稿',
