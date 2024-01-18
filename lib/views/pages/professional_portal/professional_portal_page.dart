@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'professional_portal_body.dart';
 
-
 /// プロフェッショナルポータルページ
 class ProfessionalPortalPage extends StatefulWidget {
   const ProfessionalPortalPage({super.key});
