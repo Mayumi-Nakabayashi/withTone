@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'withtone_user.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
+_$WithToneUserImpl _$$WithToneUserImplFromJson(Map<String, dynamic> json) =>
+    _$WithToneUserImpl(
       id: json['id'] as String,
       userName: json['userName'] as String,
       userId: json['userId'] as String? ?? '@withTone',
@@ -16,7 +17,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       youtubeUrl: json['youtubeUrl'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+Map<String, dynamic> _$$WithToneUserImplToJson(_$WithToneUserImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userName': instance.userName,
