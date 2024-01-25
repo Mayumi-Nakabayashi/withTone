@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:withtone/models/post/post.dart';
-import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/providers/user/login_user.dart';
+import 'package:withtone/views/components/icon/circle_profile_icon.dart';
 import 'package:withtone/views/pages/learning_community_home/feedback_button.dart';
 import 'package:withtone/views/pages/learning_community_home/feedback_favorite_button.dart';
 import 'package:withtone/views/pages/learning_community_home/leaning_user_icon.dart';
@@ -8,29 +10,46 @@ import 'package:withtone/views/pages/learning_community_home/question_button.dar
 import 'package:withtone/views/pages/profile/profile_page.dart';
 
 /// コミュニティ
-class LearningCommunityTile extends StatefulWidget {
+class LearningCommunityTile extends ConsumerStatefulWidget {
   const LearningCommunityTile({super.key, required this.post});
   final Post post;
   static const String path = '/learning_community_home';
 
   @override
-  State<LearningCommunityTile> createState() =>
+  ConsumerState<LearningCommunityTile> createState() =>
       _LearningCommunityHomePageState();
 }
 
-class _LearningCommunityHomePageState extends State<LearningCommunityTile> {
+class _LearningCommunityHomePageState
+    extends ConsumerState<LearningCommunityTile> {
   @override
   Widget build(BuildContext context) {
+    // loginUser (AsyncValue<WithToneUser>) を取得
+    final loginUser = ref.watch(loginUserProvider);
+
+    // loginUser.userImage から Widget を生成
+    final userIcon = switch (loginUser) {
+      AsyncError() => const Icon(Icons.person),
+      AsyncData(:final value) => CircleProfileIcon(
+          size: 44,
+          isIcon: false,
+          imageUrl: value.userImage,
+          onPressed: () => Navigator.pushNamed(context, ProfilePage.path),
+        ),
+      _ => const CircularProgressIndicator(),
+    };
+
     return Scaffold(
       body: Stack(
         children: [
           Container(
-              color: Colors.amber,
-              width: double.infinity,
-              height: double.infinity,
-              child: const Image(
-                  image: AssetImage(
-                      'assets/page_images/feedback_video.png'))), //TODO UserDB機能実装後修正
+            color: Colors.amber,
+            width: double.infinity,
+            height: double.infinity,
+            child: const Image(
+              image: AssetImage('assets/page_images/feedback_video.png'),
+            ),
+          ), //TODO UserDB機能実装後修正
           const Center(child: QuestionButton()),
           Positioned(
             bottom: 100,
@@ -51,16 +70,11 @@ class _LearningCommunityHomePageState extends State<LearningCommunityTile> {
             ),
           ),
           Positioned(
-              top: 68,
-              right: 18,
-              child: CircleProfileIcon(
-                  size: 44,
-                  isIcon: false,
-                  onPressed: () {
-                    Navigator.pushNamed(context, ProfilePage.path);
-                  },
-                  imageUrl:
-                      'https://avatars.githubusercontent.com/u/79615420?s=60&v=4')), //TODO UserDB機能実装後修正
+            top: 68,
+            right: 18,
+            // FIXME: 若干ちらついて見えるため、要確認
+            child: userIcon,
+          ),
           Positioned(
             bottom: 20,
             left: 20,
