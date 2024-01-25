@@ -49,7 +49,9 @@ class CircleProfileIcon extends StatelessWidget {
                 width: size, // ここでサイズを調整できます。
                 height: size, // 同上
                 decoration: BoxDecoration(
+                  border: Border.all(width: 0.01),
                   shape: BoxShape.circle,
+                  color: const Color(0xffFFFFFF),
                   image: DecorationImage(
                     image: NetworkImage(imageUrl),
                     fit: BoxFit.cover,
