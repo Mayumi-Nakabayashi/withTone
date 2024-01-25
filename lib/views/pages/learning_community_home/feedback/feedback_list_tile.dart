@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/views/components/icon/circle_profile_icon.dart';
 import 'package:withtone/views/pages/learning_community_home/feedback_favorite_button.dart';
 
 class FeedBackListTile extends StatelessWidget {
