@@ -20,11 +20,17 @@ WithToneUser _$WithToneUserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WithToneUser {
-  String get id => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  String get userImage => throw _privateConstructorUsedError;
-  String get selfIntroduction => throw _privateConstructorUsedError;
+// FirebaseAuth User の uid と一致する id
+  String get id => throw _privateConstructorUsedError; // ユーザが編集可能な表示名
+// FIXME: X や Tiktok のように nickName に変更する？
+  String get userName =>
+      throw _privateConstructorUsedError; // @hoge のように @から始まるユーザの名前（編集不可かつ重複しない）
+// TODO: 作成時にユニークになるようバリデーションを行う
+// FIXME: id と紛らわしいため、X や Tiktok のように userName に変更する？
+  String get userId => throw _privateConstructorUsedError; // ユーザアイコンに表示する画像
+  String get userImage => throw _privateConstructorUsedError; // マイページに表示する自己紹介文
+  String get selfIntroduction =>
+      throw _privateConstructorUsedError; // Major SNS URLs
   String get tiktokUrl => throw _privateConstructorUsedError;
   String get youtubeUrl => throw _privateConstructorUsedError;
 
@@ -189,19 +195,28 @@ class _$WithToneUserImpl implements _WithToneUser {
   factory _$WithToneUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$WithToneUserImplFromJson(json);
 
+// FirebaseAuth User の uid と一致する id
   @override
   final String id;
+// ユーザが編集可能な表示名
+// FIXME: X や Tiktok のように nickName に変更する？
   @override
   final String userName;
+// @hoge のように @から始まるユーザの名前（編集不可かつ重複しない）
+// TODO: 作成時にユニークになるようバリデーションを行う
+// FIXME: id と紛らわしいため、X や Tiktok のように userName に変更する？
   @override
   @JsonKey()
   final String userId;
+// ユーザアイコンに表示する画像
   @override
   @JsonKey()
   final String userImage;
+// マイページに表示する自己紹介文
   @override
   @JsonKey()
   final String selfIntroduction;
+// Major SNS URLs
   @override
   @JsonKey()
   final String tiktokUrl;
@@ -265,17 +280,20 @@ abstract class _WithToneUser implements WithToneUser {
   factory _WithToneUser.fromJson(Map<String, dynamic> json) =
       _$WithToneUserImpl.fromJson;
 
-  @override
+  @override // FirebaseAuth User の uid と一致する id
   String get id;
-  @override
+  @override // ユーザが編集可能な表示名
+// FIXME: X や Tiktok のように nickName に変更する？
   String get userName;
-  @override
+  @override // @hoge のように @から始まるユーザの名前（編集不可かつ重複しない）
+// TODO: 作成時にユニークになるようバリデーションを行う
+// FIXME: id と紛らわしいため、X や Tiktok のように userName に変更する？
   String get userId;
-  @override
+  @override // ユーザアイコンに表示する画像
   String get userImage;
-  @override
+  @override // マイページに表示する自己紹介文
   String get selfIntroduction;
-  @override
+  @override // Major SNS URLs
   String get tiktokUrl;
   @override
   String get youtubeUrl;
