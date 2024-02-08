@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:withtone/providers/user/login_user.dart';
 import 'package:withtone/views/components/admob/ad_banner.dart';
-import 'package:withtone/views/components/circle_icon_button.dart';
-import 'package:withtone/views/components/circle_profile_icon.dart';
+import 'package:withtone/views/components/icon/circle_icon_button.dart';
+import 'package:withtone/views/components/icon/circle_profile_icon.dart';
 import 'package:withtone/views/pages/professional/background_color.dart';
 import 'package:withtone/views/pages/professional/professional_tile.dart';
+import 'package:withtone/views/pages/profile/profile_page.dart';
 
 ///プロフェッショナルページ
-class ProfessionalPage extends StatefulWidget {
+class ProfessionalPage extends ConsumerStatefulWidget {
   const ProfessionalPage({super.key});
 
   static const String path = '/professional';
 
   @override
-  State<ProfessionalPage> createState() => _ProfessionalPageState();
+  ConsumerState<ProfessionalPage> createState() => _ProfessionalPageState();
 }
 
-class _ProfessionalPageState extends State<ProfessionalPage> {
+class _ProfessionalPageState extends ConsumerState<ProfessionalPage> {
   @override
   Widget build(BuildContext context) {
+    // loginUser (AsyncValue<WithToneUser>) を取得
+    final loginUser = ref.watch(loginUserProvider);
+
+    // loginUser.userImage から Widget を生成
+    final userIcon = switch (loginUser) {
+      AsyncError() => const Icon(Icons.person),
+      AsyncData(:final value) => CircleProfileIcon(
+          size: 44,
+          isIcon: false,
+          imageUrl: value.userImage,
+          onPressed: () => Navigator.pushNamed(context, ProfilePage.path),
+        ),
+      _ => const CircularProgressIndicator(),
+    };
+
     return Scaffold(
       body: Stack(
         children: [
@@ -45,13 +63,7 @@ class _ProfessionalPageState extends State<ProfessionalPage> {
                             onTap: () {},
                           ),
                           const SizedBox(width: 25),
-                          CircleProfileIcon(
-                            imageUrl:
-                                'https://thumb.photo-ac.com/4c/4c903a6ccab7d95e9e051cc7ee2de98a_t.jpeg',
-                            isIcon: false,
-                            size: 44,
-                            onPressed: () {},
-                          )
+                          userIcon,
                         ],
                       )
                     ],

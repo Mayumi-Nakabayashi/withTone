@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:withtone/providers/user/login_user.dart';
 import 'package:withtone/views/components/admob/ad_banner.dart';
+import 'package:withtone/views/components/icon/circle_profile_icon.dart';
 import 'package:withtone/views/pages/article/article_page.dart';
 import 'package:withtone/views/pages/content/article_card.dart';
 import 'package:withtone/views/pages/content/content_appbar.dart';
@@ -8,20 +11,35 @@ import 'package:withtone/views/pages/content/learning_card.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 
 /// 学ぶ
-class ContentPage extends StatefulWidget {
+class ContentPage extends ConsumerStatefulWidget {
   const ContentPage({super.key});
 
   static const String path = '/content';
 
   @override
-  State<ContentPage> createState() => _ContentPageState();
+  ConsumerState<ContentPage> createState() => _ContentPageState();
 }
 
-class _ContentPageState extends State<ContentPage> {
+class _ContentPageState extends ConsumerState<ContentPage> {
   bool _visible = true;
 
   @override
   Widget build(BuildContext context) {
+    // loginUser (AsyncValue<WithToneUser>) を取得
+    final loginUser = ref.watch(loginUserProvider);
+
+    // loginUser.userImage から Widget を生成
+    final userIcon = switch (loginUser) {
+      AsyncError() => const Icon(Icons.person),
+      AsyncData(:final value) => CircleProfileIcon(
+          size: 44,
+          isIcon: false,
+          imageUrl: value.userImage,
+          onPressed: () => Navigator.pushNamed(context, ProfilePage.path),
+        ),
+      _ => const CircularProgressIndicator(),
+    };
+
     final double floatingButtonWidth = MediaQuery.of(context).size.width * 0.75;
     const double floatingButtonHeight = 46;
 
@@ -133,14 +151,9 @@ class _ContentPageState extends State<ContentPage> {
                   ),
                 ),
                 actions: [
-                  IconButton(
-                    // FIXME: アイコン下手がきにしてます
-                    icon: const Icon(
-                      Icons.insert_emoticon_rounded,
-                      size: 44,
-                    ),
-                    onPressed: () =>
-                        Navigator.pushNamed(context, ProfilePage.path),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: userIcon,
                   ),
                 ],
               ),
