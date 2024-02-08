@@ -6,6 +6,7 @@ import 'package:withtone/views/components/icon/circle_icon_button.dart';
 import 'package:withtone/views/components/icon/circle_profile_icon.dart';
 import 'package:withtone/views/pages/professional/background_color.dart';
 import 'package:withtone/views/pages/professional/professional_tile.dart';
+import 'package:withtone/views/pages/profile/profile_page.dart';
 
 ///プロフェッショナルページ
 class ProfessionalPage extends ConsumerStatefulWidget {
@@ -27,7 +28,11 @@ class _ProfessionalPageState extends ConsumerState<ProfessionalPage> {
     final userIcon = switch (loginUser) {
       AsyncError() => const Icon(Icons.person),
       AsyncData(:final value) => CircleProfileIcon(
-          size: 44, isIcon: false, imageUrl: value.userImage, onPressed: () {}),
+          size: 44,
+          isIcon: false,
+          imageUrl: value.userImage,
+          onPressed: () => Navigator.pushNamed(context, ProfilePage.path),
+        ),
       _ => const CircularProgressIndicator(),
     };
 
