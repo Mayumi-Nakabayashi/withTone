@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
-import 'package:withtone/models/post.dart';
+import 'package:withtone/models/post/post.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
@@ -45,13 +45,29 @@ final videoPlayerControllerProvider =
 });
 
 /// 質問動画にコメントをつける画面
-class UploadCommentqPage extends ConsumerWidget {
+
+class UploadCommentqPage extends ConsumerStatefulWidget {
   const UploadCommentqPage({super.key});
 
   static const String path = '/upload_commentq';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<UploadCommentqPage> createState() => _UploadCommentqPageState();
+}
+
+class _UploadCommentqPageState extends ConsumerState<UploadCommentqPage> {
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _bodyController = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _bodyController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('コメント')),
       body: SingleChildScrollView(
@@ -66,8 +82,9 @@ class UploadCommentqPage extends ConsumerWidget {
                     fontSize: 20,
                   )),
             ),
-            const TextField(
-              decoration: InputDecoration(border: InputBorder.none),
+            TextField(
+              controller: _bodyController,
+              decoration: const InputDecoration(border: InputBorder.none),
               keyboardType: TextInputType.multiline,
               minLines: 6,
               maxLength: 300,
@@ -87,10 +104,7 @@ class UploadCommentqPage extends ConsumerWidget {
                   id: docId,
                   uid: uid,
                   title: '【超初心者】バイオリンを買ってから７日間の練習メニュー',
-                  body: '''
-バイオリンを始めたばかりの超初心者用の動画です。
-７日間でバイオリンの準備から持ち方、簡単な曲にチャレンジ！
-''',
+                  body: _bodyController.text,
                   // 先に動画をアップロードして、そのURLを入れる
                   movieUrl: 'https://www.youtube.com/watch?v=8HqQ3XgxBhY',
                   tags: ['#バイオリン', '#初心者', '#質問歓迎'],

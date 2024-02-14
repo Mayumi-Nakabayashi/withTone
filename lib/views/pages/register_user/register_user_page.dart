@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:withtone/models/withtone_user/withtone_user.dart';
 import 'package:withtone/providers/firebase_provider/firebase_auth_provider.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/learning_community_search.dart';
-import 'package:withtone/views/pages/edit_profile/model/user.dart';
-import 'package:withtone/views/pages/edit_profile/provider/profile_provider.dart';
+import 'package:withtone/providers/user/users_reference.dart';
 
 class RegisterUserPage extends ConsumerStatefulWidget {
   const RegisterUserPage({super.key});
@@ -85,8 +85,8 @@ class _RegisterUserPageState extends ConsumerState<RegisterUserPage> {
                       return;
                     }
                     final userName = userNameController.text;
-                    final user = User(id: uid, userName: userName);
-                    await ref.read(usersReference).add(user);
+                    final user = WithToneUser(id: uid, userName: userName);
+                    await ref.read(usersReferenceProvider).add(user);
                     if (mounted) {
                       await Navigator.pushNamed(
                         context,

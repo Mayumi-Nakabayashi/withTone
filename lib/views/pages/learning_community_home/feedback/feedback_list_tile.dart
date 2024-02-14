@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:withtone/views/components/circle_profile_icon.dart';
-import 'package:withtone/views/pages/learning_community_home/widget/feedback_favorite_button.dart';
+import 'package:withtone/views/components/icon/circle_profile_icon.dart';
+import 'package:withtone/views/pages/learning_community_home/feedback_favorite_button.dart';
 
 class FeedBackListTile extends StatelessWidget {
-  const FeedBackListTile({super.key, required this.feedBack});
-  final String feedBack;
+  const FeedBackListTile({super.key, required this.comment});
+  final String comment;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,13 @@ class FeedBackListTile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Text(feedBack),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              comment,
+              textAlign: TextAlign.start,
+            ),
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
