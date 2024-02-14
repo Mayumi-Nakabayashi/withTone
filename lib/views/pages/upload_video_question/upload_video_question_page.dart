@@ -56,12 +56,6 @@ class UploadVideoQuestionPage extends ConsumerWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Theme.of(context).secondaryHeaderColor,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.flip_camera_android),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Stack(
         children: [
