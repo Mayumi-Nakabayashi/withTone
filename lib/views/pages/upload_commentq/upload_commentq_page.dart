@@ -4,25 +4,54 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:video_player/video_player.dart';
 import 'package:withtone/models/post/post.dart';
-
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
 import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
 
+/// メディアをファイルとして提供するプロバイダー
+final mediaFileProvider = Provider((ref) {
+  final mediaPath = ref.watch(mediaProvider)?.path;
+  print("mediaPath: $mediaPath");
+  if (mediaPath == null || mediaPath == '') {
+    throw Exception('メディアがありません');
+  }
+  return File(mediaPath);
+});
+
+/// ビデオ再生中かどうかを管理するプロバイダー
+final isPlayingProvider = StateProvider((ref) => false);
+
+/// ビデオプレーヤーコントローラを取得するプロバイダー
+final videoPlayerControllerProvider =
+    FutureProvider.autoDispose<VideoPlayerController>((ref) async {
+  final controller = VideoPlayerController.file(ref.watch(mediaFileProvider));
+
+  // コントローラを初期化
+  await controller.initialize();
+
+  // 再生状態をプロバイダーに反映
+  controller.addListener(() {
+    ref.read(isPlayingProvider.notifier).state = controller.value.isPlaying;
+  });
+
+  // プロバイダーの破棄時にカメラコントローラを破棄する
+  ref.onDispose(() {
+    controller.dispose();
+  });
+
+  return controller;
+});
+
 /// 質問動画にコメントをつける画面
 
 class UploadCommentqPage extends ConsumerStatefulWidget {
-
-
-
   const UploadCommentqPage({super.key});
 
   static const String path = '/upload_commentq';
 
   @override
-
   ConsumerState<UploadCommentqPage> createState() => _UploadCommentqPageState();
 }
 
@@ -62,10 +91,7 @@ class _UploadCommentqPageState extends ConsumerState<UploadCommentqPage> {
               maxLines: null,
             ),
             const SizedBox(height: 20),
-            // TODO: ここに動画を表示する
-            ref.watch(imageProvider) != null
-                ? Image.file(File(ref.watch(imageProvider)?.path ?? 'null'))
-                : const SizedBox(),
+            const _MediaPreview(),
             const SizedBox(height: 20),
             PrimaryButton(
               label: '質問を投稿',
@@ -99,6 +125,84 @@ class _UploadCommentqPageState extends ConsumerState<UploadCommentqPage> {
           ]),
         ),
       ),
+    );
+  }
+}
+
+/// メディアの表示パーツ
+class _MediaPreview extends ConsumerWidget {
+  const _MediaPreview();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isVideo = ref.watch(cameraModeProvider) == CameraMode.video;
+    return isVideo ? const _VideoPreview() : const _ImagePreview();
+  }
+}
+
+/// 画像の表示パーツ
+class _ImagePreview extends ConsumerWidget {
+  const _ImagePreview();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Image.file(ref.watch(mediaFileProvider));
+  }
+}
+
+/// ビデオプレーヤーの表示パーツ
+class _VideoPreview extends ConsumerWidget {
+  const _VideoPreview({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(videoPlayerControllerProvider).value;
+    if (controller == null) {
+      return const SizedBox.shrink();
+    }
+    return AspectRatio(
+      aspectRatio: controller.value.aspectRatio,
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: <Widget>[
+          VideoPlayer(controller),
+          const _ControlsOverlay(),
+          VideoProgressIndicator(controller, allowScrubbing: true),
+        ],
+      ),
+    );
+  }
+}
+
+/// ビデオプレーヤーのオーバーレイ
+class _ControlsOverlay extends ConsumerWidget {
+  const _ControlsOverlay({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(videoPlayerControllerProvider).value;
+    final isPlaying = ref.watch(isPlayingProvider);
+    if (controller == null) {
+      return const SizedBox.shrink();
+    }
+    return Stack(
+      children: <Widget>[
+        isPlaying
+            ? const SizedBox.shrink()
+            : const ColoredBox(
+                color: Colors.black12,
+                child: Center(
+                  child: Icon(
+                    Icons.play_arrow,
+                    color: Colors.white,
+                    size: 100,
+                  ),
+                ),
+              ),
+        GestureDetector(
+          onTap: () => isPlaying ? controller.pause() : controller.play(),
+        ),
+      ],
     );
   }
 }
