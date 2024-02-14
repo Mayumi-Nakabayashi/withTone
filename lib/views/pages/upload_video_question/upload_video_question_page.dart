@@ -10,8 +10,11 @@ enum CameraMode { image, video }
 final cameraModeProvider =
     StateProvider.autoDispose<CameraMode>((ref) => CameraMode.image);
 
-// 撮影した画像を保存するプロバイダー
-final imageProvider = StateProvider<XFile?>((ref) => null);
+// 撮影したメディア(画像・動画)を保存するプロバイダー
+final mediaProvider = StateProvider<XFile?>((ref) => null);
+
+// カメラが動画撮影中かどうかを管理するプロバイダー
+final isRecordingProvider = StateProvider((ref) => false);
 
 // カメラコントローラを取得するプロバイダー
 // この画面でしか使わないので、一旦ここに書いておく
@@ -32,6 +35,10 @@ final cameraControllerProvider =
 
   // コントローラを初期化
   await controller.initialize();
+  controller.addListener(() {
+    ref.watch(isRecordingProvider.notifier).state =
+        controller.value.isRecordingVideo;
+  });
   return controller;
 });
 
@@ -40,12 +47,6 @@ class UploadVideoQuestionPage extends ConsumerWidget {
   const UploadVideoQuestionPage({super.key});
 
   static const String path = '/upload_video_question';
-
-  /// 写真撮影ボタン押下時処理
-  Future<XFile> onPressTakePictureButton(
-      BuildContext context, CameraController controller) async {
-    return await controller.takePicture();
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -65,13 +66,14 @@ class UploadVideoQuestionPage extends ConsumerWidget {
       body: Stack(
         children: [
           cameraController.when(
-              // 撮影プレビュー
-              data: (data) => CameraPreview(data),
-              error: (err, stack) => Text('Error: $err'),
-              // 読込中プログレス
-              loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  )),
+            // 撮影プレビュー
+            data: (data) => CameraPreview(data),
+            error: (err, stack) => Text('Error: $err'),
+            // 読込中プログレス
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -85,30 +87,7 @@ class UploadVideoQuestionPage extends ConsumerWidget {
                       label: 'Effects',
                       assetPath: 'assets/logo/Effects_Illustration.png',
                     ),
-                    // 撮影ボタン
-                    ElevatedButton(
-                      onPressed: () => {
-                        cameraController.when(
-                          data: (data) {
-                            onPressTakePictureButton(context, data)
-                                .then((value) {
-                              ref.read(imageProvider.notifier).state = value;
-                              Navigator.of(context)
-                                  .pushNamed(UploadCommentqPage.path);
-                            });
-                          },
-                          error: (err, stack) => print("error: $err"),
-                          // 読込中は何も表示しない
-                          loading: () => print("loading"),
-                        ),
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        backgroundColor: Colors.yellow[800],
-                        padding: const EdgeInsets.all(20),
-                      ),
-                      child: const Icon(Icons.camera_alt, size: 50),
-                    ),
+                    const _CameraButton(),
                     VideoSideButton(
                       onPressed: () {},
                       label: 'Upload',
@@ -136,6 +115,91 @@ class UploadVideoQuestionPage extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// 写真撮影ボタン押下時処理
+///
+/// 画像を保存して、次の画面に遷移する
+Future<void> _onPressTakePictureButton(
+  BuildContext context,
+  WidgetRef ref,
+  CameraController controller,
+) async {
+  await controller.takePicture().then((value) {
+    ref.read(mediaProvider.notifier).state = value;
+    Navigator.of(context).pushNamed(UploadCommentqPage.path);
+  });
+  return;
+}
+
+/// 動画撮影開始ボタン押下時処理
+///
+/// 動画撮影を開始する
+Future<void> _onPressStartVideoRecordingButton(
+  BuildContext context,
+  WidgetRef ref,
+  CameraController controller,
+) async {
+  await controller.startVideoRecording();
+  return;
+}
+
+/// 動画撮影開始ボタン押下時処理
+///
+/// 動画を保存して、次の画面に遷移する
+Future<void> _onPressStopVideoRecordingButton(
+  BuildContext context,
+  WidgetRef ref,
+  CameraController controller,
+) async {
+  await controller.stopVideoRecording().then((value) {
+    ref.read(mediaProvider.notifier).state = value;
+    Navigator.of(context).pushNamed(UploadCommentqPage.path);
+  });
+  return;
+}
+
+/// 撮影ボタン
+class _CameraButton extends ConsumerWidget {
+  const _CameraButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cameraController = ref.watch(cameraControllerProvider);
+    final isVideo = ref.watch(cameraModeProvider) == CameraMode.video;
+    final isRecording = ref.watch(isRecordingProvider);
+
+    IconData iconData;
+    void Function() onPressed;
+    if (isVideo) {
+      iconData = isRecording ? Icons.stop : Icons.videocam;
+      onPressed = () => cameraController.when(
+            data: (data) => isRecording
+                ? _onPressStopVideoRecordingButton(context, ref, data)
+                : _onPressStartVideoRecordingButton(context, ref, data),
+            error: (err, stack) => print("error: $err"),
+            // 読込中は何も表示しない
+            loading: () => print("loading"),
+          );
+    } else {
+      iconData = Icons.camera_alt;
+      onPressed = () => cameraController.when(
+            data: (data) => _onPressTakePictureButton(context, ref, data),
+            error: (err, stack) => print("error: $err"),
+            // 読込中は何も表示しない
+            loading: () => print("loading"),
+          );
+    }
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.yellow[800],
+        padding: const EdgeInsets.all(20),
+      ),
+      child: Icon(iconData, size: 50),
     );
   }
 }
