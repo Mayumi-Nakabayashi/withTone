@@ -96,25 +96,41 @@ class UploadVideoQuestionPage extends ConsumerWidget {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.camera_alt_rounded, color: Colors.grey),
-                  Switch(
-                      activeColor: Colors.white,
-                      value: ref.watch(cameraModeProvider) == CameraMode.video,
-                      onChanged: (value) {
-                        print("value: $value");
-                        ref.watch(cameraModeProvider.notifier).state =
-                            value ? CameraMode.video : CameraMode.image;
-                      }),
-                  const Icon(Icons.video_camera_front, color: Colors.grey),
-                ],
-              ),
+              const _CameraModeSwitch(),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+/// 撮影モード切り替えスイッチ
+class _CameraModeSwitch extends ConsumerWidget {
+  const _CameraModeSwitch({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isRecording = ref.watch(isRecordingProvider);
+    final controller = ref.watch(cameraControllerProvider).value;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(Icons.camera_alt_rounded, color: Colors.grey),
+        Switch(
+          activeColor: Colors.white,
+          value: ref.watch(cameraModeProvider) == CameraMode.video,
+          onChanged: (isVideo) {
+            ref.watch(cameraModeProvider.notifier).state =
+                isVideo ? CameraMode.video : CameraMode.image;
+            // ビデオ撮影中 → 画像撮影に切り替えた場合、ビデオ撮影を停止する
+            if (isRecording) {
+              controller?.stopVideoRecording();
+            }
+          },
+        ),
+        const Icon(Icons.video_camera_front, color: Colors.grey),
+      ],
     );
   }
 }
