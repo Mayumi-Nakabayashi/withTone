@@ -156,7 +156,7 @@ Future<void> _onPressStartVideoRecordingButton(
   return;
 }
 
-/// 動画撮影開始ボタン押下時処理
+/// 動画撮影停止ボタン押下時処理
 ///
 /// 動画を保存して、次の画面に遷移する
 Future<void> _onPressStopVideoRecordingButton(

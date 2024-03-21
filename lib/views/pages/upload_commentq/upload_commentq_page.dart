@@ -45,7 +45,6 @@ final videoPlayerControllerProvider =
 });
 
 /// 質問動画にコメントをつける画面
-
 class UploadCommentqPage extends ConsumerStatefulWidget {
   const UploadCommentqPage({super.key});
 
