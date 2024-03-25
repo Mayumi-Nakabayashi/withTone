@@ -6,7 +6,7 @@ part of 'feedback_list.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$feedbackListHash() => r'117fc21fc2e7ea43f8eba542043652e53f3624af';
+String _$feedbackListHash() => r'd62a6d3c53051629b5ae9abf5bf1e936127c4284';
 
 /// Copied from Dart SDK
 class _SystemHash {

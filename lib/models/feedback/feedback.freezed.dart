@@ -21,10 +21,20 @@ Feedback _$FeedbackFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Feedback {
   String get id => throw _privateConstructorUsedError;
+
+  /// ドキュメントID
   String get uid => throw _privateConstructorUsedError;
+
+  /// 投稿者のUID
   String get comment => throw _privateConstructorUsedError;
+
+  /// コメント
   List<String> get favoriteUsers => throw _privateConstructorUsedError;
+
+  /// お気に入りユーザーのUIDリスト
   String get url => throw _privateConstructorUsedError;
+
+  /// 動画URL
   @CreatedAtField()
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -178,11 +188,19 @@ class _$FeedbackImpl implements _Feedback {
 
   @override
   final String id;
+
+  /// ドキュメントID
   @override
   final String uid;
+
+  /// 投稿者のUID
   @override
   final String comment;
+
+  /// コメント
   final List<String> _favoriteUsers;
+
+  /// コメント
   @override
   @JsonKey()
   List<String> get favoriteUsers {
@@ -191,9 +209,12 @@ class _$FeedbackImpl implements _Feedback {
     return EqualUnmodifiableListView(_favoriteUsers);
   }
 
+  /// お気に入りユーザーのUIDリスト
   @override
   @JsonKey()
   final String url;
+
+  /// 動画URL
   @override
   @CreatedAtField()
   final DateTime? createdAt;
@@ -252,14 +273,24 @@ abstract class _Feedback implements Feedback {
   @override
   String get id;
   @override
+
+  /// ドキュメントID
   String get uid;
   @override
+
+  /// 投稿者のUID
   String get comment;
   @override
+
+  /// コメント
   List<String> get favoriteUsers;
   @override
+
+  /// お気に入りユーザーのUIDリスト
   String get url;
   @override
+
+  /// 動画URL
   @CreatedAtField()
   DateTime? get createdAt;
   @override

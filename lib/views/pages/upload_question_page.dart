@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:withtone/views/components/text/orange_text.dart';
 import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
-
-class UploadQuestionPage extends StatefulWidget {
-  const UploadQuestionPage({super.key});
-
-  static const String path = '/upload_question';
-
-  @override
-  State<UploadQuestionPage> createState() => _UploadQuestionPageState();
-}
 
 class ButtonItem {
   final String label;
@@ -17,7 +9,17 @@ class ButtonItem {
   ButtonItem({required this.label, this.isSelected = false});
 }
 
-class _UploadQuestionPageState extends State<UploadQuestionPage> {
+class UploadQuestionPage extends ConsumerStatefulWidget {
+  const UploadQuestionPage({super.key});
+
+  static const String path = '/upload_question';
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UploadQuestionPageState();
+}
+
+class _UploadQuestionPageState extends ConsumerState<UploadQuestionPage> {
   List<ButtonItem> buttonItems = [
     ButtonItem(label: 'はい'),
     ButtonItem(label: 'いいえ'),

@@ -1,226 +1,337 @@
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:withtone/providers/camera/camera.dart';
+import 'package:withtone/providers/media/media.dart';
 import 'package:withtone/views/pages/upload_commentq/upload_commentq_page.dart';
 
-// 画像と動画のモードの切り替え状態
-enum CameraMode { image, video }
-
-// 画像と動画のモードの切り替え状態を管理するプロバイダー
-final cameraModeProvider =
-    StateProvider.autoDispose<CameraMode>((ref) => CameraMode.image);
-
-// 撮影したメディア(画像・動画)を保存するプロバイダー
-final mediaProvider = StateProvider<XFile?>((ref) => null);
-
-// カメラが動画撮影中かどうかを管理するプロバイダー
-final isRecordingProvider = StateProvider((ref) => false);
-
-// カメラコントローラを取得するプロバイダー
-// この画面でしか使わないので、一旦ここに書いておく
-final cameraControllerProvider =
-    FutureProvider.autoDispose<CameraController>((ref) async {
-  // 利用可能なカメラの一覧を取得
-  final cameras = await availableCameras();
-  // 基本的には、※0: 外カメ　1: 内カメ
-  final camera = cameras[1];
-  final controller = CameraController(
-    camera,
-    ResolutionPreset.medium,
-  );
-  // プロバイダーの破棄時にカメラコントローラを破棄する
-  ref.onDispose(() {
-    controller.dispose();
-  });
-
-  // コントローラを初期化
-  await controller.initialize();
-  controller.addListener(() {
-    ref.watch(isRecordingProvider.notifier).state =
-        controller.value.isRecordingVideo;
-  });
-  return controller;
-});
-
 /// 質問動画を撮影する画面
-class UploadVideoQuestionPage extends ConsumerWidget {
-  const UploadVideoQuestionPage({super.key});
-
+class UploadVideoQuestionPage extends ConsumerStatefulWidget {
+  const UploadVideoQuestionPage({Key? key}) : super(key: key);
   static const String path = '/upload_video_question';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cameraController = ref.watch(cameraControllerProvider);
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _UploadVideoQuestionPageState();
+}
 
+class _UploadVideoQuestionPageState
+    extends ConsumerState<UploadVideoQuestionPage> {
+  /// カメラコントローラ
+  late CameraController? _controller;
+
+  /// カメラコントローラの初期化処理
+  ///
+  /// 参考: https://docs.flutter.dev/cookbook/plugins/picture-using-camera
+  late Future<void> _initializeControllerFuture;
+
+  /// カメラの撮影モード (画像 or 動画)
+  bool isVideo = false;
+
+  /// カメラのレンズ向き
+  CameraLensDirection cameraLensDirection = CameraLensDirection.front;
+
+  /// カメラが動画撮影中かどうか
+  bool isRecording = false;
+
+  /// カメラのレンズ向きがfrontかどうか
+  bool get isFront => cameraLensDirection == CameraLensDirection.front;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = createCameraController(ref);
+    _cameraControllerAddListener(_controller);
+    _initializeControllerFuture = _controller?.initialize() ?? Future.value();
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
-      ),
-      body: Stack(
-        children: [
-          cameraController.when(
-            // 撮影プレビュー
-            data: (data) => CameraPreview(data),
-            error: (err, stack) => Text('Error: $err'),
-            // 読込中プログレス
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+      body: SafeArea(
+        child: Container(
+          color: Colors.black,
+          child: Stack(
             children: [
+              FutureBuilder<void>(
+                future: _initializeControllerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Stack(
+                      children: [
+                        if (_controller != null)
+                          Center(child: CameraPreview(_controller!)),
+                        _BottomButtonBar(
+                          children: [
+                            _VideoSideButton.effects(
+                              onPressed: () {},
+                            ),
+                            _CameraButton(
+                              isVideo: isVideo,
+                              isRecording: isRecording,
+                              startVideo: () =>
+                                  _onPressStartVideoRecordingButton(),
+                              stopVideo: () => _onPressStopVideoRecordingButton(
+                                context,
+                                ref,
+                              ),
+                              takePicture: () => _onPressTakePictureButton(
+                                context,
+                                ref,
+                              ),
+                            ),
+                            _VideoSideButton.upload(onPressed: null),
+                          ],
+                        ),
+                      ],
+                    );
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    VideoSideButton(
-                      onPressed: () {},
-                      label: 'Effects',
-                      assetPath: 'assets/logo/Effects_Illustration.png',
-                    ),
-                    const _CameraButton(),
-                    VideoSideButton(
-                      onPressed: () {},
-                      label: 'Upload',
-                      assetPath: 'assets/logo/Upload_Illustration.png',
-                    ),
-                  ],
+                padding: const EdgeInsets.all(8.0),
+                child: _GreyIconButton(
+                  iconData: Icons.arrow_back,
+                  onPressed: () => Navigator.pop(context),
                 ),
               ),
-              const _CameraModeSwitch(),
+              _LeftButtonsContainer(
+                children: [
+                  _GreyIconButton(
+                    iconData: isVideo
+                        ? Icons.video_camera_front
+                        : Icons.camera_alt_rounded,
+                    onPressed: _changeCameraMode,
+                  ),
+                  _GreyIconButton(
+                    iconData: isFront ? Icons.camera_front : Icons.camera_rear,
+                    onPressed:
+                        _controller != null && _controller!.value.isInitialized
+                            ? _changeCameraLensDirection
+                            : null,
+                  ),
+                ],
+              ),
             ],
           ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  /// カメラコントローラを作成する
+  CameraController? createCameraController(WidgetRef ref) {
+    log('createCameraController start');
+    try {
+      final camera = ref.read(selectedCameraProvider());
+      if (camera == null) {
+        return null;
+      }
+      return CameraController(
+        camera,
+        ResolutionPreset.high,
+        enableAudio: true,
+        imageFormatGroup: ImageFormatGroup.jpeg,
+      );
+    } on CameraException catch (e) {
+      log("code: ${e.code}, description: ${e.description}");
+      return null;
+    }
+  }
+
+  /// カメラコントローラ群のリスナ登録
+  void _cameraControllerAddListener(
+    CameraController? controller,
+  ) {
+    log('_cameraControllerAddListener start');
+    controller?.addListener(
+      () => setState(() {
+        isRecording = _controller != null &&
+            _controller!.value.isInitialized &&
+            _controller!.value.isRecordingVideo;
+      }),
+    );
+  }
+
+  /// 写真撮影ボタン押下時処理
+  ///
+  /// 画像を保存して、次の画面に遷移する
+  Future<void> _onPressTakePictureButton(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
+    log('_onPressTakePictureButton start');
+
+    XFile? file;
+    try {
+      file = await _controller?.takePicture();
+    } finally {
+      ref.read(mediaNotifierProvider.notifier).update(file);
+      Navigator.of(context).pushNamed(UploadCommentqPage.path);
+    }
+    return;
+  }
+
+  /// 動画撮影開始ボタン押下時処理
+  ///
+  /// 動画撮影を開始する
+  Future<void> _onPressStartVideoRecordingButton() async {
+    log('_onPressStartVideoRecordingButton start');
+    await _controller?.startVideoRecording();
+    return;
+  }
+
+  /// 動画撮影停止ボタン押下時処理
+  ///
+  /// 動画を保存して、次の画面に遷移する
+  Future<void> _onPressStopVideoRecordingButton(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
+    log('_onPressStopVideoRecordingButton start');
+
+    await _controller?.stopVideoRecording().then((value) {
+      ref.read(mediaNotifierProvider.notifier).update(value);
+      Navigator.of(context).pushNamed(UploadCommentqPage.path);
+    }).onError((error, stackTrace) {
+      log('_onPressStopVideoRecordingButton error: $error, stackTrace: $stackTrace');
+    });
+    return;
+  }
+
+  /// カメラのモードを変更する
+  void _changeCameraMode() {
+    log('_changeCameraMode start');
+    setState(() {
+      isVideo = !isVideo;
+      // ビデオ撮影中 → 画像撮影に切り替えた場合、ビデオ撮影を停止する
+      if (isRecording) {
+        _controller?.stopVideoRecording();
+      }
+    });
+  }
+
+  /// カメラの向きを変更する
+  void _changeCameraLensDirection() {
+    log('_changeCameraLensDirection start');
+    setState(() {
+      cameraLensDirection =
+          isFront ? CameraLensDirection.back : CameraLensDirection.front;
+      final camera =
+          ref.read(selectedCameraProvider(direction: cameraLensDirection));
+      if (camera != null) {
+        _controller?.setDescription(camera);
+        _cameraControllerAddListener(_controller);
+      }
+    });
+  }
+}
+
+/// 画面上部のボタン
+class _GreyIconButton extends StatelessWidget {
+  final IconData? iconData;
+  final void Function()? onPressed;
+
+  const _GreyIconButton({
+    Key? key,
+    required this.iconData,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(iconData, color: Colors.grey),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Colors.grey.withOpacity(0.25),
+        ),
+      ),
+      onPressed: onPressed,
+    );
+  }
+}
+
+/// トップ右上に表示するボタン群のレイアウト
+class _LeftButtonsContainer extends StatelessWidget {
+  const _LeftButtonsContainer({
+    Key? key,
+    required this.children,
+  }) : super(key: key);
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: children,
+        ),
       ),
     );
   }
 }
 
-/// 撮影モード切り替えスイッチ
-class _CameraModeSwitch extends ConsumerWidget {
-  const _CameraModeSwitch({Key? key}) : super(key: key);
+/// 画面下部に表示するカメラのボタン群
+class _BottomButtonBar extends StatelessWidget {
+  const _BottomButtonBar({
+    required this.children,
+  });
+
+  /// 子要素
+  final List<Widget> children;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isRecording = ref.watch(isRecordingProvider);
-    final controller = ref.watch(cameraControllerProvider).value;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        const Icon(Icons.camera_alt_rounded, color: Colors.grey),
-        Switch(
-          activeColor: Colors.white,
-          value: ref.watch(cameraModeProvider) == CameraMode.video,
-          onChanged: (isVideo) {
-            ref.watch(cameraModeProvider.notifier).state =
-                isVideo ? CameraMode.video : CameraMode.image;
-            // ビデオ撮影中 → 画像撮影に切り替えた場合、ビデオ撮影を停止する
-            if (isRecording) {
-              controller?.stopVideoRecording();
-            }
-          },
-        ),
-        const Icon(Icons.video_camera_front, color: Colors.grey),
+        _BottomButtonBarContainer(children: children),
       ],
     );
   }
 }
 
-/// 写真撮影ボタン押下時処理
-///
-/// 画像を保存して、次の画面に遷移する
-Future<void> _onPressTakePictureButton(
-  BuildContext context,
-  WidgetRef ref,
-  CameraController controller,
-) async {
-  await controller.takePicture().then((value) {
-    ref.read(mediaProvider.notifier).state = value;
-    Navigator.of(context).pushNamed(UploadCommentqPage.path);
+/// [_BottomButtonBar] で使う1行の余白感を整えるコンテナ
+class _BottomButtonBarContainer extends StatelessWidget {
+  const _BottomButtonBarContainer({
+    required this.children,
   });
-  return;
-}
 
-/// 動画撮影開始ボタン押下時処理
-///
-/// 動画撮影を開始する
-Future<void> _onPressStartVideoRecordingButton(
-  BuildContext context,
-  WidgetRef ref,
-  CameraController controller,
-) async {
-  await controller.startVideoRecording();
-  return;
-}
-
-/// 動画撮影停止ボタン押下時処理
-///
-/// 動画を保存して、次の画面に遷移する
-Future<void> _onPressStopVideoRecordingButton(
-  BuildContext context,
-  WidgetRef ref,
-  CameraController controller,
-) async {
-  await controller.stopVideoRecording().then((value) {
-    ref.read(mediaProvider.notifier).state = value;
-    Navigator.of(context).pushNamed(UploadCommentqPage.path);
-  });
-  return;
-}
-
-/// 撮影ボタン
-class _CameraButton extends ConsumerWidget {
-  const _CameraButton({Key? key}) : super(key: key);
+  final List<Widget> children;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cameraController = ref.watch(cameraControllerProvider);
-    final isVideo = ref.watch(cameraModeProvider) == CameraMode.video;
-    final isRecording = ref.watch(isRecordingProvider);
-
-    IconData iconData;
-    void Function() onPressed;
-    if (isVideo) {
-      iconData = isRecording ? Icons.stop : Icons.videocam;
-      onPressed = () => cameraController.when(
-            data: (data) => isRecording
-                ? _onPressStopVideoRecordingButton(context, ref, data)
-                : _onPressStartVideoRecordingButton(context, ref, data),
-            error: (err, stack) => print("error: $err"),
-            // 読込中は何も表示しない
-            loading: () => print("loading"),
-          );
-    } else {
-      iconData = Icons.camera_alt;
-      onPressed = () => cameraController.when(
-            data: (data) => _onPressTakePictureButton(context, ref, data),
-            error: (err, stack) => print("error: $err"),
-            // 読込中は何も表示しない
-            loading: () => print("loading"),
-          );
-    }
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.yellow[800],
-        padding: const EdgeInsets.all(20),
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: children,
       ),
-      child: Icon(iconData, size: 50),
     );
   }
 }
 
 /// ビデオの左右にあるボタン
-class VideoSideButton extends StatelessWidget {
+class _VideoSideButton extends StatelessWidget {
   final String label;
   final String assetPath;
   final void Function()? onPressed;
 
-  const VideoSideButton({
+  const _VideoSideButton({
     Key? key,
     required this.label,
     required this.assetPath,
@@ -235,6 +346,8 @@ class VideoSideButton extends StatelessWidget {
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -246,6 +359,66 @@ class VideoSideButton extends StatelessWidget {
           Text(label, style: const TextStyle(color: Colors.white))
         ],
       ),
+    );
+  }
+
+  factory _VideoSideButton.effects({
+    required void Function()? onPressed,
+  }) {
+    return _VideoSideButton(
+      label: 'Effects',
+      assetPath: 'assets/logo/Effects_Illustration.png',
+      onPressed: onPressed,
+    );
+  }
+
+  factory _VideoSideButton.upload({
+    required void Function()? onPressed,
+  }) {
+    return _VideoSideButton(
+      label: 'Upload',
+      assetPath: 'assets/logo/Upload_Illustration.png',
+      onPressed: onPressed,
+    );
+  }
+}
+
+/// 撮影ボタン
+class _CameraButton extends StatelessWidget {
+  const _CameraButton({
+    Key? key,
+    required this.isVideo,
+    required this.isRecording,
+    required this.startVideo,
+    required this.stopVideo,
+    required this.takePicture,
+  }) : super(key: key);
+
+  final bool isVideo;
+  final bool isRecording;
+  final Function()? stopVideo;
+  final Function()? startVideo;
+  final Function()? takePicture;
+
+  @override
+  Widget build(BuildContext context) {
+    IconData? iconData;
+    void Function()? onPressed;
+    if (isVideo) {
+      iconData = isRecording ? Icons.stop : Icons.videocam;
+      onPressed = isRecording ? stopVideo : startVideo;
+    } else {
+      iconData = Icons.camera_alt;
+      onPressed = takePicture;
+    }
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.yellow[800],
+        padding: const EdgeInsets.all(20),
+      ),
+      child: Icon(iconData, size: 50),
     );
   }
 }

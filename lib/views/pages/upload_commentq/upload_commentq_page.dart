@@ -1,24 +1,12 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 import 'package:withtone/models/post/post.dart';
+import 'package:withtone/providers/media/media.dart';
 import 'package:withtone/views/components/primary_button.dart';
 import 'package:withtone/views/pages/home_page.dart';
-import 'package:withtone/views/pages/upload_video_question/upload_video_question_page.dart';
-
-/// メディアをファイルとして提供するプロバイダー
-final mediaFileProvider = Provider((ref) {
-  final mediaPath = ref.watch(mediaProvider)?.path;
-  print("mediaPath: $mediaPath");
-  if (mediaPath == null || mediaPath == '') {
-    throw Exception('メディアがありません');
-  }
-  return File(mediaPath);
-});
 
 /// ビデオ再生中かどうかを管理するプロバイダー
 final isPlayingProvider = StateProvider((ref) => false);
@@ -26,7 +14,9 @@ final isPlayingProvider = StateProvider((ref) => false);
 /// ビデオプレーヤーコントローラを取得するプロバイダー
 final videoPlayerControllerProvider =
     FutureProvider.autoDispose<VideoPlayerController>((ref) async {
-  final controller = VideoPlayerController.file(ref.watch(mediaFileProvider));
+  final controller = VideoPlayerController.file(
+    ref.watch(mediaNotifierProvider.notifier).file,
+  );
 
   // コントローラを初期化
   await controller.initialize();
@@ -134,8 +124,8 @@ class _MediaPreview extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isVideo = ref.watch(cameraModeProvider) == CameraMode.video;
-    return isVideo ? const _VideoPreview() : const _ImagePreview();
+    final isImage = ref.watch(mediaNotifierProvider.notifier).isImage;
+    return isImage ? const _ImagePreview() : const _VideoPreview();
   }
 }
 
@@ -145,7 +135,7 @@ class _ImagePreview extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Image.file(ref.watch(mediaFileProvider));
+    return Image.file(ref.watch(mediaNotifierProvider.notifier).file);
   }
 }
 
