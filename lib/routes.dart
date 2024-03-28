@@ -15,6 +15,7 @@ import 'package:withtone/views/pages/intro/intro_page.dart';
 import 'package:withtone/views/pages/login_mail/login_mail_page.dart';
 import 'package:withtone/views/pages/password_reissue/password_reissue_page.dart';
 import 'package:withtone/views/pages/password_reissue_confirm/password_reissue_confirm_page.dart';
+import 'package:withtone/views/pages/professional/professional_portal_mail.dart';
 import 'package:withtone/views/pages/professional_tool/professional_tool_page.dart';
 import 'package:withtone/views/pages/profile/profile_page.dart';
 import 'package:withtone/views/pages/register_user/register_user_page.dart';
@@ -67,13 +68,14 @@ class Routes {
     UploadInstPage.path: (context) => const UploadInstPage(),
     UploadQuestionPage.path: (context) => const UploadQuestionPage(),
     UploadCommentqPage.path: (context) => const UploadCommentqPage(),
-    UploadVideoQuestionPage.path: (context) => UploadVideoQuestionPage(),
+    UploadVideoQuestionPage.path: (context) => const UploadVideoQuestionPage(),
     ArticlePage.path: (context) => const ArticlePage(),
     AccountStopdeletePage.path: (context) => const AccountStopdeletePage(),
     AccountStopdeleteStopPage.path: (context) =>
         const AccountStopdeleteStopPage(),
     AccountStopdeleteDeletePage.path: (context) =>
         const AccountStopdeleteDeletePage(),
-    RegisterUserPage.path: (constext) => const RegisterUserPage()
+    RegisterUserPage.path: (constext) => const RegisterUserPage(),
+    ProfessionalPortalMail.path: (context) => const ProfessionalPortalMail(),
   };
 }
